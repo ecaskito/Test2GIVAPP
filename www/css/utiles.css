@@ -1,0 +1,57 @@
+.mi-util a {
+    background-color:transparent;
+    margin:2px;
+    padding:4px;
+    display:block;
+    position:fixed;
+}
+.mi-util a:hover {
+    background-color:#f9dce2;
+}
+
+
+.mi-img-menu
+{
+    margin:2px;
+    height:16px;
+    width:16px;
+    background-image: url('images/bars-white.png');
+    background-repeat: no-repeat;
+}
+
+.mi-cab-menu {
+    display:-webkit-box;
+    margin:-12px;
+    background-color:#fafafa;
+    color:#DB0D36;
+    font-size:0.83em;
+    font-weight:bold;
+}
+.mi-cab-menu-texto {
+    padding:14px;
+}
+.mi-ul {
+    list-style:none;
+    text-decoration:none;
+    font-size:0.8em;
+    -webkit-padding-start: 0px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.mi-selected {
+    color:#DB0D36;
+}
+.mi-ul li {
+    border-bottom:1px solid #fafafa;
+    padding-left:10px;
+}
+.mi-ul li:hover {
+    background-color: #f9dce2;
+}
+
+.mi-ul a {
+	padding: 10px 10px;
+	text-decoration: none;
+	zoom: 1; /* IE7 */
+    color:#333333;
+}
