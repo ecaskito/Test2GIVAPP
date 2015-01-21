@@ -52,7 +52,7 @@ try{
 
     //cargar mapa
     //iniciaMapa();
-    navigator.geolocation.getCurrentPosition(posicionOK,posicionError);
+    navigator.geolocation.getCurrentPosition(posicionOK,posicionError,{timeout: 10000, enableHighAccuracy: true});
 }
 catch(ex) {
     alert( ex.message);
