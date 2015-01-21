@@ -34,7 +34,7 @@
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="Camera">
         <param name="ios-package" value="CDVCamera" />
-        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+        <!--<param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />-->
     </feature>
 
     <gap:plugin name="org.apache.cordova.battery-status" />
@@ -55,7 +55,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-    <gap:plugin name="org.apache.cordova.camera.CameraLauncher"  />
+    <!--<gap:plugin name="org.apache.cordova.camera.CameraLauncher"  />-->
 
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
