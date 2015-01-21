@@ -9,11 +9,11 @@ var sCoord_Y = '';
 var sComentario = '';
 
 function inicioPaginaDatosIncidencia() {
-try{
+    try{
 
-    navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
-    //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: pictureSource.DATA_URL });
-}
+        //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+        cargarPaginaDatosIncidencia();
+    }
     catch (ex){
         alert(ex.message);
     }
@@ -55,7 +55,7 @@ try{
     navigator.geolocation.getCurrentPosition(posicionOK,posicionError);
 }
 catch(ex) {
-    alert(ex.message);
+    alert( ex.message);
 }
 
 
@@ -114,7 +114,7 @@ function iniciaMapa() {
     }
 }
 
-function posicionOK(posicion){
+function posicionOK(position){
     try{
         alert("posicionOK");
     posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -146,7 +146,7 @@ function posicionOK(posicion){
 }
 
 function posicionError(mensaje){
-    alert(mensaje);
+    alert("posicionError: "+ mensaje);
     ('#divMapaAlta').hide();
     $('#divMensajeMapa').show();
 }
