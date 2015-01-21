@@ -1,0 +1,152 @@
+body {
+    border-top: 4px solid #414F56;
+}
+.donate {
+    color: #FFF;
+    background: #E51400;
+    margin: 15px 0 0 0;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.donate:hover {
+    background: #FF1300;
+}
+.content .link {
+    text-decoration: none;
+    padding: 1px 4px;
+    color: #FFF;
+    background-color: #414F56;
+    -webkit-transition: background-color 0.4s,color 0.4s;
+    -moz-transition: background-color 0.4s,color 0.4s;
+    -o-transition: background-color 0.4s,color 0.4s;
+    -ms-transition: background-color 0.4s,color 0.4s;
+    transition: background-color 0.4s,color 0.4s;
+}
+.content .link:hover {
+    background-color: #F1F1F1;
+    color: #414F56;
+}
+.download {
+    color: #FFF;
+    background: #E51400;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.download:hover {
+    color: #FFF;
+    background-color: #FF1300;
+}
+.content a.download-webfonts {
+    background: #F1EFEC;
+    color: #565249;
+}
+.search {
+    
+}
+.icons {
+    background: #414F56;
+}
+.icons ul li a.inner {
+    
+}
+.media .twitter,
+.media .twitter-message {
+    color: #F1F1F1;
+    background: #33B5E5;
+    border-bottom: 3px solid ;
+    -webkit-transition: color 0.5s, background-color 0.5s;
+    -moz-transition: color 0.5s, background-color 0.5s;
+    -o-transition: color 0.5s, background-color 0.5s;
+    -ms-transition: color 0.5s, background-color 0.5s;
+    transition: color 0.5s, background-color 0.5s;
+}
+.media .twitter:hover,
+.media .twitter-message:hover {
+    color: #FFF;
+    background-color: #0099CC;
+}
+.media .tutorial {
+    color: #F1F1F1;
+    background: #D34927;
+    border-bottom: 3px solid ;
+    -webkit-transition: color 0.5s, background-color 0.5s;
+    -moz-transition: color 0.5s, background-color 0.5s;
+    -o-transition: color 0.5s, background-color 0.5s;
+    -ms-transition: color 0.5s, background-color 0.5s;
+    transition: color 0.5s, background-color 0.5s;
+}
+.media .tutorial:hover {
+    color: #FFF;
+    background-color: #C44424;
+}
+.media .github {
+    color: #F1F1F1;
+    background-color: #9E00A5;
+    -webkit-transition: color 0.5s, background-color 0.5s;
+    -moz-transition: color 0.5s, background-color 0.5s;
+    -o-transition: color 0.5s, background-color 0.5s;
+    -ms-transition: color 0.5s, background-color 0.5s;
+    transition: color 0.5s, background-color 0.5s;
+}
+.media .github:hover {
+    color: #FFF;
+    background-color: #94009B;
+}
+.media .notice {
+    color: #F1F1F1;
+    background: #603CBA;
+    -webkit-transition: color 0.5s, background-color 0.5s;
+    -moz-transition: color 0.5s, background-color 0.5s;
+    -o-transition: color 0.5s, background-color 0.5s;
+    -ms-transition: color 0.5s, background-color 0.5s;
+    transition: color 0.5s, background-color 0.5s;
+}
+.media .notice:hover {
+    color: #FFF;
+    background-color: #5938AF;
+}
+.phone .info {
+    height: 94px;
+    line-height: 40px;
+    color: #FFF;
+    background-color: #E51400;
+}
+.phone .appbar {
+    height: 72px;
+    background: url('../images/appbar-ellipse.png') 100% 0 no-repeat #1F1F1F;
+}
+.phone .appbar .wrap {
+    margin: 0 auto;
+}
+.phone .appbar .wrap a.icon {
+    background: url('../images/appbar.base.png') 0 0 no-repeat;
+    margin-top: 12px;
+    width: 48px;
+}
+.phone .icon-count-1 .icon-1 { margin-left: 216px; }
+.phone .icon-count-2 .icon-1 { margin-left: 173px; }
+.phone .icon-count-2 .icon-2 { margin-left: 37px; }
+.phone .icon-count-3 .icon-1 { margin-left: 131px; }
+.phone .icon-count-3 .icon-2 { margin-left: 37px; }
+.phone .icon-count-3 .icon-3 { margin-left: 37px; }
+.phone .icon-count-4 .icon-1 { margin-left: 88px; }
+.phone .icon-count-4 .icon-2 { margin-left: 37px; }
+.phone .icon-count-4 .icon-3 { margin-left: 37px; }
+.phone .icon-count-4 .icon-4 { margin-left: 37px; }
+.phone .appbar .wrap a.icon svg {
+    width: 48px;
+    height: 48px;
+}
+.phone .appbar .wrap a.icon svg path {
+    fill: #FFF;
+}
+.phone .message div {
+    background: #1F1F1F;
+    color: #FFF;
+}

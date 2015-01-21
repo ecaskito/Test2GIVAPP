@@ -1,0 +1,675 @@
+* { padding: 0; margin: 0; }
+.clear { clear: both; }
+body {
+    font-family: 'Segoe UI', Helvetica, Arial;
+    font-size: 16px;
+    color: #222;
+}
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+.main {
+    background: #FFF;
+}
+.phone {
+    width: 620px;
+    background: url('../images/nokia-928-black.png') 10px -850px no-repeat;
+    margin-left: 360px;
+}
+.phone .info {
+    margin: 0 0 20px 90px;
+    width: 400px;
+    padding: 12px 20px 2px 20px;
+    font-size: 22px;
+    overflow: hidden;
+}
+.phone .appbar {
+    margin: 0 0 0 70px;
+    width: 480px;
+    cursor: pointer;
+}
+.phone .appbar .wrap {
+    /* inherit */
+}
+.phone .appbar .wrap a.icon {
+    height: 48px;
+    float: left;
+}
+.phone .appbar .wrap a.icon svg {
+    /* inherit */
+}
+.phone .appbar .wrap a.icon svg path {
+    /* inherit */
+}
+.phone .message {
+    height: 100px;
+}
+.phone .message div {
+    margin: 0 180px;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    padding: 0 0 6px 0;
+    cursor: default;
+}
+.phone .media {
+    padding-top: 96px;
+}
+.phone .media a.github {
+    text-decoration: none;
+    float: right;
+    padding: 4px 6px;
+    margin: 6px 6px 0 6px;
+    font-size: 20px;
+}
+.phone .media a.twitter {
+    text-decoration: none;
+    float: right;
+    padding: 4px 6px;
+    margin: 6px 20px 0 6px;
+    font-size: 20px;
+}
+.phone .media .twitter-message {
+    text-decoration: none;
+    float: right;
+    padding: 4px 6px;
+    margin: 6px 6px 0 6px;
+    font-size: 20px;
+}
+.phone .media a.notice {
+    text-decoration: none;
+    float: right;
+    padding: 4px 14px;
+    margin: 6px 6px 0 6px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.phone .media .tutorial {
+    text-decoration: none;
+    float: right;
+    padding: 4px 6px;
+    margin: 6px 6px 0 6px;
+    font-size: 20px;
+}
+.phone .external {
+    color: #999;
+    padding: 16px 18px 10px 20px;
+    text-align: right;
+    clear: right;
+}
+.phone .external img {
+    vertical-align: middle;
+}
+.content {
+    width: 330px;
+    float: left;
+    text-align: justify;
+    padding: 20px 0;
+    line-height: 1.6em;
+}
+.content p {
+    padding: 0 0 0 10px;
+}
+.content h2 {
+    padding: 0 0 0 10px;
+}
+.content a.link {
+    /* inherit */
+}
+.content a.link:hover {
+    /* inherit */
+}
+.content ul {
+    padding: 10px 0 10px 40px;
+    list-style-type: square;
+}
+.content a.download {
+    padding: 10px 0 10px 0;
+    font-size: 28px;
+    display: block;
+    margin: 10px 0 0 0;
+    text-decoration: none;
+}
+.content a.download:hover {
+    /* inherit */
+}
+.content a.download svg {
+    margin: 0 10px 2px 0;
+    vertical-align: middle;
+}
+.content a.download span {
+    font-size: 20px;
+}
+.content a.download-webfonts {
+    padding: 10px 0 10px 0;
+    font-size: 28px;
+    display: block;
+    margin: 15px 0 0 0;
+    text-decoration: none;
+}
+.content a.download-webfonts svg.creativemarket-icon {
+    margin: 0 10px 2px 0;
+    vertical-align: middle;
+}
+.content a.download-webfonts svg.creativemarket-logo {
+    float: right;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    top: 2px;
+}
+.header {
+    border-bottom: 1px solid #DDD;
+    background: #F5F5F5;
+}
+.header .name {
+    padding: 6px 0;
+    cursor: pointer;
+}
+.header .name:hover {
+    color: #414F56;
+    border-top: 4px solid #FF1300;
+}
+.header h1 {
+    color: #333;
+    font-size: 50px;
+    font-weight: normal;
+    line-height: 80px;
+}
+.header h1 a.donate {
+    font-size: 30px;
+    text-decoration: none;
+    padding: 0 12px;
+    float: right;
+    line-height: 50px;
+}
+.header h1 a.donate:hover {
+    /* inherit */
+}
+.header h1 a.cc {
+    float: right;
+    width: 50px;
+    height: 50px;
+    margin: 15px 20px 0 0;
+    background: url('../images/creative-commons.png') 0 0 no-repeat;
+    background-color: #414F56;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.header h1 a.cc:hover {
+    background-color: #000;
+}
+.header h1 .meta {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 16px;
+    vertical-align: text-top;
+}
+.header h1 .meta small {
+    background: #414F56;
+    padding: 2px 8px;
+    color: #FFF;
+    cursor: default;
+    display: block;
+    margin: 14px 0 2px 0;
+    text-align: center;
+}
+.header h1 .meta svg {
+    display: block;
+}
+.header h1 .meta svg .windowsphone,
+.header h1 .meta svg .android,
+.header h1 .meta svg .ios {
+    cursor: pointer;
+}
+.header h1 .meta svg .windowsphone:hover path {
+    fill: #E81123;
+}
+.header h1 .meta svg .android:hover path {
+    fill: #A5C63B;
+}
+.header h1 .meta svg .ios:hover path {
+    fill: #0080FF;
+}
+h2 {
+    color: #333;
+    font-size: 26px;
+    font-weight: normal;
+    margin: 20px 0 0 0;
+}
+.icons {
+    padding: 0 0 30px 0;
+    border-top: 1px solid #DDD;
+    min-height: 200px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) inset;
+}
+.icons .search {
+    border: 1px solid #FFF;
+    background: url('../icons/svg/appbar.magnify.svg') -10px 50% #FFF no-repeat;
+    font-size: 30px;
+    padding: 6px 10px 6px 52px;
+    width: 896px;
+}
+.icons ul {
+    list-style: none;
+}
+.icons ul li {
+    float: left;
+    margin: 4px 4px 0 0;
+    width: 76px;
+    height: 76px;
+}
+.icons ul li a.inner {
+    display: block;
+    width: 76px;
+    height: 76px;
+    cursor: pointer;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.icons ul li a.inner:hover {
+    background-color: #FFF;
+}
+.icons ul li a.inner path,
+.icons ul li a.inner rect,
+.icons ul li a.inner ellipse {
+    fill: #FFF;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    -webkit-transition: fill 0.7s;
+    -moz-transition: fill 0.7s;
+    -o-transition: fill 0.7s;
+    -ms-transition: fill 0.7s;
+    transition: fill 0.7s;
+}
+.icons ul li a.inner:hover path,
+.icons ul li a.inner:hover rect,
+.icons ul li a.inner:hover ellipse {
+    fill: #111;
+}
+.icons ul li a.inner img {
+    border: 0;
+}
+.previews {
+    padding: 0 0 30px 0;
+    border-top: 1px solid #DDD;
+    min-height: 200px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) inset;
+    background: #414F56;
+    color: #FFF;
+}
+.previews h2 {
+    color: #FFF;
+}
+.previews h3 {
+    margin: 10px 0 0 0;
+}
+.previews h4 {
+    margin: 10px 0 0 0;
+}
+.tiles-color {
+    width: 20px;
+    margin: 10px 10px 0 0;
+    float: left;
+    padding: 2px;
+    text-decoration: none;
+    border: 1px solid #DDD;
+}
+.more {
+    background: #DDD;
+    padding: 20px 0;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    font-size: 20px;
+}
+.more a.donate {
+    background: #E51400;
+    color: #FFF;
+    text-decoration: none;
+    padding: 3px 8px;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.more a.donate:hover {
+    background: #FF1300;
+}
+.more a.inchicago {
+    background: #01ADEE;
+    color: #FFF;
+    text-decoration: none;
+    padding: 3px 8px;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.more a.inchicago:hover {
+    background: #47CCFE;
+}
+.created {
+    padding: 30px 0 30px;
+}
+.created a {
+    text-decoration: none;
+    color: #FFF;
+    padding: 1px 4px;
+    background-color: #79CBF3;
+}
+.created a:hover {
+    background-color: #92D5F5;
+}
+.forum {
+    padding: 30px 0 30px;
+}
+.forum a {
+    color: #333;
+}
+.forum a:hover {
+    color: #000;
+}
+.icons ul li div.external {
+    position: absolute;
+    height: 0;
+}
+.icons ul li div.external a {
+    display: block;
+    position: relative;
+    width: 14px;
+    height: 17px;
+    background-image: url('../images/external.png');
+    background-position: 0 0;
+    left: 41px;
+    top: -9px;
+}
+/* Others */
+.icons ul li.climacons a {
+    background-color: #FA4B00;
+}
+.icons ul li.climacons a:hover {
+    background-color: #ED4700;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 1);
+}
+.icons ul li.climacons .external a {
+    background-color: #ED4700;
+}
+/* jQuery Confirm */
+#confirmOverlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	background:url('ie.png');
+	background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+	z-index:100000;
+}
+
+#confirmBox{
+	background: #FFF;
+	width:460px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin:-130px 0 0 -230px;
+	border: 1px solid rgba(33, 33, 33, 0.6);
+	
+	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+}
+
+#confirmBox h1,
+#confirmBox p{
+	background: #e5e5e5;
+	padding: 18px 25px;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+	color:#666;
+}
+
+#confirmBox h1{
+	letter-spacing:0.3px;
+	color:#888;
+}
+
+#confirmBox p{
+	background:none;
+	font-size:16px;
+	line-height:1.4;
+	padding-top: 20px;
+}
+
+#confirmButtons{
+	padding:15px 0 20px;
+	text-align:center;
+}
+
+#confirmBox .button{
+	display:inline-block;
+	background:url('buttons.png') no-repeat;
+	color:white;
+	position:relative;
+	height: 33px;
+	
+	font-size: 17px;
+    line-height: 33px;
+	
+	margin-right: 15px;
+	padding: 0 35px 0 40px;
+	text-decoration:none;
+	border:none;
+}
+
+#confirmBox .button:last-child{	margin-right:0;}
+
+#confirmBox .button span{
+	position:absolute;
+	top:0;
+	right:-5px;
+	background:url('buttons.png') no-repeat;
+	width:5px;
+	height:33px
+}
+
+#confirmBox .blue{				background: #01ADEE;}
+#confirmBox .blue span{			}
+#confirmBox .blue:hover{		background: #47CCFE;}
+#confirmBox .blue:hover span{	}
+
+#confirmBox .gray{				background: #E51400;}
+#confirmBox .gray span{			}
+#confirmBox .gray:hover{		background: #FF1300;}
+#confirmBox .gray:hover span{	}
+
+#confirmBox .dialog-button-download {
+    display: block;
+    background: #FF1300;
+    color: #FFF;
+    text-shadow: none;
+    text-decoration: none;
+    padding: 10px 10px 10px 0;
+    margin: 15px 0;
+    font-size: 18px;
+}
+#confirmBox .dialog-button-creativemarket {
+    display: block;
+    background: #F1EFEC;
+    color: #333;
+    text-shadow: none;
+    text-decoration: none;
+    padding: 10px 10px 10px 0;
+    margin: 15px 0;
+    font-size: 18px;
+}
+#confirmBox .dialog-button-download svg,
+#confirmBox .dialog-button-creativemarket svg {
+    vertical-align: middle;
+}
+#confirmBox .dialog-button-creativemarket svg.creativemarket-logo {
+    float: right;
+}
+#confirmBox .dialog-button-download svg,
+#confirmBox .dialog-button-creativemarket svg.creativemarket-icon {
+    margin-right: 10px;
+}
+#confirmBox .dialog-close {
+    float: right;
+    text-decoration: none;
+    color: #BBB;
+    font-family: Cursive;
+}
+#confirmBox .dialog-close:hover {
+    color: #444;
+}
+.tutorial-wrap {
+    background-color: #414F56;
+    padding: 0 0 30px 0;
+    border-top: 1px solid #DDD;
+    min-height: 200px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) inset;
+}
+.step code {
+    background: #eee;
+    padding: 1px 3px;
+    border-radius: 1px;
+    border: 1px solid #ddd;
+}
+.step-page-plus {
+    background: url('../images/step-page-plus.png') no-repeat 0 0;
+}
+.step-usable-area {
+    background: url('../images/step-usable-area.png') no-repeat 0 0;
+}
+.step-config {
+    background: url('../images/step-config.png') no-repeat 0 0;
+    margin: 30px 0 0 0;
+}
+.step-potion {
+    background: url('../images/step-potion.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-layers {
+    background: url('../images/step-layers.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-rectangle {
+    background: url('../images/step-rectangle.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-export-image {
+    background: url('../images/step-export-image.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-reference {
+    background: url('../images/step-reference.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-path {
+    background: url('../images/step-path.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-base {
+    background: url('../images/step-base.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-rectangle1 {
+    background: url('../images/step-icon-rectangle1.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-rectangle2 {
+    background: url('../images/step-icon-rectangle2.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-unite {
+    background: url('../images/step-icon-unite.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-back-minus-front {
+    background: url('../images/step-icon-back-minus-front.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-done {
+    background: url('../images/step-icon-done.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-icon-anti-alias {
+    background: url('../images/step-icon-anti-alias.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+.step p {
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+.step .column-1 {
+    float: left;
+    background: #FFF;
+    margin: 0 0 20px 106px;
+    width: 382px;
+    padding: 20px 20px 10px 20px;
+}
+.step .column-2 {
+    float: left;
+    background: #FFF;
+    margin: 0 0 20px 30px;
+    width: 362px;
+    padding: 20px;
+}
+.step ul {
+    padding-left: 24px;
+    list-style: square;
+    margin: 0 0 10px 0;
+    line-height: 1.5em;
+}
+.step a {
+    color: #0099AC;
+}
+.step .column-2-image {
+    float: left;
+    background: #FFF;
+    margin: 0 0 20px 30px;
+    padding: 1px;
+    width: 400px;
+    line-height: 0;
+}
+.step-lightbulb {
+    background: url('../images/step-info.png') no-repeat 0 0;
+    margin: 20px 0;
+}
+.step-info .column-1 {
+    background: #f4f084; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #f4f084 0%, #f7f0bb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f4f084), color-stop(100%,#f7f0bb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #f4f084 0%,#f7f0bb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #f4f084 0%,#f7f0bb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #f4f084 0%,#f7f0bb 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #f4f084 0%,#f7f0bb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f084', endColorstr='#f7f0bb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.permalink {
+    display: inline-block;
+    width: 16px;
+    height: 20px;
+    background: url('../images/tutorial/anchor.png') no-repeat 0 0;
+}
+.permalink:hover {
+    background-position: -20px 0;
+}
+.tooltip {
+    cursor: default;
+    border-bottom: 1px dotted #555;
+}
