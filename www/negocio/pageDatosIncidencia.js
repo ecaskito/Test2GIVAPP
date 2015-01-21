@@ -29,7 +29,7 @@ function hacerfotoOK(imageData) {
     cargarPaginaDatosIncidencia();
 }
 function hacerFotoERROR(mensaje) {
-    alert(mensaje);
+    //alert(mensaje);
     sFoto = '';
     //if (errorOcancel != null && (errorOcancel.indexOf('cancelled') < 0 && errorOcancel.indexOf('selected') < 0)) {
     //    mensaje('Cap foto capturada : ' + errorOcancel.code);
@@ -98,7 +98,8 @@ function iniciaMapa() {
             getCurrentPositionError(false);
         }
     }
-    catch (e) {
+    catch (ex) {
+        alert(ex.message);
         $('#divMapaAlta').hide();
         $('#divMensajeMapa').show();
     }
