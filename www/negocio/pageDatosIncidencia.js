@@ -60,42 +60,45 @@ function iniciaMapa() {
     try {
         // Try HTML5 geolocation
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+            navigator.geolocation.getCurrentPosition(posicionOK,posicionError);
 
-                posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                var mapOptions = {
-                    zoom: 14,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    accuracy: 5,
-                    enabledHighAccuracy: true,
-                    overviewMapControl: false,
-                    panControl: false,
-                    rotateControl: false,
-                    scaleControl: false,
-                    zoomControl: false,
-                    streetViewControl: false,
-                    center: posAlta
-                    , maximumAge: 0//,timeout:1000
-                };
-                mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
-                crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
-
-                //mapAlta.setCenter(posAlta);
-                sDireccionAlta = cogerDireccion(posAlta, true);
-                $('#labelDireccion').text(sDireccionAlta);
-                $('#divMensajeMapa').hide();
-                $('#divMapaAlta').gmap('refresh');
-
-            }, function () {
-                ('#divMapaAlta').hide();
-                $('#divMensajeMapa').show();
-                getCurrentPositionError(true);
-            });
+            //navigator.geolocation.getCurrentPosition(function (position) {
+            //
+            //    posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            //    var mapOptions = {
+            //        zoom: 14,
+            //        mapTypeId: google.maps.MapTypeId.ROADMAP,
+            //        accuracy: 5,
+            //        enabledHighAccuracy: true,
+            //        overviewMapControl: false,
+            //        panControl: false,
+            //        rotateControl: false,
+            //        scaleControl: false,
+            //        zoomControl: false,
+            //        streetViewControl: false,
+            //        center: posAlta
+            //        , maximumAge: 0//,timeout:1000
+            //    };
+            //    mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
+            //    crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
+            //
+            //    //mapAlta.setCenter(posAlta);
+            //    sDireccionAlta = cogerDireccion(posAlta, true);
+            //    $('#labelDireccion').text(sDireccionAlta);
+            //    $('#divMensajeMapa').hide();
+            //    $('#divMapaAlta').gmap('refresh');
+            //
+            //}, function () {
+            //    ('#divMapaAlta').hide();
+            //    $('#divMensajeMapa').show();
+            //    getCurrentPositionError(true);
+            //});
         } else {
             // Browser no soporta Geolocation
+            alert("Browser no soporta Geolocation");
             $('#divMapaAlta').hide();
             $('#divMensajeMapa').show();
-            getCurrentPositionError(false);
+            //getCurrentPositionError(false);
         }
     }
     catch (ex) {
@@ -105,6 +108,41 @@ function iniciaMapa() {
     }
 }
 
+function posicionOK(posicion){
+    try{
+    posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var mapOptions = {
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        accuracy: 5,
+        enabledHighAccuracy: true,
+        overviewMapControl: false,
+        panControl: false,
+        rotateControl: false,
+        scaleControl: false,
+        zoomControl: false,
+        streetViewControl: false,
+        center: posAlta
+        , maximumAge: 0//,timeout:1000
+    };
+    mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
+    crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
+
+    //mapAlta.setCenter(posAlta);
+    sDireccionAlta = cogerDireccion(posAlta, true);
+    $('#labelDireccion').text(sDireccionAlta);
+    $('#divMensajeMapa').hide();
+    $('#divMapaAlta').gmap('refresh');
+
+    }
+    catch(ex){alert(ex.message);}
+}
+
+function posicionError(mensaje){
+    alert(mensaje);
+    ('#divMapaAlta').hide();
+    $('#divMensajeMapa').show();
+}
 function cogerDireccion(pos, bSoloCalleYnum) {
     var llamaWS = "http://maps.googleapis.com/maps/api/geocode/xml";
     var sParam = "latlng=" + pos.toString().replace(" ", "").replace("(", "").replace(")", "") + "&sensor=true";
