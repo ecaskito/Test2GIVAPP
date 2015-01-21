@@ -38,9 +38,7 @@ function hacerFotoERROR(mensaje) {
 }
 
 function cargarPaginaDatosIncidencia() {
-
-
-
+try{
     //mostrar foto
     if (sFoto !=''){
         var imagen = document.getElementById('imgFoto');
@@ -48,11 +46,19 @@ function cargarPaginaDatosIncidencia() {
         imagen.src = "data:image/jpeg;base64," + sFoto;
     }
 
-    //cargar mapa
-    iniciaMapa();
-
+    //tipo incidencia
     $('#TipusInciImg').attr({"src":dicImagenes[TipoInciSel]});
     $('#TipusInciText').html(dicAyuda[TipoInciSel]);
+
+    //cargar mapa
+    //iniciaMapa();
+    navigator.geolocation.getCurrentPosition(posicionOK,posicionError);
+}
+catch(ex) {
+    alert(ex.message);
+}
+
+
 }
 
 
@@ -110,6 +116,7 @@ function iniciaMapa() {
 
 function posicionOK(posicion){
     try{
+        alert("posicionOK");
     posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     var mapOptions = {
         zoom: 14,
