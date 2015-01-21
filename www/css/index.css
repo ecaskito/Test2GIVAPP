@@ -113,3 +113,12 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+#canvas {
+    position: absolute;
+    left: 300px;
+    top: 300px;
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
