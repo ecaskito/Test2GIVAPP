@@ -52,7 +52,13 @@ try{
 
     //cargar mapa
     //iniciaMapa();
-    navigator.geolocation.getCurrentPosition(posicionOK,posicionError,{ enableHighAccuracy: true, maximunAge:3000,timeout: 60000});
+    var locOptions = {
+        maximumAge : Infinity,
+        timeout : 5000,
+        enableHighAccuracy : true
+    };
+
+        navigator.geolocation.getCurrentPosition(posicionOK,posicionError,locOptions);
 }
 catch(ex) {
     alert( ex.message);
