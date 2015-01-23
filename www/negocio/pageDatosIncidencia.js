@@ -105,7 +105,7 @@ function posicionOK(position){
             , maximumAge: 0//,timeout:1000
         };
         mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
-        crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
+        crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', false);
 
         //mapAlta.setCenter(posAlta);
         sDireccionAlta = cogerDireccion(posAlta, true);
