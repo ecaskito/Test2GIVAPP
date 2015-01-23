@@ -21,6 +21,18 @@ function localStorageRun() {
     }
 }
 
+function salir() {
+    if (navigator.app) {
+        navigator.app.exitApp();
+    } else if (navigator.device) {
+        navigator.device.exitApp();
+    }
+}
+
+function enrere() {
+    navigator.app.backHistory();
+}
+
 function localStorageSupport() {
     if ("localStorage" in window && window["localStorage"] != null)
         return true;

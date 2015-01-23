@@ -118,7 +118,7 @@
                                 <label>cercant localització...</label>
                             </div>
                             <div id='divMensajeMapa' class="div-mensaje" style="height: 185px;">
-                                <label>
+                                <label id="lblMensajeMapa">
                                     la localització sobre plànol no ha estat possible
                                 </label>
                                 <a href="#" id="buttonReintentarMapa" onclick="abrirPagina('pageInfoEnvio', false)"
@@ -126,7 +126,11 @@
                                     Reintentar
                                 </a>
                             </div>
+                            <div style="width: 100%">
                             <div id="divMapaAlta" style="height: 200px;">
+                            </div>
+
+                                <label id="labelDireccion"></label>
                             </div>
                         </td>
                     </tr>
@@ -479,17 +483,6 @@
         });
 
 
-        function salir() {
-            if (navigator.app) {
-                navigator.app.exitApp();
-            } else if (navigator.device) {
-                navigator.device.exitApp();
-            }
-        }
-
-        function enrere() {
-            navigator.app.backHistory();
-        }
 
         function muestraDireccion() {
             var sSelComboCarrer = indefinidoOnullToVacio($('#selectCARRER').find(":selected").text());
