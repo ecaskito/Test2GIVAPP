@@ -17,7 +17,7 @@ function inicioPaginaDatosIncidencia() {
         navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
     }
     catch (ex){
-        alert(ex.message);
+        //alert(ex.message);
         cargarPaginaDatosIncidencia();
     }
 }
@@ -49,7 +49,7 @@ function cargarPaginaDatosIncidencia() {
         iniciaMapa();
     }
     catch(ex) {
-        alert("cargarPaginaDatosIncidencia:"+ ex.message);
+        //alert("cargarPaginaDatosIncidencia:"+ ex.message);
     }
 }
 
@@ -76,7 +76,7 @@ function iniciaMapa() {
         }
     }
     catch (ex) {
-        alert(ex.message);
+        //alert(ex.message);
         $('#divCargarMapaAlta').hide();
         $('#divMapa').hide();
         $('#divMensajeMapa').show();
@@ -85,7 +85,7 @@ function iniciaMapa() {
 
 function posicionOK(position){
     try {
-        alert("posicionOK");
+        //alert("posicionOK");
         $('#divCargarMapaAlta').hide();
         $('#divMensajeMapa').hide();
         $('#divMapa').show();
@@ -113,11 +113,13 @@ function posicionOK(position){
         $('#divMapaAlta').gmap('refresh');
 
     }
-    catch(ex){alert(ex.message);}
+    catch(ex){
+    //alert(ex.message);
+    }
 }
 
 function posicionError(mensaje){
-    alert("posicionError: "+ mensaje);
+    //alert("posicionError: "+ mensaje);
     $('#divCargarMapaAlta').hide();
     $('#divMapa').hide();
     $('#divMensajeMapa').show();

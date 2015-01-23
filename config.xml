@@ -69,9 +69,10 @@
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
-    <icon src="icons/ios/icon.png" width="57" height="57" />
-    <icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
-    <icon src="icons/ios/icon_at_2x.png" width="114" height="114" />
+    <icon gap:platform="ios" height="57" src="icons/ios/icon-57.png" width="57" />
+    <icon gap:platform="ios" height="72" src="icons/ios/icon-72.png" width="72" />
+    <icon gap:platform="ios" height="114" src="icons/ios/icon-57-2x.png" width="114" />
+    <icon gap:platform="ios" height="144" src="icons/ios/icon-72-2x.png" width="144" />
     <icon src="icons/android/icon-36-ldpi.png" gap:platform="android" gap:density="ldpi" />
     <icon src="icons/android/icon-48-mdpi.png" gap:platform="android" gap:density="mdpi" />
     <icon src="icons/android/icon-72-hdpi.png" gap:platform="android" gap:density="hdpi" />
@@ -80,10 +81,6 @@
     <gap:splash src="splash.png" />
     <gap:splash src="icons/ios/Default-Landscape~ipad.png" width="1024" height="768" />
     <gap:splash src="icons/ios/Default-Portrait~ipad.png" width="768" height="1024" />
-    <!--<gap:splash src="icons/android/splash-ldpi.png" gap:platform="android" gap:density="ldpi" />-->
-    <!--<gap:splash src="icons/android/splash-mdpi.png" gap:platform="android" gap:density="mdpi" />-->
-    <!--<gap:splash src="icons/android/splash-hdpi.png" gap:platform="android" gap:density="hdpi" />-->
-    <!--<gap:splash src="icons/android/splash-xdpi.png" gap:platform="android" gap:density="xhdpi" />-->
     <gap:splash src="icons/android/splash-ldpi_port_(200-320).png" gap:platform="android" gap:density="ldpi" gap:qualifier="port-ldpi"  />
     <gap:splash src="icons/android/splash-mdpi_port_(320-480).png" gap:platform="android" gap:density="mdpi" gap:qualifier="port-mdpi"/>
     <gap:splash src="icons/android/splash-hdpi_port_(480-800).png" gap:platform="android" gap:density="hdpi" gap:qualifier="port-hdpi"/>
