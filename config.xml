@@ -9,7 +9,7 @@
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
-    <!-- si se utiliza l<a versión de phonegap 3.6.3 no funciona la geolocalización -->
+    <!-- si se utiliza la versión de phonegap 3.6.3 no funciona la geolocalización -->
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -80,18 +80,18 @@
     <gap:splash src="splash.png" />
     <gap:splash src="icons/ios/Default-Landscape~ipad.png" width="1024" height="768" />
     <gap:splash src="icons/ios/Default-Portrait~ipad.png" width="768" height="1024" />
-    <gap:splash src="icons/android/splash-ldpi.png" gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="icons/android/splash-mdpi.png" gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="icons/android/splash-hdpi.png" gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="icons/android/splash-xdpi.png" gap:platform="android" gap:density="xhdpi" />
-    <!--<gap:splash src="icons/android/splash-ldpi.png" gap:platform="android" gap:density="ldpi" orientation="land" />-->
-    <!--<gap:splash src="icons/android/splash-mdpi.png" gap:platform="android" gap:density="mdpi" orientation="land"/>-->
-    <!--<gap:splash src="icons/android/splash-hdpi.png" gap:platform="android" gap:density="hdpi" orientation="land"/>-->
-    <!--<gap:splash src="icons/android/splash-xdpi.png" gap:platform="android" gap:density="xhdpi" orientation="land"/>-->
-    <!--<gap:splash src="icons/android/splash-ldpi-port.png" gap:platform="android" gap:density="ldpi" orientation="port" />-->
-    <!--<gap:splash src="icons/android/splash-mdpi-port.png" gap:platform="android" gap:density="mdpi" orientation="port"/>-->
-    <!--<gap:splash src="icons/android/splash-hdpi-port.png" gap:platform="android" gap:density="hdpi" orientation="port"/>-->
-    <!--<gap:splash src="icons/android/splash-xdpi-port.png" gap:platform="android" gap:density="xhdpi" orientation="port"/>-->
+    <!--<gap:splash src="icons/android/splash-ldpi.png" gap:platform="android" gap:density="ldpi" />-->
+    <!--<gap:splash src="icons/android/splash-mdpi.png" gap:platform="android" gap:density="mdpi" />-->
+    <!--<gap:splash src="icons/android/splash-hdpi.png" gap:platform="android" gap:density="hdpi" />-->
+    <!--<gap:splash src="icons/android/splash-xdpi.png" gap:platform="android" gap:density="xhdpi" />-->
+    <gap:splash src="icons/android/splash-ldpi.png" gap:platform="android" gap:density="ldpi" gap:orientation="land" />
+    <gap:splash src="icons/android/splash-mdpi.png" gap:platform="android" gap:density="mdpi" gap:orientation="land"/>
+    <gap:splash src="icons/android/splash-hdpi.png" gap:platform="android" gap:density="hdpi" gap:orientation="land"/>
+    <gap:splash src="icons/android/splash-xdpi.png" gap:platform="android" gap:density="xhdpi" gap:orientation="land"/>
+    <gap:splash src="icons/android/splash-ldpi-port.png" gap:platform="android" gap:density="ldpi" gap:orientation="port" />
+    <gap:splash src="icons/android/splash-mdpi-port.png" gap:platform="android" gap:density="mdpi" gap:orientation="port"/>
+    <gap:splash src="icons/android/splash-hdpi-port.png" gap:platform="android" gap:density="hdpi" gap:orientation="port"/>
+    <gap:splash src="icons/android/splash-xdpi-port.png" gap:platform="android" gap:density="xhdpi" gap:orientation="port"/>
 
 
     <!--<icon src="icon.png" />-->
