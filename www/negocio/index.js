@@ -78,6 +78,7 @@ function deviceReady() {
 }
 function handleBackButton() {
     try {
+        alert($.mobile.activePage.attr('id'));
         if ($.mobile.activePage.attr('id') == 'pageIndex') {
             if (navigator.app) {
                 navigator.app.exitApp();

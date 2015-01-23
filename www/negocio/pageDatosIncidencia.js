@@ -10,6 +10,9 @@ var sComentario = '';
 
 function inicioPaginaDatosIncidencia() {
     try{
+        $('#divCargarMapaAlta').show();
+        $('#divMensajeMapa').hide();
+        $('#divMapaAlta').hide();
 
         //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
         cargarPaginaDatosIncidencia();
@@ -52,13 +55,13 @@ try{
 
     //cargar mapa
     //iniciaMapa();
-    var locOptions = {
-        maximumAge : Infinity,
-        timeout : 5000,
-        enableHighAccuracy : true
-    };
-
-        navigator.geolocation.getCurrentPosition(posicionOK,posicionError,locOptions);
+    //var locOptions = {
+    //    maximumAge : Infinity,
+    //    timeout : 10000,
+    //    enableHighAccuracy : true
+    //};
+    //
+    //    navigator.geolocation.getCurrentPosition(posicionOK,posicionError,locOptions);
 }
 catch(ex) {
     alert( ex.message);
@@ -108,6 +111,7 @@ function iniciaMapa() {
         } else {
             // Browser no soporta Geolocation
             alert("Browser no soporta Geolocation");
+            $('#divCargarMapaAlta').hide();
             $('#divMapaAlta').hide();
             $('#divMensajeMapa').show();
             //getCurrentPositionError(false);
@@ -115,6 +119,7 @@ function iniciaMapa() {
     }
     catch (ex) {
         alert(ex.message);
+        $('#divCargarMapaAlta').hide();
         $('#divMapaAlta').hide();
         $('#divMensajeMapa').show();
     }
@@ -144,6 +149,7 @@ function posicionOK(position){
     //mapAlta.setCenter(posAlta);
     sDireccionAlta = cogerDireccion(posAlta, true);
     $('#labelDireccion').text(sDireccionAlta);
+    $('#divCargarMapaAlta').hide();
     $('#divMensajeMapa').hide();
     $('#divMapaAlta').gmap('refresh');
 
@@ -153,7 +159,8 @@ function posicionOK(position){
 
 function posicionError(mensaje){
     alert("posicionError: "+ mensaje);
-    ('#divMapaAlta').hide();
+    $('#divCargarMapaAlta').hide();
+    $('#divMapaAlta').hide();
     $('#divMensajeMapa').show();
 }
 function cogerDireccion(pos, bSoloCalleYnum) {

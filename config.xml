@@ -9,10 +9,12 @@
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
+    <!-- si se utiliza l<a versión de phonegap 3.6.3 no funciona la geolocalización -->
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" />
+    <!--si se pone fullscreen a true se oculta la barra de estado de la parte superior -->
+    <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
@@ -52,6 +54,7 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
+    <!-- si se utiliza otra versión no funciona la geolocalización -->
     <gap:plugin name="org.apache.cordova.geolocation" version="0.3.7" />
     <gap:plugin name="org.apache.cordova.globalization" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />

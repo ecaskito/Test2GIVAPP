@@ -55,3 +55,21 @@
 	zoom: 1; /* IE7 */
     color:#333333;
 }
+
+.div-loading {
+    background: url(../images/gif-load.gif) ;
+    background-size: 2.875em 2.875em;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 45%;
+    text-align: center;
+    color: #B80529;
+    font-style: italic;
+    padding-top: 15px;
+}
+.div-mensaje {
+    text-align: center;
+    color: #B80529;
+    font-style: italic;
+    padding-top: 15px;
+}
