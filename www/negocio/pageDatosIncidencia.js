@@ -11,7 +11,7 @@ var sComentario = '';
 function inicioPaginaDatosIncidencia() {
     $('#divCargarMapaAlta').show();
     $('#divMensajeMapa').hide();
-    $('#divMapaAlta').hide();
+    $('#divMapa').hide();
     try{
 
         navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
@@ -70,7 +70,7 @@ function iniciaMapa() {
             // Browser no soporta Geolocation
             alert("Browser no soporta Geolocation");
             $('#divCargarMapaAlta').hide();
-            $('#divMapaAlta').hide();
+            $('#divMapa').hide();
             $('#divMensajeMapa').show();
             //getCurrentPositionError(false);
         }
@@ -78,7 +78,7 @@ function iniciaMapa() {
     catch (ex) {
         alert(ex.message);
         $('#divCargarMapaAlta').hide();
-        $('#divMapaAlta').hide();
+        $('#divMapa').hide();
         $('#divMensajeMapa').show();
     }
 }
@@ -86,6 +86,9 @@ function iniciaMapa() {
 function posicionOK(position){
     try {
         alert("posicionOK");
+        $('#divCargarMapaAlta').hide();
+        $('#divMensajeMapa').hide();
+        $('#divMapa').show();
         posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var mapOptions = {
             zoom: 14,
@@ -107,9 +110,6 @@ function posicionOK(position){
         //mapAlta.setCenter(posAlta);
         sDireccionAlta = cogerDireccion(posAlta, true);
         $('#labelDireccion').text(sDireccionAlta);
-        $('#divCargarMapaAlta').hide();
-        $('#divMensajeMapa').hide();
-        $('#divMensajeMapa').show();
         $('#divMapaAlta').gmap('refresh');
 
     }
@@ -119,7 +119,7 @@ function posicionOK(position){
 function posicionError(mensaje){
     alert("posicionError: "+ mensaje);
     $('#divCargarMapaAlta').hide();
-    $('#divMapaAlta').hide();
+    $('#divMapa').hide();
     $('#divMensajeMapa').show();
 }
 function cogerDireccion(pos, bSoloCalleYnum) {
