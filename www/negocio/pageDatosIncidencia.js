@@ -84,32 +84,33 @@ function iniciaMapa() {
 }
 
 function posicionOK(position){
-    try{
+    try {
         alert("posicionOK");
-    posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var mapOptions = {
-        zoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        accuracy: 5,
-        enabledHighAccuracy: true,
-        overviewMapControl: false,
-        panControl: false,
-        rotateControl: false,
-        scaleControl: false,
-        zoomControl: false,
-        streetViewControl: false,
-        center: posAlta
-        , maximumAge: 0//,timeout:1000
-    };
-    mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
-    crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
+        posAlta = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mapOptions = {
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            accuracy: 5,
+            enabledHighAccuracy: true,
+            overviewMapControl: false,
+            panControl: false,
+            rotateControl: false,
+            scaleControl: false,
+            zoomControl: false,
+            streetViewControl: false,
+            center: posAlta
+            , maximumAge: 0//,timeout:1000
+        };
+        mapAlta = new google.maps.Map(document.getElementById('divMapaAlta'), mapOptions);
+        crearMarcadorEventoClick('ALTA', mapAlta, true, 'labelDireccion', true);
 
-    //mapAlta.setCenter(posAlta);
-    sDireccionAlta = cogerDireccion(posAlta, true);
-    $('#labelDireccion').text(sDireccionAlta);
-    $('#divCargarMapaAlta').hide();
-    $('#divMensajeMapa').hide();
-    $('#divMapaAlta').gmap('refresh');
+        //mapAlta.setCenter(posAlta);
+        sDireccionAlta = cogerDireccion(posAlta, true);
+        $('#labelDireccion').text(sDireccionAlta);
+        $('#divCargarMapaAlta').hide();
+        $('#divMensajeMapa').hide();
+        $('#divMensajeMapa').show();
+        $('#divMapaAlta').gmap('refresh');
 
     }
     catch(ex){alert(ex.message);}

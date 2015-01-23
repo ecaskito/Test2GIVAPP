@@ -78,7 +78,7 @@ function deviceReady() {
 }
 function handleBackButton() {
     try {
-        alert($.mobile.activePage.attr('id'));
+        //alert($.mobile.activePage.attr('id'));
         if ($.mobile.activePage.attr('id') == 'pageIndex') {
             if (navigator.app) {
                 navigator.app.exitApp();
@@ -108,13 +108,6 @@ function handleBackButton() {
 //transition: "fade",
 function abrirPagina(sPag, bBack) {
 
-/* moga
-
-    $("#pageIndex").hide();
-    $("#pageNuevaIncidencia").hide();
-    $("#pageConsultaIncidencias").hide();
-    //Hgs no habria que añadir foto?
- */
 
     $.mobile.changePage('#' + sPag, {
         transition: "none"
