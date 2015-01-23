@@ -40,6 +40,11 @@ function cargarPaginaDatosIncidencia() {
             imagen.style.display = 'block';
             imagen.src = "data:image/jpeg;base64," + sFoto;
         }
+        else {
+            var imagen = document.getElementById('imgFoto');
+            imagen.style.display = 'block';
+            imagen.src = "images/sinFoto.png";
+        }
 
         //tipo incidencia
         $('#TipusInciImg').attr({"src":dicImagenes[TipoInciSel]});
