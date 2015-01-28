@@ -122,37 +122,42 @@ function handleBackButton() {
 //transition: "fade",
 function abrirPagina(sPag, bBack) {
 
-
-    $.mobile.changePage('#' + sPag, {
-        transition: "none"
-    });
-
-    switch(sPag)
-    {
-        case 'pageIndex':
-            $.doTimeout(1500, inicioPaginaTipoIncidencia());
-            break;
-        case 'pageIdentificacion':
-            $.doTimeout(1500, inicioPaginaIdentificacion() );
-            break;
-        case 'pageDatosIncidencia':
-            $.doTimeout(1500, inicioPaginaDatosIncidencia());
-            break;
-        case 'pageInfoEnvio':
-            $.doTimeout(1500, inicioPaginaInfoEnvio());
-            break;
-        case 'pageConsultaIncidencias':
-            inicioPaginaConsultaIncidencias();
-            $.doTimeout(1000, mostrarEnPlano() );
-            break;
-
-        case 'pageZoomFoto' :
-            var imagen = document.getElementById('imgZoomFoto');
-            imagen.style.display = 'block';
-            imagen.src = "data:image/jpeg;base64," + sFoto;
-            break;
+    if (sPag != "pageIdentificacion") {
+        if ($.mobile.activePage.attr('id') == 'pageIdentificacion' && SinDatosCiudadano()) {
+            mensaje("El telefon es obligatori per utilitzar l'app","error")
+        }
     }
+    else
+    {
+        $.mobile.changePage('#' + sPag, {
+            transition: "none"
+        });
 
+        switch (sPag) {
+            case 'pageIndex':
+                $.doTimeout(1500, inicioPaginaTipoIncidencia());
+                break;
+            case 'pageIdentificacion':
+                $.doTimeout(1500, inicioPaginaIdentificacion());
+                break;
+            case 'pageDatosIncidencia':
+                $.doTimeout(1500, inicioPaginaDatosIncidencia());
+                break;
+            case 'pageInfoEnvio':
+                $.doTimeout(1500, inicioPaginaInfoEnvio());
+                break;
+            case 'pageConsultaIncidencias':
+                inicioPaginaConsultaIncidencias();
+                $.doTimeout(1000, mostrarEnPlano());
+                break;
+
+            case 'pageZoomFoto' :
+                var imagen = document.getElementById('imgZoomFoto');
+                imagen.style.display = 'block';
+                imagen.src = "data:image/jpeg;base64," + sFoto;
+                break;
+        }
+    }
 }
 
 function limpiaVariables(sPag){

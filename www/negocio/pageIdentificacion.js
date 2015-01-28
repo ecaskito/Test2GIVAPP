@@ -70,7 +70,7 @@ function guardaDatosCiudadano(){
         }
         else
         {
-            mensaje(e.message , 'telefon no vàlid');
+            mensaje('telefon no vàlid' , 'error');
         }
     }
     catch (e)
