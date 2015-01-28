@@ -28,8 +28,7 @@ window.addEventListener('load', function () {
     } else {
         deviceReady();
     }
-    var objUsu = getDatosUsuario();
-    if (objUsu==null)
+    if (SinDatosCiudadano())
     {
         abrirPagina("pageIdentificacion", false);
     }

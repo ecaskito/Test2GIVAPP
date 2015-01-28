@@ -39,12 +39,19 @@ function guardaDatosCiudadano(){
         var objUsu = getDatosUsuario();
 
         //Si ha modificado algún dato lo recojo para actualizar , pero si lo ha dejado en blanco cojo lo que ya tenía en la tabla guardado
-        if($('#inputNOM').val() != '')     nom =     $('#inputNOM').val();     else nom =     objUsu.NOM;
-        if($('#inputCOGNOM1').val() != '') cognom1 = $('#inputCOGNOM1').val(); else cognom1 = objUsu.COGNOM1 ;
-        if($('#inputCOGNOM2').val() != '') cognom2 = $('#inputCOGNOM2').val(); else cognom2 = objUsu.COGNOM2 ;
-        if($('#inputDNI').val() != '')     dni =     $('#inputDNI').val();     else dni =     objUsu.DNI ;
-        if($('#inputEMAIL').val() != '')   email=    $('#inputEMAIL').val();   else email =   objUsu.EMAIL ;
-        if($('#inputTELEFON').val() != '') telefon = $('#inputTELEFON').val(); else telefon = objUsu.TELEFON ;
+        //if($('#inputNOM').val() != '')     nom =     $('#inputNOM').val();     else nom =     objUsu.NOM;
+        //if($('#inputCOGNOM1').val() != '') cognom1 = $('#inputCOGNOM1').val(); else cognom1 = objUsu.COGNOM1 ;
+        //if($('#inputCOGNOM2').val() != '') cognom2 = $('#inputCOGNOM2').val(); else cognom2 = objUsu.COGNOM2 ;
+        //if($('#inputDNI').val() != '')     dni =     $('#inputDNI').val();     else dni =     objUsu.DNI ;
+        //if($('#inputEMAIL').val() != '')   email=    $('#inputEMAIL').val();   else email =   objUsu.EMAIL ;
+        //if($('#inputTELEFON').val() != '') telefon = $('#inputTELEFON').val(); else telefon = objUsu.TELEFON ;
+
+        nom =     $('#inputNOM').val();
+        cognom1 = $('#inputCOGNOM1').val();
+        cognom2 = $('#inputCOGNOM2').val();
+        dni =     $('#inputDNI').val();
+        email=    $('#inputEMAIL').val();
+        telefon = $('#inputTELEFON').val();
 
         objUsu = new usuari();
         objUsu.ID = 0;
@@ -72,6 +79,24 @@ function LimpiarDatosCiudadano(){
         $('#inputDNI').val('');
         $('#inputEMAIL').val('');
         $('#inputTELEFON').val('');
+
+}
+
+function SinDatosCiudadano()
+{
+    var objUsu = getDatosUsuario();
+    if (objUsu==null) {
+        return true;
+    }
+    else{
+        if (objUsu.NOM != '') return false;
+        if (objUsu.COGNOM1 != '') return false;
+        if (objUsu.COGNOM2 != '') return false;
+        if (objUsu.DNI != '') return false;
+        if (objUsu.EMAIL != '') return false;
+        if (objUsu.TELEFON != '') return false;
+        return true;
+    }
 
 }
 
