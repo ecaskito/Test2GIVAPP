@@ -56,6 +56,8 @@ function guardaDatosCiudadano(){
         objUsu.TELEFON = telefon;
 
         guardaObjetoLocal('CIUTADA' , objUsu);
+
+        abrirPagina("pageIndex", false);
     }
     catch (e)
     {

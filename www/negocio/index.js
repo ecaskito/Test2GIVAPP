@@ -28,7 +28,15 @@ window.addEventListener('load', function () {
     } else {
         deviceReady();
     }
-    inicioPaginaTipoIncidencia();
+    var objUsu = getDatosUsuario();
+    if (objUsu==null)
+    {
+        abrirPagina("pageIdentificacion", false);
+    }
+    else
+    {
+        inicioPaginaTipoIncidencia();
+    }
 }, false);
 
 function deviceReady() {

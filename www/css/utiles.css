@@ -81,14 +81,17 @@
     font-size: 1em;
     padding-top: 4px;
     padding-bottom: 4px;
+    color: #333333;
 }
 .tdSelect .ui-select .ui-btn:hover {
     background-color: transparent;
     font-weight: normal;
     font-size: 1em;
+    color: #333333;
 }
 .tdSelect .ui-select .ui-btn:visited {
     background-color: transparent;
     font-weight: normal;
     font-size: 1em;
+    color: #333333;
 }
