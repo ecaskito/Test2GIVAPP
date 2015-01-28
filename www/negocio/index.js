@@ -93,6 +93,13 @@ function handleBackButton() {
                 navigator.device.exitApp();
             }
         }
+        else if ($.mobile.activePage.attr('id') == 'pageIdentificacion' && SinDatosCiudadano()) {
+            if (navigator.app) {
+                navigator.app.exitApp();
+            } else if (navigator.device) {
+                navigator.device.exitApp();
+            }
+        }
         else{
             if (navigator.app) {
                 navigator.app.backHistory();

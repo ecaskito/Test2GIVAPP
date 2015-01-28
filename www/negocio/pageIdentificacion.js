@@ -25,6 +25,8 @@ function cargaDatosCiudadano(){
 function guardaDatosCiudadano(){
     try
     {
+        if (esTelefono($('#inputTELEFON').val())){
+
         // NOM, COGNOM1, COGNOM2, DNI, EMAIL, TELEFON
         var idCiutada = 0;
         var nom='';
@@ -65,6 +67,11 @@ function guardaDatosCiudadano(){
         guardaObjetoLocal('CIUTADA' , objUsu);
 
         abrirPagina("pageIndex", false);
+        }
+        else
+        {
+            mensaje(e.message , 'telefon no vàlid');
+        }
     }
     catch (e)
     {
