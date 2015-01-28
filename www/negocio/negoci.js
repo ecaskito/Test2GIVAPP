@@ -98,7 +98,6 @@ function getCadenaComunicat(objComunicat , separador){
 
 function cargaCarrersEnArray(){
     if($('#selectLletraIniCARRER').find(":selected").text().trim() == '') return;
-
     var letraIniCalle = $('#selectLletraIniCARRER').find(":selected").text().trim();
     var aRegistroC = null;
     var aCampos = null;

@@ -51,6 +51,7 @@
         <script src="negocio/baseDades.js" type="text/javascript"></script>
         <script src="negocio/webService.js" type="text/javascript"></script>
         <script src="negocio/pageDatosIncidencia.js" type="text/javascript"></script>
+        <script src="negocio/pageIdentificacion.js" type="text/javascript"></script>
         <script src="negocio/pageConsultaIncidencias.js" type="text/javascript"></script>
         <script src="negocio/pageInfoEnvio.js" type="text/javascript"></script>
         <!-- objetos -->
@@ -114,6 +115,26 @@
                 <table style="width: 100%;border:1px solid #dddddd">
                     <tr>
                         <td>
+                            <div id="divDireccion" style="height: 185px;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td class="tdSelect">
+                                            <select name="selectLletraIniCARRER" id="selectLletraIniCARRER" data-theme="c" ></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdSelect">
+                                            <select name="selectCARRER"  id="selectCARRER"  data-theme="c" ></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" maxlength="5" placeholder="numero" name="inputNUM" data-inline="true" id="inputNUM"  data-mini="false" data-theme="c" data-placeholder="numero" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
                             <div id="divCargarMapaAlta" class="div-loading" style="height: 185px;">
                                 <label>cercant localització...</label>
                             </div>
@@ -127,9 +148,8 @@
                                 </a>
                             </div>
                             <div id="divMapa" style="width: 100%">
-                            <div id="divMapaAlta" style="height: 200px;">
-                            </div>
-
+                                <div id="divMapaAlta" style="height: 200px;">
+                                </div>
                                 <label id="labelDireccion"></label>
                             </div>
                         </td>
@@ -220,10 +240,10 @@
                            data-theme="d" placeholder="el meu telèfon mòbil ..." data-clear-btn="true" />
                 </div>
             </div>
-            <div><table style="width:100%"><tr><td><a href="#" id="buttonIdentLimpiar"
+            <div><table style="width:100%"><tr><td><a href="#" id="buttonIdentLimpiar" onclick="LimpiarDatosCiudadano()"
                                                       data-mini="true" data-inline="false" data-role="button" data-theme="c" style="width:80%;height:25px ;padding-top:10px;text-align:center;margin:auto">
                 Netejar
-            </a></td><td><a href="#" id="buttonIdentGuardar"
+            </a></td><td><a href="#" id="buttonIdentGuardar" onclick="guardaDatosCiudadano()"
                             data-mini="true" data-inline="false" data-role="button" data-theme="c" style="width:80%;height:25px ;padding-top:10px;text-align:center;margin:auto">
                 Desar
             </a></td></tr></table></div>
@@ -457,32 +477,10 @@
 
 
 
-
-        $('#inputCOGNOM1').focus(function () {
-            $('#labelQUISOC').text($('#inputNOM').val() + ' ' + $('#inputCOGNOM1').val() + ' ' + $('#inputCOGNOM2').val());
+        $("#selectLletraIniCARRER").bind( "change", function(event, ui) {
+            cargaCarrersEnArray(); //rellena el array de calles que empiezan por esa letra desde el fic XML
+            cargaCalles();  //rellena el combo desde el array de Carrers
         });
-
-        $('#inputCOGNOM2').focus(function () {
-            $('#labelQUISOC').text($('#inputNOM').val() + ' ' + $('#inputCOGNOM1').val() + ' ' + $('#inputCOGNOM2').val());
-
-        });
-
-        $('#inputDNI').focus(function () {
-            $('#labelQUISOC').text($('#inputNOM').val() + ' ' + $('#inputCOGNOM1').val() + ' ' + $('#inputCOGNOM2').val());
-
-        });
-
-        $('#inputEMAIL').focus(function () {
-            $('#labelQUISOC').text($('#inputNOM').val() + ' ' + $('#inputCOGNOM1').val() + ' ' + $('#inputCOGNOM2').val());
-
-        });
-
-        $('#inputTELEFON').focus(function () {
-            $('#labelQUISOC').text($('#inputNOM').val() + ' ' + $('#inputCOGNOM1').val() + ' ' + $('#inputCOGNOM2').val());
-
-        });
-
-
 
         function muestraDireccion() {
             var sSelComboCarrer = indefinidoOnullToVacio($('#selectCARRER').find(":selected").text());

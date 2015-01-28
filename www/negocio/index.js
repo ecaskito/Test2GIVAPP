@@ -118,8 +118,8 @@ function abrirPagina(sPag, bBack) {
         case 'pageIndex':
             $.doTimeout(1500, inicioPaginaTipoIncidencia());
             break;
-        case 'pageNuevaIncidencia':
-            $.doTimeout(1500, inicioPaginaNuevaIncidencia() );
+        case 'pageIdentificacion':
+            $.doTimeout(1500, inicioPaginaIdentificacion() );
             break;
         case 'pageDatosIncidencia':
             $.doTimeout(1500, inicioPaginaDatosIncidencia());

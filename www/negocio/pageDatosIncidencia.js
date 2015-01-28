@@ -12,6 +12,7 @@ function inicioPaginaDatosIncidencia() {
     $('#divCargarMapaAlta').show();
     $('#divMensajeMapa').hide();
     $('#divMapa').hide();
+    $('#divDireccion').hide();
     try{
 
         navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
@@ -52,6 +53,10 @@ function cargarPaginaDatosIncidencia() {
 
         //cargar mapa
         iniciaMapa();
+
+        var nLetra = 65;
+        var combo = $('#selectLletraIniCARRER');
+        cargaLetrasAbcdario(combo, 'lletra inicial' , nLetra );
     }
     catch(ex) {
         //alert("cargarPaginaDatosIncidencia:"+ ex.message);
@@ -127,7 +132,8 @@ function posicionError(mensaje){
     //alert("posicionError: "+ mensaje);
     $('#divCargarMapaAlta').hide();
     $('#divMapa').hide();
-    $('#divMensajeMapa').show();
+    $('#divMensajeMapa').hide();
+    $('#divDireccion').show();
 }
 function cogerDireccion(pos, bSoloCalleYnum) {
     var llamaWS = "http://maps.googleapis.com/maps/api/geocode/xml";
@@ -176,4 +182,23 @@ function direccionObtenida(datos, param) {
     $('#labelDireccion').text(sDireccionAlta);
     $('#divMapaAlta').gmap('refresh');
 
+}
+
+function cargaCalles(){
+    if(aCarrers == null)
+        mensaje("No s'han trobat carrers","informació");
+    else
+    {
+        $('#selectCARRER').children().remove('li');
+        $('#selectCARRER').empty();
+        $('#selectCARRER').children().remove();
+
+        var calles = [];
+        calles.push("<option value='-1' data-placeholder='true'>Seleccioni el carrer</option>");
+        for (var x = 0; x < aCarrers.length; x++)
+        {
+            calles.push("<option value='" + aCarrers[x][0][1] + "'>" + aCarrers[x][2][1] + " (" +  aCarrers[x][1][1] + ")</option>"); // [" + aCarrers[x][3][1] + "]</option>");
+        }
+        $('#selectCARRER').append(calles.join('')).selectmenu('refresh');
+    }
 }
