@@ -120,13 +120,11 @@ function handleBackButton() {
 
 //hgs he cambiado transition flip por slide
 //transition: "fade",
-function abrirPagina(sPag, bBack) {
+function abrirPagina(sPag, bComprueba) {
 
-    if (sPag != "pageIdentificacion") {
-        if ($.mobile.activePage.attr('id') == 'pageIdentificacion' && SinDatosCiudadano()) {
-            mensaje("El telefon es obligatori per utilitzar l'app","error")
-        }
-    }
+    if (bComprueba && SinDatosCiudadano()) {
+            mensaje("El telefon es obligatori per utilitzar aquesta app","error")
+   }
     else
     {
         $.mobile.changePage('#' + sPag, {
