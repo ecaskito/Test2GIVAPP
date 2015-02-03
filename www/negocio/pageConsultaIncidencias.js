@@ -37,15 +37,25 @@ function cargaListaComunicats(aComs){
     var sFila = "";
     var sDatos = "";
     var separador = "#";
+    var sFotoInci='';
 
     for(var x=0; x<aComs.length; x++)
     {
         sDatos = getCadenaComunicat(aComs[x] , separador);
         sDatos = sDatos.replace(/'/g, "´");
 
+        sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
+
         //sFila = "<table style='width: 100%;'><tr><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].REFERENCIA + "</td><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].DATA + "</td><td style='text-align:left; font-size:x-small; width: 20%;'>" + aComs[x].ESTAT + "</td></tr></table>";
         sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
-        sFila +="<td  ><img src='images/sinFoto.png' style='max-width:90px;max-heigt:75px' /></td>";
+        if(sFotoInci=='')
+        {
+            sFila +="<td  ><img src='images/sinFoto.png' style='max-width:90px;max-heigt:75px' /></td>";
+        }
+        else
+        {
+            sFila +="<td  ><img src=data:image/jpeg;base64," + sFotoInci+" style='max-width:90px;max-heigt:75px' /></td>";
+        }
         sFila +=" <td  style='width:90%'>";
         sFila +=" <table style='width: 100%'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
@@ -60,7 +70,7 @@ function cargaListaComunicats(aComs){
         //sFila += "<td style='text-align:left; font-size:x-small; width: 30%;'>" + aComs[x].REFERENCIA + "</td>";
         //sFila += "</tr></table>";
 
-        //sSuFoto = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
+
         $('#listviewLista').append($('<li/>', {
             'id': "fila_" + aComs[x].ID
         }).append($('<a/>', {
@@ -253,6 +263,13 @@ function mostrarEnPlano() {
 
     // Try HTML5 geolocation
     if (navigator.geolocation) {
+
+        var locOptions = {
+            maximumAge : Infinity,
+            timeout : 10000,
+            enableHighAccuracy : true
+        };
+
         navigator.geolocation.getCurrentPosition(function (position) {
             var paramPosInicial = new google.maps.LatLng(position.coords.latitude, position.coords.longitude );
 
@@ -302,18 +319,9 @@ function mostrarEnPlano() {
 
                     sDatos = getCadenaComunicat(aComs[x] , separador);
 
-/*                  var sTxt =  '<div><table>';
-                    sTxt += '<tr><td style="font-size:xx-small;"><b>comunicat </b>' + aComs[x].REFERENCIA + '</td></tr>';
-                    sTxt += '<tr><td style="font-size:xx-small;"><b>reportat el </b>' + aComs[x].DATA +'</td></tr>';
-                    sTxt += '<tr><td style="font-size:xx-small;"><b>en </b>' + dir + '</td></tr>';
-                    sTxt += '<tr><td style="font-size:xx-small;"><a href="" onclick="verDatosComunicat(\'' + sDatos + '\',\'' + separador + '\');">+info</a></td></tr></table></div>'; */
-                    //sDatos = sDatos.replace("'","''","g");
 
                     sDatos = sDatos.replace(/'/g, "´");
 
-                    //HGS 05/12/13 COMENTO ORIGINAL I MODIFICO PER QUE VOLEM QUE MOSTRI LA INFO DIRECTAMENT, NO EN EL BOCADILLO
-                    /*var sTxt =  '<div><table>';
-                    sTxt += '<tr><td style="font-size:xx-small;"><a href="" onclick="verDatosComunicat(\'' + sDatos + '\',\'' + separador + '\');">info</a></td></tr></table></div>';*/
 
                     var sTxt =  sDatos;
                     //alert('pageConsultaIncidencies');
@@ -325,7 +333,7 @@ function mostrarEnPlano() {
             mapConsulta.setCenter(paramPosInicial);
             $('#divMapaConsulta').gmap('refresh');
 
-        } , function () { getCurrentPositionError(true); },{enabledHighAccuracy:true});
+        } , function () { getCurrentPositionError(true); },locOptions);
     }
     else
     {

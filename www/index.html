@@ -179,14 +179,20 @@
         <div data-role="header" data-theme="c">
         </div>
         <div data-role="content" data-theme="c">
-            <div id="InfoEnvioText" style="min-height:100px">Resultat de la comunicació</div>
+            <div id="divInfoEspera" class="div-loading" style="height: 185px;">
+                <label>enviant incidència...</label>
+            </div>
+            <div id="divInfoResultado">
+            <div id="InfoEnvioText" style="min-height:100px"> <label id="lblInfoEnvioText">
+                Resultat de la comunicació
+            </label></div>
             <div><table style="width:100%"><tr><td><a href="#" id="buttonBueva" onclick="abrirPagina('pageIndex', false)"
                                                       data-mini="true" data-inline="false" data-role="button" data-theme="c" style="width:80%;height:25px ;padding-top:10px;text-align:center;margin:auto">
                 Nova
             </a></td><td><a href="#" id="buttonSalir" onclick="salir()"
                             data-mini="true" data-inline="false" data-role="button" data-theme="c" style="width:80%;height:25px ;padding-top:10px;text-align:center;margin:auto">
                 Sortir
-            </a></td></tr></table></div>
+            </a></td></tr></table></div></div>
         </div>
     </div>
     <div data-role="page" id="pageIdentificacion">
@@ -283,7 +289,7 @@
                     </div></td>
                 <td align="rigth">
                     <div class="mi-util" >
-                        <a  href="" onclick="abrirPagina('pageConsultaIncidenciasMapa', false)"><img alt="" src="css/themes/Rojos/images/icons-png/refresh-white.png" width="20" /></a>
+                        <a  href="" id="buttonEnviamentDePendents" onclick="enviamentDePendents()" ><img alt="" src="css/themes/Rojos/images/icons-png/refresh-white.png" width="20" /></a>
                     </div></td>
                 <td align="rigth">
             <div class="mi-util" >

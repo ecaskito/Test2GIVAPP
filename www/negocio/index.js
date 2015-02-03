@@ -39,15 +39,8 @@ window.addEventListener('load', function () {
 }, false);
 
 function deviceReady() {
-    /*hgs 080414*/
-    //navigator.splashscreen.hide();
-
-    //setTimeout(function() {
-    //    navigator.splashscreen.hide();
-    //}, 1000);
     try {
-        //$.mobile.phonegapNavigationEnabled = true;
-        document.addEventListener("backbutton", handleBackButton, false); //Hgs 080514
+        document.addEventListener("backbutton", handleBackButton, false);
 
         pictureSource = navigator.camera.PictureSourceType;
         destinationType = navigator.camera.DestinationType;
@@ -73,9 +66,6 @@ function deviceReady() {
             }
             catch (e) { mensaje('exception carregant llista de carrers : ' + e.message, 'error'); }
         }
-
-
-        //navigator.splashscreen.hide();
     }
     catch (ex) {
         //alert(ex.message);
@@ -118,8 +108,6 @@ function handleBackButton() {
 
 // -------- COMUNES -----------------------------------------------------------------------
 
-//hgs he cambiado transition flip por slide
-//transition: "fade",
 function abrirPagina(sPag, bComprueba) {
 
     if (bComprueba && SinDatosCiudadano()) {
