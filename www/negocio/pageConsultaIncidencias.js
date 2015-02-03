@@ -54,7 +54,7 @@ function cargaListaComunicats(aComs){
         }
         else
         {
-            sFila +="<td style='width:30%' ><img style='max-width:100%max-height:75px' src='data:image/jpeg;base64," + sFotoInci+ "'  /></td>";
+            sFila +="<td style='width:30%' ><img style='max-width:100%;max-height:75px' src='data:image/jpeg;base64," + sFotoInci+ "'  /></td>";
         }
         sFila +=" <td  style='width:70%'>";
         sFila +=" <table style='width: 100%'>";
