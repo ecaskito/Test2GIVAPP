@@ -50,13 +50,13 @@ function cargaListaComunicats(aComs){
         sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
         if(sFotoInci=='')
         {
-            sFila +="<td  ><img src='images/sinFoto.png' style='max-width:90px;max-heigt:75px' /></td>";
+            sFila +="<td style='width:30%' ><img src='images/sinFoto.png' style='max-width:100%;max-heigt:75px' /></td>";
         }
         else
         {
-            sFila +="<td  ><img src=data:image/jpeg;base64," + sFotoInci+" style='max-width:90px;max-heigt:75px' /></td>";
+            sFila +="<td style='width:30%' ><img style='max-width:100%;max-heigt:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></td>";
         }
-        sFila +=" <td  style='width:90%'>";
+        sFila +=" <td  style='width:70%'>";
         sFila +=" <table style='width: 100%'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
         sFila +=" <tr><td>ref: "+aComs[x].REFERENCIA+"</td></tr>";

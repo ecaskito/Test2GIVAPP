@@ -222,8 +222,8 @@ function mostrarImagenes() {
         sTagImg += "<a href='' onclick='" + "selectTipo(" + sImagen + ")' data-mini='false' data-inline='false' data-role='button' data-theme='c' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' class='ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-first-child ui-btn-up-c'>"
         sTagImg += "<span class='ui-btn-inner'>"
         sTagImg += "<span class='ui-btn-text'>"
-        sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:30px' />"
-        sTagImg += "<div style='padding-top:7px;padding-left:35px'>" + dicAyuda[sImagen] + "</div>"
+        sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:40px' />"
+        sTagImg += "<div style='padding-top:12px;padding-left:40px'>" + dicAyuda[sImagen] + "</div>"
         sTagImg += "</span></span></a>"
     }
     $('#divTipoInci').html(sTagImg);

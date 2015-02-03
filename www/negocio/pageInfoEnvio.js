@@ -33,7 +33,6 @@ function enviarComunicat_WS(sParams,bNuevoComunicat){
     //alert('sParams en enviarcomunicat ' + sParams.sId );
     try
     {
-        alert("hhhhh");
         var bEnvioCorrecto = true;
         var sEstado = "";
         var sMensaje ="";
@@ -94,7 +93,7 @@ function enviarComunicat_WS(sParams,bNuevoComunicat){
                     eliminarFoto();
                     limpiaVariables('pageNuevaIncidencia');
                     $('#lblInfoEnvioText').text(sMensaje);
-                    mensaje(sMensaje, sTitulo);
+                    //mensaje(sMensaje, sTitulo);
                     //abrirPagina('pageInfoEnvio', false);
                 }
                 else
@@ -102,13 +101,13 @@ function enviarComunicat_WS(sParams,bNuevoComunicat){
                     if(!bEnvioCorrecto)
                     {
                         $('#lblInfoEnvioText').text(sMensaje);
-                        mensaje(sMensaje, sTitulo);
+                        //mensaje(sMensaje, sTitulo);
                     }
                 }
             }
             catch(ex){
                 $('#lblInfoEnvioText').text('ERROR (exception) en resultadoEnvio : \n' + ex.code + '\n' + ex.message , 'error');
-                mensaje('ERROR (exception) en resultadoEnvio : \n' + ex.code + '\n' + ex.message , 'error');
+                //mensaje('ERROR (exception) en resultadoEnvio : \n' + ex.code + '\n' + ex.message , 'error');
                 return null;
             }
         }).fail(function() {
@@ -124,14 +123,14 @@ function enviarComunicat_WS(sParams,bNuevoComunicat){
             sTitulo = "atenció";
             sReferen = "ERROR";
             $('#lblInfoEnvioText').text(sMensaje);
-            mensaje(sMensaje, sTitulo);
+            //mensaje(sMensaje, sTitulo);
             //abrirPagina('pageInfoEnvio', false);
         });
     }
     catch(e)
     {
         $('#lblInfoEnvioText').text('ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message);
-        mensaje('ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message);
+        //mensaje('ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message);
     }
 }
 

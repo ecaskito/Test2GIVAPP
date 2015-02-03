@@ -23,7 +23,7 @@
     margin:-12px;
     background-color:#fafafa;
     color:#DB0D36;
-    font-size:0.83em;
+    font-size:0.9em;
     font-weight:bold;
 }
 .mi-cab-menu-texto {
@@ -32,7 +32,7 @@
 .mi-ul {
     list-style:none;
     text-decoration:none;
-    font-size:0.8em;
+    font-size:0.85em;
     -webkit-padding-start: 0px;
     margin-left: -10px;
     margin-right: -10px;
@@ -100,12 +100,13 @@
 }
 
 #listviewLista li a{
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: normal;
     color: #333333;
     padding-left: 2px;
     padding-right: 2px;
     background-color: #fefefe;
+    text-transform: none;
 }
 
 .fit-content{
