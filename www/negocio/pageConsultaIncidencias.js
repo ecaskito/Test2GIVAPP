@@ -45,8 +45,8 @@ function cargaListaComunicats(aComs){
 
         //sFila = "<table style='width: 100%;'><tr><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].REFERENCIA + "</td><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].DATA + "</td><td style='text-align:left; font-size:x-small; width: 20%;'>" + aComs[x].ESTAT + "</td></tr></table>";
         sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
-        sFila +="<td  style='width:30%'><img src='images/sinFoto.png' style='width:100%' /></td>";
-        sFila +=" <td  style='width:70%'>";
+        sFila +="<td  ><img src='images/sinFoto.png' style='max-width:90px;max-heigt:75px' /></td>";
+        sFila +=" <td  style='width:90%'>";
         sFila +=" <table style='width: 100%'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
         sFila +=" <tr><td>ref: "+aComs[x].REFERENCIA+"</td></tr>";
