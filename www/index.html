@@ -85,12 +85,12 @@
             </ul>
         </div>
         <div data-role="header" data-theme="c">
-            <div class="mi-util">
-                <a href="#leftmenu1"><img alt="" src="css/images/bars-white.png" width="20" /></a>
-            </div>
-            <h3>
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td align="left"><div class="mi-util">
+                <a href="#leftmenu1"><img alt="" src="css/themes/Rojos/images/icons-png/bars-white.png" width="20" /></a>
+            </div></td><td width="90%" style="text-align: center">
+            <h3 style="margin: 0em">
                 Tipus incidència
-            </h3>
+            </h3></td></tr></table>
         </div>
 
         <div data-role="content" data-theme="c" style="padding-left:14%;padding-right:14%;padding-top:5px">
@@ -168,7 +168,7 @@
                 </table>
             </div>
             <div>
-                <a href="#" id="buttonEnviar" onclick="abrirPagina('pageInfoEnvio', false)"
+                <a href="#" id="buttonEnviar" onclick="enviarIncidencia()"
                    data-mini="true" data-inline="false" data-role="button" data-theme="c" style="width:90%;height:25px ;padding-top:10px;text-align:center;margin:auto">
                     Enviar
                 </a>
@@ -210,12 +210,12 @@
             </ul>
         </div>
         <div data-role="header" data-theme="c">
-            <div class="mi-util">
-                <a href="#leftmenu2"><img alt="" src="css/images/bars-white.png" width="20" /></a>
-            </div>
-            <h3>
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td align="left"><div class="mi-util">
+                <a href="#leftmenu2"><img alt="" src="css/themes/Rojos/images/icons-png/bars-white.png" width="20" /></a>
+            </div></td><td width="90%" style="text-align: center">
+            <h3 style="margin: 0em;">
                 Identificació
-            </h3>
+            </h3></td></tr></table>
         </div>
         <div data-role="content" data-theme="c">
             <div id="divUsuario">
@@ -270,12 +270,216 @@
             </ul>
         </div>
         <div data-role="header" data-theme="c">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td align="left">
             <div class="mi-util">
-                <a href="#leftmenu3"><img alt="" src="css/images/bars-white.png" width="20" /></a>
-            </div>
-            <h3>
+                <a href="#leftmenu3"><img alt="" src="css/themes/Rojos/images/icons-png/bars-white.png" width="20" /></a>
+            </div></td><td width="90%" style="text-align: center">
+            <h3 style="margin: 0em">
                 Reportats
-            </h3>
+            </h3></td>
+                <td align="rigth">
+                    <div class="mi-util" >
+                        <a  href="#pageBorrarHistoricoComunicados" id="buttonBorrarHistoricoComunicados" data-rel="popup" data-transition="pop" ><img alt="" src="images/delete-white.png" width="20" /></a>
+                    </div></td>
+                <td align="rigth">
+                    <div class="mi-util" >
+                        <a  href="" onclick="abrirPagina('pageConsultaIncidenciasMapa', false)"><img alt="" src="css/themes/Rojos/images/icons-png/refresh-white.png" width="20" /></a>
+                    </div></td>
+                <td align="rigth">
+            <div class="mi-util" >
+            <a  href="" onclick="abrirPagina('pageConsultaIncidenciasMapa', false)"><img alt="" src="css/themes/Rojos/images/icons-png/location-white.png" width="20" /></a>
+                </div></td></tr></table>
+        </div>
+        <!-- Panel lateral -->
+        <div data-role="panel" id="panelDadesComunicat" data-position="right" data-display="reveal"
+             data-animate="true">
+            <div data-role="content" data-theme="e" class="ui-corner-all">
+                <table>
+                    <tr>
+                        <td style="text-align: right; color: #970824; font-weight: bold; font-size: small">
+                            comunicat
+                        </td>
+                        <td style="font-size: small">
+                            <label id="labelCOMUNICAT_ID">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="font-weight: bold; font-size: small;">
+                            <label id="labelCOMUNICAT_COMENTARI">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; color: #970824; font-weight: bold; font-size: small">
+                            quan
+                        </td>
+                        <td style="font-size: small">
+                            <label id="labelCOMUNICAT_DATA">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; color: #970824; font-weight: bold; font-size: small">
+                            on
+                        </td>
+                        <td style="font-size: small">
+                            <label id="labelCOMUNICAT_CARRER">
+                            </label>
+                            ,<label id="labelCOMUNICAT_NUM"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; color: #970824; font-weight: bold; font-size: small">
+                            referència
+                        </td>
+                        <td style="font-size: small">
+                            <label id="labelCOMUNICAT_REFERENCIA">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; color: #970824; font-weight: bold; font-size: small">
+                            estat
+                        </td>
+                        <td style="font-size: small">
+                            <label id="labelCOMUNICAT_ESTAT"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="color: #d3d3d3; font-size: xx-small;">
+                            <label id="labelCOMUNICAT_COORDENADES">
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <a href="#" id="buttonCerrarPanel" onclick="$('#panelDadesComunicat').panel('close')"
+               data-mini="true" data-inline="false" data-role="button" data-theme="c" data-icon="arrow-l">
+                tornar</a>
+        </div>
+        <div data-role="content" data-theme="a">
+            <div id="divListaIncidencias" style="margin-top: 0; vertical-align: top;">
+                        <!--<table style="width: 100%;">-->
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--comunicats-->
+                                <!--</td>-->
+                                <!--<td style="text-align: right;">-->
+                                    <!--<a href="#" id="buttonMostrarEnPlano" onclick="estadoDelPlano()" data-mini="false"-->
+                                       <!--data-inline="true" data-role="button" data-theme="c" data-icon="grid">mostrar plànol</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                        <div class="content-primary" id="divLista">
+                            <ul id="listviewLista" style="list-style: none;margin: 0.5em;padding: 0em">
+                                <li>
+                                    <a  href="#" data-mini="true" data-inline="false" data-role="button" data-theme="c" >
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td  style="width:30%"><img src="images/sinFoto.png" style="width:100%" /></td>
+                                            <td  style="width:70%">
+                                                <table style="width: 100%">
+                                                    <tr><td style="font-weight: bold">MANTENIMENT VIA PUBLICA</td></tr>
+                                                    <tr><td>ref:</td></tr>
+                                                    <tr><td>id:</td></tr>
+                                                    <tr><td style="text-align: right;color:#DB0D36">PENDENT_ENVIAMENT</td></tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table></a>
+                                </li>
+                                <li>
+                                    <a  href="#" data-mini="true" data-inline="false" data-role="button" data-theme="c" >
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td  style="width:30%"><img src="images/sinFoto.png" style="width:100%" /></td>
+                                                <td  style="width:70%">
+                                                    <table style="width: 100%">
+                                                        <tr><td style="font-weight: bold">MANTENIMENT VIA PUBLICA</td></tr>
+                                                        <tr><td>ref:</td></tr>
+                                                        <tr><td>id:</td></tr>
+                                                        <tr><td style="text-align: right;color:#DB0D36">PENDENT_ENVIAMENT</td></tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--<table style="width: 100%;">-->
+                            <!--<tr>-->
+                                <!--<td style="text-align: left; width: 50%;">-->
+                                    <!--<a href="#pageBorrarHistoricoComunicados" id="buttonBorrarHistoricoComunicados" data-position-to="window"-->
+                                       <!--data-mini="true" data-inline="true" data-rel="popup" data-role="button" data-transition="pop"-->
+                                       <!--data-theme="c" data-icon="delete">esborrar tots</a>-->
+                                <!--</td>-->
+                                <!--<td style="text-align: right; width: 50%;">-->
+                                    <!--<a href="#" id="buttonEnviamentDePendents" onclick="enviamentDePendents()" data-mini="true"-->
+                                       <!--data-inline="true" data-role="button" data-theme="c" data-icon="refresh">actualitzar</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+            </div>
+        </div>
+        <!-- PopUp ELIMINAR Comunicats -->
+        <div data-role="popup" id="pageBorrarHistoricoComunicados" data-theme="c" style="max-width: 95%;"
+             class="ui-corner-all">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>
+                    El·liminar historial</h1>
+            </div>
+            <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                <h3 class="ui-title">
+                    Vol el·liminar l'historial?</h3>
+                <!--<div data-role="controlgroup" data-type="horizontal">-->
+                <!--aixi anava a inici
+                    <a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-theme="c">cancel·lar</a>
+                    <a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">el·liminar</a>-->
+                <a href="#pageConsultaIncidencias" data-role="button" data-mini="false" data-inline="true"
+                   data-theme="c">no</a> <a href="#pageConsultaIncidencias" data-role="button" data-mini="false"
+                                            data-inline="true" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">
+                si</a>
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="pageConsultaIncidenciasMapa">
+        <div data-role="panel" id="leftmenu3" data-display="overlay" data-position="left" data-theme="c" style="background-color:#f3f3f3" class="ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-open">
+            <div class="mi-cab-menu">
+                <img alt="" src="images/Logo.png" width="42" /><div class="mi-cab-menu-texto">Ajuntament de Vilafranca</div>
+            </div>
+            <ul class="mi-ul">
+                <li>
+                    <a href="" onclick="abrirPagina('pageIndex', false)"><div>Nou comunicat</div></a>
+                </li>
+                <li>
+                    <a href="" onclick="abrirPagina('pageIdentificacion', false)"><div>Identificació</div></a>
+                </li>
+                <li>
+                    <a href="" onclick="abrirPagina('pageConsultaIncidencias', false)"><div class="mi-selected">Llista comunicats</div></a>
+                </li>
+                <li>
+                    <a href="" onclick="salir()"><div>Sortir</div></a>
+                </li>
+            </ul>
+        </div>
+        <div data-role="header" data-theme="c">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td align="left">
+                <div class="mi-util">
+                    <a href="#leftmenu3"><img alt="" src="css/themes/Rojos/images/icons-png/bars-white.png" width="20" /></a>
+                </div></td><td width="90%" style="text-align: center">
+                <h3 style="margin: 0em">
+                    Reportats
+                </h3></td><td align="rigth">
+                <div class="mi-util" >
+                    <a  href="" onclick="abrirPagina('pageConsultaIncidencias', false)"><img alt="" src="css/themes/Rojos/images/icons-png/bullets-white.png" width="20" /></a>
+                </div></td></tr></table>
         </div>
 
         <!-- Panel lateral -->
@@ -335,8 +539,7 @@
                             estat
                         </td>
                         <td style="font-size: small">
-                            <label id="labelCOMUNICAT_ESTAT">
-                            </label>
+                            <label id="labelCOMUNICAT_ESTAT"></label>
                         </td>
                     </tr>
                     <tr>
@@ -351,113 +554,200 @@
                data-mini="true" data-inline="false" data-role="button" data-theme="c" data-icon="arrow-l">
                 tornar</a>
         </div>
-        <div data-role="content" data-theme="a">
-            <div id="divListaIncidencias" style="margin-top: 0; vertical-align: top;">
-                <ul data-role="listview" data-divider-theme="a" data-inset="true">
-                    <li data-role="list-divider" role="heading" id="liCabeceraComunicatsReportats">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td>
-                                    comunicats
-                                </td>
-                                <td style="text-align: right;">
-                                    <a href="#" id="buttonMostrarEnPlano" onclick="estadoDelPlano()" data-mini="false"
-                                       data-inline="true" data-role="button" data-theme="c" data-icon="grid">mostrar plànol</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </li>
-                    <li data-theme="b">
-                        <table style='height: 10px; width: 100%;'>
-                            <tr>
-                                <td style='text-align: left; font-size: small; width: 15%; color: #000000;'>
-                                    id
-                                </td>
-                                <td style='text-align: left; font-size: small; width: 55%; color: #000000;'>
-                                    estat
-                                </td>
-                                <td style='text-align: left; font-size: small; width: 30%; color: #000000;'>
-                                    referència
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="content-primary" id="divLista">
-                            <ul data-role="listview" id="listviewLista" data-filter="false" data-inset="true"
-                                data-theme="d" data-divider-theme="b">
-                            </ul>
-                        </div>
-                    </li>
-                    <li data-role="list-divider" role="footer" id="liPieComunicatsReportats" style="text-align: center;">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="text-align: left; width: 50%;">
-                                    <a href="#pageBorrarHistoricoComunicados" id="buttonBorrarHistoricoComunicados" data-position-to="window"
-                                       data-mini="true" data-inline="true" data-rel="popup" data-role="button" data-transition="pop"
-                                       data-theme="c" data-icon="delete">esborrar tots</a>
-                                </td>
-                                <td style="text-align: right; width: 50%;">
-                                    <a href="#" id="buttonEnviamentDePendents" onclick="enviamentDePendents()" data-mini="true"
-                                       data-inline="true" data-role="button" data-theme="c" data-icon="refresh">actualitzar</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </li>
-                </ul>
-                <!-- P L A N O -->
-                <!--<div id="divSobreMapaConsulta" data-theme="e" class="ui-corner-all">-->
-                <div id="divSobreMapaConsulta" class="ui-bar-c ui-corner-all ui-shadow" style="padding: 1em;">
-                    <div id="divMapaConsulta" style="height: 300px;">
+        <div data-role="content" data-theme="c" class="fit-content">
+                <div id="divSobreMapaConsulta">
+                    <div id="divMapaConsulta" style="width: 100%;height: 100%">
                     </div>
-                    <a href="#" id="buttonSubirEnPlano" onclick="estadoDelPlano()" data-mini="true" data-inline="false"
-                       data-role="button" data-theme="c" data-icon="arrow-u">pujar</a>
                 </div>
-            </div>
         </div>
-        <!-- <div data-role="footer" data-theme="f" data-position="fixed" style="text-align: center;">
-                 <table style="width:100%;"><tr><td style="background-color:LightGrey; width:100%;"><label   style="color:Gray; font-size:small; font-weight:normal; background-color:LightGrey;">&#169;2014 SETTING Consultoria en T.I., S.L.</label></td></tr></table>
-             </div>-->
-        <!-- PopUp ELIMINAR Comunicats -->
-        <div data-role="popup" id="pageBorrarHistoricoComunicados" data-theme="c" style="max-width: 95%;"
-             class="ui-corner-all">
-            <div data-role="header" data-theme="a" class="ui-corner-top">
-                <h1>
-                    El·liminar historial</h1>
-            </div>
-            <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
-                <h3 class="ui-title">
-                    Vol el·liminar l'historial?</h3>
-                <!--<div data-role="controlgroup" data-type="horizontal">-->
-                <!--aixi anava a inici
-                    <a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-theme="c">cancel·lar</a>
-                    <a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">el·liminar</a>-->
-                <a href="#pageConsultaIncidencias" data-role="button" data-mini="false" data-inline="true"
-                   data-theme="c">no</a> <a href="#pageConsultaIncidencias" data-role="button" data-mini="false"
-                                            data-inline="true" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">
-                si</a>
-                <!--</div>-->
-            </div>
-        </div>
-        <!-- PopUp INFO2 -->
-        <!--<div data-role="popup" id="pageInfo2" data-theme="c" data-overlay-theme="a" style="max-width:95%;" class="ui-corner-all">
-                <div data-role="header" data-theme="a" class="ui-corner-top">
-                    <h1>quant a</h1>
-                </div>
-                <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content">
-                    <p style="text-align: left;">
-                        L'aplicació <b>comunica't</b> és una eina que permet notificar a l'Ajuntament les incidències, suggeriments o queixes referents a la vía pública que la ciutadanía consideri oportù.
-                    </p>
-                    <p style="text-align: center">
-                        Gràcies per fer-la servir.
-                    </p>
-                    <p style="text-align: center">
-                        <img src="images/Ajuntament.jpg" width="50%;" /><br/>
-                    </p>
-                    <p style="text-align: center">
-                        <i>Fem entre tots una ciutat més neta, sostenible i cívica.</i>
-                    </p>
-                </div>
-            </div>-->
     </div>
+
+    <!--<div data-role="page" id="pageConsultaIncidencias">-->
+        <!--<div data-role="panel" id="leftmenu3" data-display="overlay" data-position="left" data-theme="c" style="background-color:#f3f3f3" class="ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-open">-->
+            <!--<div class="mi-cab-menu">-->
+                <!--<img alt="" src="images/Logo.png" width="42" /><div class="mi-cab-menu-texto">Ajuntament de Vilafranca</div>-->
+            <!--</div>-->
+            <!--<ul class="mi-ul">-->
+                <!--<li>-->
+                    <!--<a href="" onclick="abrirPagina('pageIndex', false)"><div>Nou comunicat</div></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="" onclick="abrirPagina('pageIdentificacion', false)"><div>Identificació</div></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="" onclick="abrirPagina('pageConsultaIncidencias', false)"><div class="mi-selected">Llista comunicats</div></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="" onclick="salir()"><div>Sortir</div></a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div data-role="header" data-theme="c">-->
+            <!--<div class="mi-util">-->
+                <!--<a href="#leftmenu3"><img alt="" src="css/themes/Rojos/images/icons-png/bars-white.png" width="20" /></a>-->
+            <!--</div>-->
+            <!--<h3>-->
+                <!--Reportats-->
+            <!--</h3>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Panel lateral &ndash;&gt;-->
+        <!--<div data-role="panel" id="panelDadesComunicat" data-position="right" data-display="reveal"-->
+             <!--data-animate="true">-->
+            <!--<div data-role="content" data-theme="e" class="ui-corner-all">-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td style="text-align: right; color: #970824; font-weight: bold; font-size: small">-->
+                            <!--comunicat-->
+                        <!--</td>-->
+                        <!--<td style="font-size: small">-->
+                            <!--<label id="labelCOMUNICAT_ID">-->
+                            <!--</label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td colspan="2" style="font-weight: bold; font-size: small;">-->
+                            <!--<label id="labelCOMUNICAT_COMENTARI">-->
+                            <!--</label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td colspan="2">-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td style="text-align: right; color: #970824; font-weight: bold; font-size: small">-->
+                            <!--quan-->
+                        <!--</td>-->
+                        <!--<td style="font-size: small">-->
+                            <!--<label id="labelCOMUNICAT_DATA">-->
+                            <!--</label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td style="text-align: right; color: #970824; font-weight: bold; font-size: small">-->
+                            <!--on-->
+                        <!--</td>-->
+                        <!--<td style="font-size: small">-->
+                            <!--<label id="labelCOMUNICAT_CARRER">-->
+                            <!--</label>-->
+                            <!--,<label id="labelCOMUNICAT_NUM"></label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td style="text-align: right; color: #970824; font-weight: bold; font-size: small">-->
+                            <!--referència-->
+                        <!--</td>-->
+                        <!--<td style="font-size: small">-->
+                            <!--<label id="labelCOMUNICAT_REFERENCIA">-->
+                            <!--</label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td style="text-align: right; color: #970824; font-weight: bold; font-size: small">-->
+                            <!--estat-->
+                        <!--</td>-->
+                        <!--<td style="font-size: small">-->
+                            <!--<label id="labelCOMUNICAT_ESTAT"></label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td colspan="2" style="color: #d3d3d3; font-size: xx-small;">-->
+                            <!--<label id="labelCOMUNICAT_COORDENADES">-->
+                            <!--</label>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
+            <!--<a href="#" id="buttonCerrarPanel" onclick="$('#panelDadesComunicat').panel('close')"-->
+               <!--data-mini="true" data-inline="false" data-role="button" data-theme="c" data-icon="arrow-l">-->
+                <!--tornar</a>-->
+        <!--</div>-->
+        <!--<div data-role="content" data-theme="a">-->
+            <!--<div id="divListaIncidencias" style="margin-top: 0; vertical-align: top;">-->
+                <!--<ul data-role="listview" data-divider-theme="a" data-inset="true">-->
+                    <!--<li data-role="list-divider" role="heading" id="liCabeceraComunicatsReportats">-->
+                        <!--<table style="width: 100%;">-->
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--comunicats-->
+                                <!--</td>-->
+                                <!--<td style="text-align: right;">-->
+                                    <!--<a href="#" id="buttonMostrarEnPlano" onclick="estadoDelPlano()" data-mini="false"-->
+                                       <!--data-inline="true" data-role="button" data-theme="c" data-icon="grid">mostrar plànol</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</li>-->
+                    <!--<li data-theme="b">-->
+                        <!--<table style='height: 10px; width: 100%;'>-->
+                            <!--<tr>-->
+                                <!--<td style='text-align: left; font-size: small; width: 15%; color: #000000;'>-->
+                                    <!--id-->
+                                <!--</td>-->
+                                <!--<td style='text-align: left; font-size: small; width: 55%; color: #000000;'>-->
+                                    <!--estat-->
+                                <!--</td>-->
+                                <!--<td style='text-align: left; font-size: small; width: 30%; color: #000000;'>-->
+                                    <!--referència-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                        <!--<div class="content-primary" id="divLista">-->
+                            <!--<ul data-role="listview" id="listviewLista" data-filter="false" data-inset="true"-->
+                                <!--data-theme="d" data-divider-theme="b">-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li data-role="list-divider" role="footer" id="liPieComunicatsReportats" style="text-align: center;">-->
+                        <!--<table style="width: 100%;">-->
+                            <!--<tr>-->
+                                <!--<td style="text-align: left; width: 50%;">-->
+                                    <!--<a href="#pageBorrarHistoricoComunicados" id="buttonBorrarHistoricoComunicados" data-position-to="window"-->
+                                       <!--data-mini="true" data-inline="true" data-rel="popup" data-role="button" data-transition="pop"-->
+                                       <!--data-theme="c" data-icon="delete">esborrar tots</a>-->
+                                <!--</td>-->
+                                <!--<td style="text-align: right; width: 50%;">-->
+                                    <!--<a href="#" id="buttonEnviamentDePendents" onclick="enviamentDePendents()" data-mini="true"-->
+                                       <!--data-inline="true" data-role="button" data-theme="c" data-icon="refresh">actualitzar</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--&lt;!&ndash; P L A N O &ndash;&gt;-->
+                <!--&lt;!&ndash;<div id="divSobreMapaConsulta" data-theme="e" class="ui-corner-all">&ndash;&gt;-->
+                <!--<div id="divSobreMapaConsulta" class="ui-bar-c ui-corner-all ui-shadow" style="padding: 1em;">-->
+                    <!--<div id="divMapaConsulta" style="height: 300px;">-->
+                    <!--</div>-->
+                    <!--<a href="#" id="buttonSubirEnPlano" onclick="estadoDelPlano()" data-mini="true" data-inline="false"-->
+                       <!--data-role="button" data-theme="c" data-icon="arrow-u">pujar</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; PopUp ELIMINAR Comunicats &ndash;&gt;-->
+        <!--<div data-role="popup" id="pageBorrarHistoricoComunicados" data-theme="c" style="max-width: 95%;"-->
+             <!--class="ui-corner-all">-->
+            <!--<div data-role="header" data-theme="a" class="ui-corner-top">-->
+                <!--<h1>-->
+                    <!--El·liminar historial</h1>-->
+            <!--</div>-->
+            <!--<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">-->
+                <!--<h3 class="ui-title">-->
+                    <!--Vol el·liminar l'historial?</h3>-->
+                <!--&lt;!&ndash;<div data-role="controlgroup" data-type="horizontal">&ndash;&gt;-->
+                <!--&lt;!&ndash;aixi anava a inici-->
+                    <!--<a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-theme="c">cancel·lar</a>-->
+                    <!--<a href="#" data-role="button" data-mini="false" data-inline="true" data-rel="back" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">el·liminar</a>&ndash;&gt;-->
+                <!--<a href="#pageConsultaIncidencias" data-role="button" data-mini="false" data-inline="true"-->
+                   <!--data-theme="c">no</a> <a href="#pageConsultaIncidencias" data-role="button" data-mini="false"-->
+                                            <!--data-inline="true" data-transition="flow" data-theme="b" onclick="borrarHistoricoComunicados()">-->
+                <!--si</a>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
     <div data-role="popup" id="pageZoomFoto" data-theme="c" style="max-width: 95%;" class="ui-corner-all" class="ui-btn-right">
         <div data-role="header" data-theme="c">
             <h3>

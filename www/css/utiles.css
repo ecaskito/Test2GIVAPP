@@ -3,7 +3,6 @@
     margin:2px;
     padding:4px;
     display:block;
-    position:fixed;
 }
 .mi-util a:hover {
     background-color:#f9dce2;
@@ -95,3 +94,31 @@
     font-size: 1em;
     color: #333333;
 }
+
+#listviewLista li{
+    padding: 0px;
+}
+
+#listviewLista li a{
+    font-size: 0.7em;
+    font-weight: normal;
+    color: #333333;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #fefefe;
+}
+
+.fit-content{
+    position : absolute;
+}
+
+.fit-content {
+    top : 44px;
+    bottom : 20px;
+    left : 0;
+    right : 0;
+}
+.fit-content > div {
+    height : 100%;
+}
+

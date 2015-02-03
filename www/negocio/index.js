@@ -145,10 +145,12 @@ function abrirPagina(sPag, bComprueba) {
                 $.doTimeout(1500, inicioPaginaInfoEnvio());
                 break;
             case 'pageConsultaIncidencias':
-                inicioPaginaConsultaIncidencias();
-                $.doTimeout(1000, mostrarEnPlano());
+                $.doTimeout(1000, inicioPaginaConsultaIncidencias());
                 break;
-
+            case 'pageConsultaIncidenciasMapa':
+                mostrarEnPlano();
+                $.doTimeout(1000, estadoDelPlano());
+                break;
             case 'pageZoomFoto' :
                 var imagen = document.getElementById('imgZoomFoto');
                 imagen.style.display = 'block';
@@ -208,7 +210,7 @@ function leeXMLIconos() {
         dataType: "xml",
         success: function (xml) {
             $(xml).find('icoTema').each(function () {
-                dicImagenes[$(this).find('id').text()] = "imagenes/" + $(this).find('img').text();
+                dicImagenes[$(this).find('id').text()] = "images/tipoInci/" + $(this).find('img').text();
                 dicAyuda[$(this).find('id').text()] = $(this).find('desc').text();
                 //guardem l'item del seleccionat
                 dicItem[$(this).find('id').text()] = $(this).find('img').text().substr(0, $(this).find('img').text().indexOf("_"));
