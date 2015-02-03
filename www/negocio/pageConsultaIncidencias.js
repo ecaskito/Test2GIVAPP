@@ -47,22 +47,22 @@ function cargaListaComunicats(aComs){
         sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
 
         //sFila = "<table style='width: 100%;'><tr><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].REFERENCIA + "</td><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].DATA + "</td><td style='text-align:left; font-size:x-small; width: 20%;'>" + aComs[x].ESTAT + "</td></tr></table>";
-        sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
+        //sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
         if(sFotoInci=='')
         {
-            sFila +="<td style='width:30%' ><img src='images/sinFoto.png' style='max-width:100%;max-height:75px' /></td>";
+            sFila ="<div style='width:30%;float: left'><img src='images/sinFoto.png' style='max-width:100%;max-height:75px' /></div>";
         }
         else
         {
-            sFila +="<td style='width:30%' ><img style='max-width:100%;max-height:75px' src='data:image/jpeg;base64," + sFotoInci+ "'  /></td>";
+            sFila ="<div style='width:30%;float: left'>><img style='max-width:100%;max-height:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></div>";
         }
-        sFila +=" <td  style='width:70%'>";
+        sFila +=" <div style='width:70%;float: right'>";
         sFila +=" <table style='width: 100%'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
         sFila +=" <tr><td>ref: "+aComs[x].REFERENCIA+"</td></tr>";
         sFila +=" <tr><td>id: "+aComs[x].ID+"</td></tr>";
         sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
-        sFila +=" </table></td></tr></table>";
+        sFila +=" </table></div>";
 
 
         //sFila += "<td style='text-align:left; font-size:x-small; width: 15%;'>" + aComs[x].ID + "</td>";
