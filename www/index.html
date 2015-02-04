@@ -358,47 +358,40 @@
                 </h3></td></tr></table>
         </div>
 
-        <div data-role="content" data-theme="a">
-
-            <table cellpadding="0" cellspacing="0" border="0">
+        <div data-role="content" data-theme="a" style="padding: 0em">
+            <div  style="width:100%;height:200px;background-color: #efefef;border: 1px solid #efefef;margin: 0px;line-height: 200px;text-align: center">
+                <img id="imgCOMUNICAT_FOTO" src="images/SinFoto.png" style="max-width:100%;max-height:200px;display: inline-block;vertical-align:middle" />
+            </div>
+            <div style="padding: 5px" id="divFicha">
+            <table cellpadding="1" cellspacing="0" border="0" style="width: 98%;table-layout: fixed">
                 <tr>
-                    <td ><label id="labelCOMUNICAT_TIPUS"></label>
+                    <td style="text-align: right"><label style="color: #DB0D36" id="labelCOMUNICAT_ESTAT"></label></td>
+                </tr>
+                <tr>
+                    <td><label id="labelCOMUNICAT_TIPUS"  style="font-weight: bold;"></label>
                     </td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold;">id:</td>
-                    <td ><label id="labelCOMUNICAT_ID"></label>
-                    </td>
+                    <td><label id="labelCOMUNICAT_CARRER"></label></td>
+                </tr>
+                </table>
+                <table cellpadding="1" cellspacing="0" border="0" style="width: 98%;table-layout: fixed;margin-left: 5px">
+                <tr>
+                    <td><div style="float: left;width: 17%;font-weight: bold;">id:</div><div style="float: right;width: 80%" ><label id="labelCOMUNICAT_ID"></label></div></td>
+                <tr>
+                <td><div style="float: left;width: 17%;font-weight: bold;">ref:</div><div style="float: right;width:80%" ><label id="labelCOMUNICAT_REFERENCIA"></label></div></td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold;">comentari:</td>
-                    <td ><label id="labelCOMUNICAT_COMENTARI"></label></td>
+                    <td><div style="float: left;width: 17%;font-weight: bold;">data:</div><div style="float: right;width: 80%" ><label id="labelCOMUNICAT_DATA"></label></div></td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold; ">Data:</td>
-                    <td ><label id="labelCOMUNICAT_DATA"></label></td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;" >Adreça:</td>
-                    <td >
-                        <label id="labelCOMUNICAT_CARRER">
-                        </label>
-                        ,<label id="labelCOMUNICAT_NUM"></label>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;" >ref:</td>
-                    <td ><label id="labelCOMUNICAT_REFERENCIA"></label></td>
-                </tr>
-                <tr>
-                    <td  style="font-weight: bold;" >estat:</td>
-                    <td ><label id="labelCOMUNICAT_ESTAT"></label></td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;">coordenades:</td>
-                    <td ><label id="labelCOMUNICAT_COORDENADES"></label></td>
-                </tr>
+                    <td><div style="float: left;width: 17%;font-weight: bold;">coord:</div><div style="float: right;width: 80%" ><label id="labelCOMUNICAT_COORDENADES"></label></div></td>
+                </tr></table>
+                <table cellpadding="1" cellspacing="0" border="0" style="width: 98%;table-layout: fixed;margin-left: 5px">
+                <tr><td style="font-weight: bold;font-style: italic">comentari</td></tr>
+                <tr><td ><label id="labelCOMUNICAT_COMENTARI"></label></td></tr>
             </table>
+            </div>
             </div>
         </div>
     </div>

@@ -2,35 +2,18 @@ var mapConsulta = null;
 var posConsulta = '';
 var sDireccionConsulta = '';
 var aMarcadoresSobrePlano = new Array();
+var aComs=null;
 
 function inicioPaginaConsultaIncidencias(){
-    //hgs nou
-    $('#buttonMostrarEnPlano').attr({"style":"display:block","src":""});
-    $('#buttonBorrarHistoricoComunicados').attr({"style":"display:block","src":""});
-    $('#buttonEnviamentDePendents').attr({"style":"display:block","src":""});
-    //fi nou
-
-    cargaListaComunicats(getComunicats());
-
-    // $(document).on('pageinit', '#pageConsultaIncidencias',  function(){
-        //Ocultar el plano
-        //$('#divMapaConsulta').hide();
-        //$('#divSobreMapaConsulta').hide();
-        //$('#buttonMostrarEnPlano').changeButtonText("mostrar plànol");
-        //$("#buttonMostrarEnPlano").button('refresh');
+    aComs=(getComunicats());
+    cargaListaComunicats();
 }
 
-//aComs = array de objetos 'comunicat'
-function cargaListaComunicats(aComs){
+function cargaListaComunicats(){
     $('#listviewLista').children().remove('li');
 
     if(aComs == null || aComs.length < 1) {
         $('#listviewLista').listview('refresh');
-        //hgs nou
-        $('#buttonMostrarEnPlano').attr({"style":"display:none","src":""});
-        $('#buttonBorrarHistoricoComunicados').attr({"style":"display:none","src":""});
-        $('#buttonEnviamentDePendents').attr({"style":"display:none","src":""});
-        //fi nou
         return ;
     }
 
@@ -58,13 +41,12 @@ function cargaListaComunicats(aComs){
         sFila +=" <table cellpadding='0' cellspacing='0' border='0' style='width: 100%;table-layout: fixed'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
         sFila +=" <tr><td style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
-        sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
-        //sFila +=" <tr><td style='font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</td></tr>";
+        //sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
+        sFila +=" <tr><td><b style='font-size: 0.85em' >id:</b> "+aComs[x].ID+"</td></tr>";
+        sFila +=" <tr><td><b style='font-size: 0.85em'>ref:</b> "+aComs[x].REFERENCIA+"</td></tr>";
         sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
-        sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
+        //sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
         sFila +=" </table></div>";
-        //sFila +=" <div style='float: left;font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</div>";
-        //sFila +=" <div style='float: right;font-size: 0.75em'>"+aComs[x].DATA+"</div>";
 
 
 
@@ -73,7 +55,7 @@ function cargaListaComunicats(aComs){
             'id': "fila_" + aComs[x].ID
         }).append($('<a/>', {
                 'href': '',
-                'onclick': "verDatosComunicat('" + sDatos + "','" + separador + "')",
+                'onclick': "verDatosComunicat('" + x + "','" + separador + "')",
             'data-mini':"true",
             'data-inline':"false",
             'data-role':"button",
@@ -85,43 +67,53 @@ function cargaListaComunicats(aComs){
     $('#listviewLista').listview('refresh');
 }
 
-function verDatosComunicat(sDatos, separador){
-    $('#labelCOMUNICAT_ID').text('');
+function verDatosComunicat(x, separador){
+    $('#labelCOMUNICAT_TIPUS').text('');
     $('#labelCOMUNICAT_CARRER').text('');
-    $('#labelCOMUNICAT_NUM').text('');
-    $('#labelCOMUNICAT_COMENTARI').text('');
+    $('#labelCOMUNICAT_ID').text('');
     $('#labelCOMUNICAT_REFERENCIA').text('');
+    //$('#labelCOMUNICAT_NUM').text('');
+    $('#labelCOMUNICAT_COMENTARI').text('');
     $('#labelCOMUNICAT_DATA').text('');
     $('#labelCOMUNICAT_ESTAT').text('');
-    $('#labelCOMUNICAT_TIPUS').text('');
+
+    var sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
+    if(sFotoInci==''){
+        sFotoInci="images/sinFoto.png";
+    }
+    else{
+        sFotoInci="data:image/jpeg;base64," + sFotoInci;
+    }
+    $('#imgCOMUNICAT_FOTO').text(sFotoInci);
 
     abrirPagina("pageConsultaIncidenciasFicha",false);
-    var aDatos = new Array();
+    //var aDatos = new Array();
     try
     {
-        aDatos = sDatos.split(separador);
-        $('#labelCOMUNICAT_ID').text(aDatos[0]);
-        $('#labelCOMUNICAT_REFERENCIA').text(aDatos[1]);
-        $('#labelCOMUNICAT_ESTAT').text(aDatos[2]);
-        $('#labelCOMUNICAT_DATA').text(aDatos[3]);
-        var sTipoVia = "";
-        var sCalle = "";
-        var calle = aDatos[4];
-        try{
-            if(calle.length > 3)
-            {
-                sTipoVia = calle.split("(")[1].substr(0, (calle.split("(")[1].length -1));
-                sCalle = calle.split("(")[0];
-            }
-            $('#labelCOMUNICAT_CARRER').text(sTipoVia + ' ' + sCalle);
-        }
-        catch(e){
-            $('#labelCOMUNICAT_CARRER').text(calle);
-        }
-        $('#labelCOMUNICAT_NUM').text(aDatos[5]);
-        $('#labelCOMUNICAT_COMENTARI').text(aDatos[8]);
-        $('#labelCOMUNICAT_COORDENADES').text(aDatos[6] + " , " + aDatos[7]);
-        $('#labelCOMUNICAT_TIPUS').text(aDatos[10]); //hgs descripcio
+        //aDatos = sDatos.split(separador);
+        $('#labelCOMUNICAT_ID').text(aComs[x].ID);// aDatos[0]);
+        $('#labelCOMUNICAT_REFERENCIA').text(aComs[x].REFERENCIA);// aDatos[1]);
+        $('#labelCOMUNICAT_ESTAT').text(aComs[x].ESTAT);// aDatos[2]);
+        $('#labelCOMUNICAT_DATA').text(aComs[x].DATA);// aDatos[3]);
+        //var sTipoVia = "";
+        //var sCalle = "";
+        //var calle = aDatos[4];
+        //try{
+        //    if(calle.length > 3)
+        //    {
+        //        sTipoVia = calle.split("(")[1].substr(0, (calle.split("(")[1].length -1));
+        //        sCalle = calle.split("(")[0];
+        //    }
+        //    $('#labelCOMUNICAT_CARRER').text(sTipoVia + ' ' + sCalle);
+        //}
+        //catch(e){
+        //    $('#labelCOMUNICAT_CARRER').text(calle);
+        //}
+        $('#labelCOMUNICAT_CARRER').text(aComs[x].CARRER+" "+aComs[x].NUM);
+        //$('#labelCOMUNICAT_NUM').text(aDatos[5]);
+        $('#labelCOMUNICAT_COMENTARI').text(aComs[x].COMENTARI);
+        $('#labelCOMUNICAT_COORDENADES').text(aComs[x].COORD_X + " , " + aComs[x].COORD_Y);
+        $('#labelCOMUNICAT_TIPUS').text(aComs[x].ITE_DESC); //hgs descripcio
     }
     catch(e) {
         mensaje('exception en verDatosComunicat : ' + e.message , 'error');
@@ -252,8 +244,9 @@ function mostrarEnPlano() {
 // Descapar para pruebas en PC :
 //    var llamaWS = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/ConsultarIncidenciasZona";
 //    var sParam  = "sLat=41.3965&sLon=2.1521";
-    var aComs = new Array();
-    aComs = getComunicats();
+
+    //var aComs = new Array();
+    //aComs = getComunicats();
 
     if(aComs == null || aComs.length < 1) {
         return false;
@@ -322,7 +315,7 @@ function mostrarEnPlano() {
                     sDatos = sDatos.replace(/'/g, "´");
 
 
-                    var sTxt =  sDatos;
+                    var sTxt =  x; //sDatos;
                     //alert('pageConsultaIncidencies');
                     nuevoMarcadorSobrePlanoClickInfoWindow('CONSULTA', mapConsulta, pos, sTxt, aComs[x].ID, 300, false, false,'',false);
                     aMarcadoresSobrePlano[x] = globalMarcadorMapa;

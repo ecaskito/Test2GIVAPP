@@ -109,6 +109,13 @@
     text-transform: none;
 }
 
+#divFicha label{
+    font-size: 0.9em;
+}
+#divFicha table{
+    font-size: 0.9em;
+}
+
 .fit-content{
     position : absolute;
 }
