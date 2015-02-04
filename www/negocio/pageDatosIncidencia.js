@@ -74,7 +74,7 @@ function iniciaMapa() {
                 enableHighAccuracy : true
             };
 
-                navigator.geolocation.watchPosition(posicionOK,posicionError,locOptions);
+                navigator.geolocation.getCurrentPosition(posicionOK,posicionError,locOptions);
 
         } else {
             // Browser no soporta Geolocation
