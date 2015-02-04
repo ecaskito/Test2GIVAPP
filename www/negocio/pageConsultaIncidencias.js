@@ -54,14 +54,14 @@ function cargaListaComunicats(aComs){
         }
         else
         {
-            sFila ="<div style='width:30%;float: left'>><img style='max-width:100%;max-height:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></div>";
+            sFila ="<div style='width:30%;float: left'><img style='max-width:100%;max-height:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></div>";
         }
         sFila +=" <div style='width:70%;float: right'>";
-        sFila +=" <table style='width: 100%'>";
-        sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
-        sFila +=" <tr><td>ref: "+aComs[x].REFERENCIA+"</td></tr>";
-        sFila +=" <tr><td>id: "+aComs[x].ID+"</td></tr>";
-        sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
+        sFila +=" <table style='width: 100%;table-layout: fixed'>";
+        sFila +=" <tr><td colspan='2' style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
+        sFila +=" <tr><td colspan='2' style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
+        sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
+        sFila +=" <tr><td colspan='2' style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
         sFila +=" </table></div>";
 
 
