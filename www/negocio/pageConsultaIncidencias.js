@@ -78,13 +78,13 @@ function verDatosComunicat(x, separador){
     $('#labelCOMUNICAT_ESTAT').text('');
 
     var sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
+    var imagen = document.getElementById('imgCOMUNICAT_FOTO');
     if(sFotoInci==''){
-        sFotoInci="images/sinFoto.png";
+        imagen.src = sFotoInci="images/sinFoto.png";
     }
     else{
-        sFotoInci="data:image/jpeg;base64," + sFotoInci;
+        imagen.src = "data:image/jpeg;base64," + sFotoInci;
     }
-    $('#imgCOMUNICAT_FOTO').src(sFotoInci);
 
     abrirPagina("pageConsultaIncidenciasFicha",false);
     //var aDatos = new Array();
