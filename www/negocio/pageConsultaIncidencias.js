@@ -57,12 +57,16 @@ function cargaListaComunicats(aComs){
             sFila ="<div style='width:30%;float: left'><img style='max-width:100%;max-height:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></div>";
         }
         sFila +=" <div style='width:70%;float: right'>";
-        sFila +=" <table style='width: 100%;table-layout: fixed'>";
-        sFila +=" <tr><td colspan='2' style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
-        sFila +=" <tr><td colspan='2' style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
+        sFila +=" <table cellpadding='0' cellspacing='0' border='0' style='width: 100%;table-layout: fixed'>";
+        sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
+        sFila +=" <tr><td style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
         sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
-        sFila +=" <tr><td colspan='2' style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
+        //sFila +=" <tr><td style='font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</td></tr>";
+        //sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
+        sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
         sFila +=" </table></div>";
+        sFila +=" <div style='float: left;font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</div>";
+        sFila +=" <div style='float: right;font-size: 0.75em'>"+aComs[x].DATA+"</div>";
 
 
         //sFila += "<td style='text-align:left; font-size:x-small; width: 15%;'>" + aComs[x].ID + "</td>";
