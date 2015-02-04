@@ -45,15 +45,15 @@ function cargaListaComunicats(aComs){
         sDatos = sDatos.replace(/'/g, "´");
 
         sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
-
-        if(sFotoInci=='')
-        {
-            sFila ="<div style='width:30%;float: left'><img src='images/sinFoto.png' style='max-width:100%;max-height:75px' /></div>";
+        if(sFotoInci==''){
+            sFotoInci="images/sinFoto.png";
         }
-        else
-        {
-            sFila ="<div style='width:30%;float: left'><img style='max-width:100%;max-height:75px' src=data:image/jpeg;base64," + sFotoInci+ "  /></div>";
+        else{
+            sFotoInci="data:image/jpeg;base64," + sFotoInci;
         }
+        sFila ="<div style='width:27%;height:80px;float: left;background-color: #efefef;border: 1px solid #efefef;margin: 2px;line-height: 78px;text-align: center'>";
+        sFila +="<img src='"+sFotoInci+"' style='max-width:100%;max-height:78px;display: inline-block;vertical-align:middle' />";
+        sFila +="</div>"
         sFila +=" <div style='width:70%;float: right'>";
         sFila +=" <table cellpadding='0' cellspacing='0' border='0' style='width: 100%;table-layout: fixed'>";
         sFila +=" <tr><td style='font-weight: bold'>"+aComs[x].ITE_DESC+"</td></tr>";
@@ -353,12 +353,17 @@ function borrarHistoricoComunicadosConfirm() {
     else
     {
         var v_retorno = confirm(v_mensaje);
-        borrarHistoricoComunicados(v_retorno);
+        if (v_retorno){
+            borrarHistoricoComunicados(1);
+        }
+        else {
+            borrarHistoricoComunicados(2);
+        }
     }
 }
 
 function borrarHistoricoComunicados(respuesta){
-    if (respuesta) {
+    if (respuesta==1) {
 
         var nComunicats = leeObjetoLocal('COMUNICATS_NEXTVAL', -1);
         //alert('A eliminar comunicats');
