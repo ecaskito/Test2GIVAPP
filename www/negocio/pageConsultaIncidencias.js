@@ -84,7 +84,7 @@ function verDatosComunicat(x, separador){
     else{
         sFotoInci="data:image/jpeg;base64," + sFotoInci;
     }
-    $('#imgCOMUNICAT_FOTO').text(sFotoInci);
+    $('#imgCOMUNICAT_FOTO').src(sFotoInci);
 
     abrirPagina("pageConsultaIncidenciasFicha",false);
     //var aDatos = new Array();
