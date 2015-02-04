@@ -69,12 +69,12 @@ function iniciaMapa() {
         // Try HTML5 geolocation
         if (navigator.geolocation) {
             var locOptions = {
-                maximumAge : Infinity,
+                maximumAge : 100,
                 timeout : 10000,
                 enableHighAccuracy : true
             };
 
-                navigator.geolocation.getCurrentPosition(posicionOK,posicionError,locOptions);
+                navigator.geolocation.watchPosition(posicionOK,posicionError,locOptions);
 
         } else {
             // Browser no soporta Geolocation
@@ -129,13 +129,13 @@ function posicionOK(position){
     }
 }
 
-function posicionError(mensaje){
-    //alert("posicionError: "+ mensaje);
-    posAlta="";
-    $('#divCargarMapaAlta').hide();
-    $('#divMapa').hide();
-    $('#divMensajeMapa').hide();
-    $('#divDireccion').show();
+function posicionError(error){
+        //alert("posicionError: "+ mensaje);
+        posAlta = "";
+        $('#divCargarMapaAlta').hide();
+        $('#divMapa').hide();
+        $('#divMensajeMapa').hide();
+        $('#divDireccion').show();
 }
 function cogerDireccion(pos, bSoloCalleYnum) {
     var llamaWS = "http://maps.googleapis.com/maps/api/geocode/xml";

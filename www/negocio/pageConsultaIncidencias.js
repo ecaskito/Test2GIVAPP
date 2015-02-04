@@ -257,7 +257,7 @@ function mostrarEnPlano() {
     if (navigator.geolocation) {
 
         var locOptions = {
-            maximumAge : Infinity,
+            maximumAge : 100,
             timeout : 10000,
             enableHighAccuracy : true
         };
