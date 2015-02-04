@@ -50,8 +50,8 @@ function mensaje(msg,titulo) {
     else
         alert(msg);
 
-    //navigator.notification.alert('el mensaje',function() {},"el titulo" );
 }
+
 
 function abrirPopUp(pag){
     $.mobile.changePage("#" + pag, { transition: "pop", role: "dialog", reverse: true, changeHash: true });

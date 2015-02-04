@@ -135,6 +135,8 @@ function abrirPagina(sPag, bComprueba) {
             case 'pageConsultaIncidencias':
                 $.doTimeout(1000, inicioPaginaConsultaIncidencias());
                 break;
+            case 'pageConsultaIncidenciasFicha':
+                break;
             case 'pageConsultaIncidenciasMapa':
                 mostrarEnPlano();
                 $.doTimeout(1000, estadoDelPlano());

@@ -46,8 +46,6 @@ function cargaListaComunicats(aComs){
 
         sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
 
-        //sFila = "<table style='width: 100%;'><tr><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].REFERENCIA + "</td><td style='text-align:left; font-size:x-small; width: 40%;'>" + aComs[x].DATA + "</td><td style='text-align:left; font-size:x-small; width: 20%;'>" + aComs[x].ESTAT + "</td></tr></table>";
-        //sFila = "<table 'width: 100%' cellpadding='0' cellspacing='0' border='0'><tr>";
         if(sFotoInci=='')
         {
             sFila ="<div style='width:30%;float: left'><img src='images/sinFoto.png' style='max-width:100%;max-height:75px' /></div>";
@@ -62,17 +60,13 @@ function cargaListaComunicats(aComs){
         sFila +=" <tr><td style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
         sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
         //sFila +=" <tr><td style='font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</td></tr>";
-        //sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
         sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
+        sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
         sFila +=" </table></div>";
-        sFila +=" <div style='float: left;font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</div>";
-        sFila +=" <div style='float: right;font-size: 0.75em'>"+aComs[x].DATA+"</div>";
+        //sFila +=" <div style='float: left;font-size: 0.75em'>"+aComs[x].COORD_X+" , "+aComs[x].COORD_Y+"</div>";
+        //sFila +=" <div style='float: right;font-size: 0.75em'>"+aComs[x].DATA+"</div>";
 
 
-        //sFila += "<td style='text-align:left; font-size:x-small; width: 15%;'>" + aComs[x].ID + "</td>";
-        //sFila += "<td style='text-align:left; font-size:x-small; width: 55%;'>" + ParseEstado(aComs[x].ESTAT) + "</td>";
-        //sFila += "<td style='text-align:left; font-size:x-small; width: 30%;'>" + aComs[x].REFERENCIA + "</td>";
-        //sFila += "</tr></table>";
 
 
         $('#listviewLista').append($('<li/>', {
@@ -101,6 +95,7 @@ function verDatosComunicat(sDatos, separador){
     $('#labelCOMUNICAT_ESTAT').text('');
     $('#labelCOMUNICAT_TIPUS').text('');
 
+    abrirPagina("pageConsultaIncidenciasFicha",false);
     var aDatos = new Array();
     try
     {
@@ -131,8 +126,8 @@ function verDatosComunicat(sDatos, separador){
     catch(e) {
         mensaje('exception en verDatosComunicat : ' + e.message , 'error');
     }
-    $.mobile.silentScroll(0);
-    $("#panelDadesComunicat").panel("open");
+    //$.mobile.silentScroll(0);
+    //$("#panelDadesComunicat").panel("open");
 }
 
 function estadoDelPlano(){
@@ -347,46 +342,60 @@ function mostrarEnPlano() {
     return true;
 }
 
-function borrarHistoricoComunicados(){
-    var nComunicats = leeObjetoLocal('COMUNICATS_NEXTVAL', -1);
-    //alert('A eliminar comunicats');
-    if(nComunicats != -1)
+function borrarHistoricoComunicadosConfirm() {
+    var v_mensaje = "Vol el·liminar l'historial?";
+    var v_titulo = "El·liminar historial";
+    var v_botones = "SI,NO";
+
+    if(navigator.notification && navigator.notification.confirm){
+        navigator.notification.confirm(v_mensaje,borrarHistoricoComunicados,v_titulo,v_botones);
+    }
+    else
     {
-        //Eliminar de la B.D.
-        nComunicats += 1;
-        var bBorrado = false;
-        for(var x=0; x<nComunicats; x++)
-        {
-            bBorrado = borraObjetoLocal('COMUNICAT_' + x.toString().trim());
-            if(!bBorrado) mensaje('El comunicat ' + x.toString().trim() + " no s'ha pogut esborrar","info");
-        }
-        //Actualizar la 'sequence'
-        guardaObjetoLocal('COMUNICATS_NEXTVAL', -1);
+        var v_retorno = confirm(v_mensaje);
+        borrarHistoricoComunicados(v_retorno);
+    }
+}
 
-        //limpiar el mapa :
-        if(aMarcadoresSobrePlano.length > 0)
-        {
-            for (var x = 0; x < aMarcadoresSobrePlano.length; x++) {
-                globalMarcadorMapa = aMarcadoresSobrePlano[x];
-                eliminarMarcadorMapa();
+function borrarHistoricoComunicados(respuesta){
+    if (respuesta) {
+
+        var nComunicats = leeObjetoLocal('COMUNICATS_NEXTVAL', -1);
+        //alert('A eliminar comunicats');
+        if (nComunicats != -1) {
+            //Eliminar de la B.D.
+            nComunicats += 1;
+            var bBorrado = false;
+            for (var x = 0; x < nComunicats; x++) {
+                bBorrado = borraObjetoLocal('COMUNICAT_' + x.toString().trim());
+                if (!bBorrado) mensaje('El comunicat ' + x.toString().trim() + " no s'ha pogut esborrar", "info");
             }
+            //Actualizar la 'sequence'
+            guardaObjetoLocal('COMUNICATS_NEXTVAL', -1);
+
+            //limpiar el mapa :
+            if (aMarcadoresSobrePlano.length > 0) {
+                for (var x = 0; x < aMarcadoresSobrePlano.length; x++) {
+                    globalMarcadorMapa = aMarcadoresSobrePlano[x];
+                    eliminarMarcadorMapa();
+                }
+            }
+
+            //limpiar/actualizar la lista
+            inicioPaginaConsultaIncidencias();
+
+            //$('#divMapaConsulta').hide();
+            //$('#divSobreMapaConsulta').hide();
+            //$('#buttonMostrarEnPlano').changeButtonText("mostrar plànol");
+
+            //hgs nou. Una vegada netejada la llista, no mostro btn planols ni btn esborra llista
+            $('#buttonMostrarEnPlano').attr({"style": "display:none", "src": ""});
+            $('#buttonBorrarHistoricoComunicados').attr({"style": "display:none", "src": ""});
+            $('#buttonEnviamentDePendents').attr({"style": "display:none", "src": ""});
+            //fi nou
+
+
         }
-
-        //limpiar/actualizar la lista
-        inicioPaginaConsultaIncidencias();
-
-        //$('#divMapaConsulta').hide();
-        //$('#divSobreMapaConsulta').hide();
-        //$('#buttonMostrarEnPlano').changeButtonText("mostrar plànol");
-
-        //hgs nou. Una vegada netejada la llista, no mostro btn planols ni btn esborra llista
-        $('#buttonMostrarEnPlano').attr({"style":"display:none","src":""});
-        $('#buttonBorrarHistoricoComunicados').attr({"style":"display:none","src":""});
-        $('#buttonEnviamentDePendents').attr({"style":"display:none","src":""});
-        //fi nou
-
-
-
     }
 }
 
