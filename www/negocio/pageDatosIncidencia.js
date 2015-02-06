@@ -15,23 +15,24 @@ function inicioPaginaDatosIncidencia() {
     $('#divDireccion').hide();
     try{
 
-        navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+        //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+        cargarPaginaDatosIncidencia();
     }
     catch (ex){
         //alert(ex.message);
-        cargarPaginaDatosIncidencia();
+
     }
 }
 
 
-function hacerfotoOK(imageData) {
-    sFoto = imageData;
-    cargarPaginaDatosIncidencia();
-}
-function hacerFotoERROR(mensaje) {
-    sFoto = '';
-    cargarPaginaDatosIncidencia();
-}
+//function hacerfotoOK(imageData) {
+//    sFoto = imageData;
+//    cargarPaginaDatosIncidencia();
+//}
+//function hacerFotoERROR(mensaje) {
+//    sFoto = '';
+//    cargarPaginaDatosIncidencia();
+//}
 
 function cargarPaginaDatosIncidencia() {
     try{

@@ -234,9 +234,18 @@ function mostrarImagenes() {
 
 function selectTipo(p_tipo) {
     TipoInciSel = p_tipo;
-    abrirPagina('pageDatosIncidencia', false);
+
+    navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+
 }
 
+function hacerfotoOK(imageData) {
+    sFoto = imageData;
+    abrirPagina('pageDatosIncidencia', false);
+}
+function hacerFotoERROR(mensaje) {
+    sFoto = '';
+}
 
 
 
