@@ -69,7 +69,7 @@ function iniciaMapa() {
         // Try HTML5 geolocation
         if (navigator.geolocation) {
             var locOptions = {
-                maximumAge : 100,
+                maximumAge : 0,
                 timeout : 10000,
                 enableHighAccuracy : true
             };
@@ -130,7 +130,7 @@ function posicionOK(position){
 }
 
 function posicionError(error){
-        //alert("posicionError: "+ mensaje);
+        alert("posicionError: "+ error.code+" "+error.message);
         posAlta = "";
         $('#divCargarMapaAlta').hide();
         $('#divMapa').hide();
