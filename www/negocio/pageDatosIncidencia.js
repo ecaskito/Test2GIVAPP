@@ -53,7 +53,8 @@ function cargarPaginaDatosIncidencia() {
         $('#TipusInciText').html(dicAyuda[TipoInciSel]);
 
         //cargar mapa
-        iniciaMapa();
+        //iniciaMapa();
+        posicionOK(posicionGPS);
 
         var nLetra = 65;
         var combo = $('#selectLletraIniCARRER');

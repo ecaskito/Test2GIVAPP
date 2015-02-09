@@ -2,6 +2,9 @@
 var pictureSource;
 var destinationType;
 
+var posicionGPS = null;
+var wathID=null;
+
 var bAbroPagina = true;
 var aGlobalCarrers = null;
 var aCarrers = null;
@@ -36,6 +39,7 @@ window.addEventListener('load', function () {
     {
         inicioPaginaTipoIncidencia();
     }
+    getLocation();
 }, false);
 
 function deviceReady() {
@@ -222,31 +226,75 @@ function mostrarImagenes() {
 
 
         sTagImg += "<a href='' onclick='" + "selectTipo(" + sImagen + ")' data-mini='false' data-inline='false' data-role='button' data-theme='c' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' class='ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-first-child ui-btn-up-c'>"
-        sTagImg += "<span class='ui-btn-inner'>"
-        sTagImg += "<span class='ui-btn-text'>"
-        sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:35px' />"
-        sTagImg += "<div style='padding-top:10px;padding-left:40px'>" + dicAyuda[sImagen] + "</div>"
-        sTagImg += "</span></span></a>"
+        //sTagImg += "<span class='ui-btn-inner'>"
+        //sTagImg += "<span class='ui-btn-text'>"
+        //sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:35px' />"
+        //sTagImg += "<div style='padding-top:10px;padding-left:40px'>" + dicAyuda[sImagen] + "</div>"
+        sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='width:45px' />"
+        sTagImg += "<div style='padding-top:0px;'>" + dicAyuda[sImagen] + "</div>"
+        //sTagImg += "</span></span></a>"
+        sTagImg += "</a>"
     }
     $('#divTipoInci').html(sTagImg);
 
 };
 
 function selectTipo(p_tipo) {
-    TipoInciSel = p_tipo;
+    try{
+        TipoInciSel = p_tipo;
 
-    navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
-
+        navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+    }
+    catch (ex){
+        abrirPagina('pageDatosIncidencia', false);
+    }
 }
 
 function hacerfotoOK(imageData) {
+    try{
+        posAlta = new google.maps.LatLng(posicionGPS.coords.latitude, posicionGPS.coords.longitude);
+    }
+    catch(ex) {}
     sFoto = imageData;
     abrirPagina('pageDatosIncidencia', false);
 }
 function hacerFotoERROR(mensaje) {
     sFoto = '';
+    posAlta='';
 }
 
 
+
+function getLocation() {
+    try {
+
+        var locOptions = {
+            maximumAge: 100,
+            timeout: 1000,
+            enableHighAccuracy: true
+        };
+        //get the current location
+        wathID = navigator.geolocation.watchPosition(onLocationSuccess, onLocationError, locOptions);
+    }
+    catch (ex){
+        alert(ex.message);
+    }
+}
+
+function onLocationSuccess(loc) {
+    try{
+        posicionGPS=loc;
+    }
+    catch(ex){
+        alert(ex.message);
+    }
+}
+
+function onLocationError(e) {
+    if(e.code==1)
+    {
+        alert("GPS Desactivat");
+    }
+}
 
 

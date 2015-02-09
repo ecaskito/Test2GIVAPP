@@ -130,3 +130,17 @@
     height : 100%;
 }
 
+#divTipoInci{
+    width: 100%;
+}
+
+#divTipoInci a{
+    width: 120px;
+    height: 80px;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    white-space: normal;
+    text-transform: none;
+}
+
