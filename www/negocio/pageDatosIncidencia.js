@@ -54,8 +54,16 @@ function cargarPaginaDatosIncidencia() {
 
         //cargar mapa
         //iniciaMapa();
-        MiPosicion();
-        //posicionOK(posicionGPS);
+        //MiPosicion();
+        if(GPSActivado){
+            posicionOK(posicionGPS);
+        }
+        else{
+            $('#divCargarMapaAlta').hide();
+            $('#divMapa').hide();
+            $('#divMensajeMapa').hide();
+            $('#divDireccion').show();
+        }
 
         var nLetra = 65;
         var combo = $('#selectLletraIniCARRER');
@@ -103,7 +111,7 @@ function MiPosicion(){
             timeout:10000,
             enableHighAccuracy:true
         };
-        $cordovaGeolocation.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
+        cordovaGeolocation.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
     }
     catch (ex){
         alert("MiPosicion: "+ex.message);

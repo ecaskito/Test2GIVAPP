@@ -24,6 +24,8 @@ var nNumCalle = 0;
 var bPrimera;
 
 var TipoInciSel = "";
+var GPSActivado=false;
+var GPSErrorNum = 0;
 // -------- Al INICIAR -----------------------------------------------------------------------
 window.addEventListener('load', function () {
     if (phoneGapRun()) {
@@ -39,7 +41,7 @@ window.addEventListener('load', function () {
     {
         inicioPaginaTipoIncidencia();
     }
-    //getLocation();
+    getLocation();
 }, false);
 
 function deviceReady() {
@@ -283,6 +285,7 @@ function getLocation() {
 
 function onLocationSuccess(loc) {
     try{
+        GPSActivado=true;
         posicionGPS=loc;
     }
     catch(ex){
@@ -291,8 +294,10 @@ function onLocationSuccess(loc) {
 }
 
 function onLocationError(e) {
-    if(e.code==1)
+    GPSErrorNum=GPSErrorNum+1;
+    if(GPSErrorNum>3)
     {
+        GPSActivado=false;
         alert("GPS Desactivat");
     }
 }
