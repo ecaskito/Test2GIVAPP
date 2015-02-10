@@ -103,7 +103,7 @@ function MiPosicion(){
             timeout:10000,
             enableHighAccuracy:true
         };
-        cordova.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
     }
     catch (ex){
         alert("MiPosicion: "+ex.message);
