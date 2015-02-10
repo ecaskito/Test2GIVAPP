@@ -132,10 +132,12 @@
 
 #divTipoInci{
     width: 100%;
+    text-align: center;
+    align-content: center;
 }
 
 #divTipoInci a{
-    width: 120px;
+    width: 100px;
     height: 80px;
     display: inline-block;
     margin: 5px;

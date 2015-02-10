@@ -39,7 +39,7 @@ window.addEventListener('load', function () {
     {
         inicioPaginaTipoIncidencia();
     }
-    getLocation();
+    //getLocation();
 }, false);
 
 function deviceReady() {

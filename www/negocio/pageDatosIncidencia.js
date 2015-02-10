@@ -54,7 +54,8 @@ function cargarPaginaDatosIncidencia() {
 
         //cargar mapa
         //iniciaMapa();
-        posicionOK(posicionGPS);
+        MiPosicion();
+        //posicionOK(posicionGPS);
 
         var nLetra = 65;
         var combo = $('#selectLletraIniCARRER');
@@ -94,6 +95,38 @@ function iniciaMapa() {
         $('#divMensajeMapa').show();
     }
 }
+
+function MiPosicion(){
+    try{
+        var posOptions={
+            maximumAge:100,
+            timeout:10000,
+            enableHighAccuracy:true
+        };
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
+    }
+    catch (ex){
+        alert("MiPosicion: "+ex.message);
+    }
+}
+
+function MiPosicionOK(position){
+    posicionOK(position);
+}
+function MiPosicionError(error){
+    var posOptions={
+        maximumAge:1500,
+        timeout:20000,
+        enableHighAccuracy:true
+    };
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(posicionOK,posicionError,posOptions);
+    }
+    else{
+        alert('Error no tiene navigator.geolocation: '+error.message);
+    }
+}
+
 
 function posicionOK(position){
     try {
