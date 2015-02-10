@@ -231,7 +231,7 @@ function mostrarImagenes() {
         //sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:35px' />"
         //sTagImg += "<div style='padding-top:10px;padding-left:40px'>" + dicAyuda[sImagen] + "</div>"
         sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='width:45px' />"
-        sTagImg += "<div style='padding-top:0px;'>" + dicAyuda[sImagen] + "</div>"
+        sTagImg += "<div>" + dicAyuda[sImagen] + "</div>"
         //sTagImg += "</span></span></a>"
         sTagImg += "</a>"
     }

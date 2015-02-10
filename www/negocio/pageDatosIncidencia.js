@@ -103,7 +103,7 @@ function MiPosicion(){
             timeout:10000,
             enableHighAccuracy:true
         };
-        $cordovaGeolocation.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
+        $cordova.getCurrentPosition(posOptions).then(MiPosicionOK,MiPosicionError);
     }
     catch (ex){
         alert("MiPosicion: "+ex.message);
@@ -124,6 +124,11 @@ function MiPosicionError(error){
     }
     else{
         alert('Error no tiene navigator.geolocation: '+error.message);
+        posAlta = "";
+        $('#divCargarMapaAlta').hide();
+        $('#divMapa').hide();
+        $('#divMensajeMapa').hide();
+        $('#divDireccion').show();
     }
 }
 
@@ -160,7 +165,12 @@ function posicionOK(position){
 
     }
     catch(ex){
-    //alert(ex.message);
+    alert("posicionOK: "+ex.message);
+        posAlta = "";
+        $('#divCargarMapaAlta').hide();
+        $('#divMapa').hide();
+        $('#divMensajeMapa').hide();
+        $('#divDireccion').show();
     }
 }
 
