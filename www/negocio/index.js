@@ -4,6 +4,8 @@ var destinationType;
 
 var posicionGPS = null;
 var wathID=null;
+var GPSActivado=false;
+var GPSErrorNum = 0;
 
 var bAbroPagina = true;
 var aGlobalCarrers = null;
@@ -24,8 +26,6 @@ var nNumCalle = 0;
 var bPrimera;
 
 var TipoInciSel = "";
-var GPSActivado=false;
-var GPSErrorNum = 0;
 // -------- Al INICIAR -----------------------------------------------------------------------
 window.addEventListener('load', function () {
     if (phoneGapRun()) {
@@ -33,6 +33,9 @@ window.addEventListener('load', function () {
     } else {
         deviceReady();
     }
+
+    getLocation();
+
     if (SinDatosCiudadano())
     {
         abrirPagina("pageIdentificacion", false);
@@ -41,7 +44,7 @@ window.addEventListener('load', function () {
     {
         inicioPaginaTipoIncidencia();
     }
-    getLocation();
+
 }, false);
 
 function deviceReady() {
@@ -244,26 +247,26 @@ function mostrarImagenes() {
 function selectTipo(p_tipo) {
     try{
         TipoInciSel = p_tipo;
-
-        navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+        abrirPagina('pageDatosIncidencia', false);
+        //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
     }
     catch (ex){
-        abrirPagina('pageDatosIncidencia', false);
+        //abrirPagina('pageDatosIncidencia', false);
     }
 }
 
-function hacerfotoOK(imageData) {
-    try{
-        posAlta = new google.maps.LatLng(posicionGPS.coords.latitude, posicionGPS.coords.longitude);
-    }
-    catch(ex) {}
-    sFoto = imageData;
-    abrirPagina('pageDatosIncidencia', false);
-}
-function hacerFotoERROR(mensaje) {
-    sFoto = '';
-    posAlta='';
-}
+//function hacerfotoOK(imageData) {
+//    try{
+//        posAlta = new google.maps.LatLng(posicionGPS.coords.latitude, posicionGPS.coords.longitude);
+//    }
+//    catch(ex) {}
+//    sFoto = imageData;
+//    abrirPagina('pageDatosIncidencia', false);
+//}
+//function hacerFotoERROR(mensaje) {
+//    sFoto = '';
+//    posAlta='';
+//}
 
 
 
@@ -294,6 +297,8 @@ function onLocationSuccess(loc) {
 }
 
 function onLocationError(e) {
+    alert(e.code+" - "+ e.message);
+    alert(GPSErrorNum);
     GPSErrorNum=GPSErrorNum+1;
     if(GPSErrorNum>3)
     {

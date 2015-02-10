@@ -15,8 +15,8 @@ function inicioPaginaDatosIncidencia() {
     $('#divDireccion').hide();
     try{
 
-        //navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
-        cargarPaginaDatosIncidencia();
+        navigator.camera.getPicture(hacerfotoOK, hacerFotoERROR, { quality: 20, destinationType: Camera.DestinationType.DATA_URL, correctOrientation: true,sourceType:  Camera.PictureSourceType.CAMERA,  saveToPhotoAlbum: false });
+        //cargarPaginaDatosIncidencia();
     }
     catch (ex){
         //alert(ex.message);
@@ -25,14 +25,14 @@ function inicioPaginaDatosIncidencia() {
 }
 
 
-//function hacerfotoOK(imageData) {
-//    sFoto = imageData;
-//    cargarPaginaDatosIncidencia();
-//}
-//function hacerFotoERROR(mensaje) {
-//    sFoto = '';
-//    cargarPaginaDatosIncidencia();
-//}
+function hacerfotoOK(imageData) {
+    sFoto = imageData;
+    cargarPaginaDatosIncidencia();
+}
+function hacerFotoERROR(mensaje) {
+    sFoto = '';
+    abrirPagina('pageIndex', false);
+}
 
 function cargarPaginaDatosIncidencia() {
     try{
@@ -169,7 +169,10 @@ function posicionOK(position){
         //mapAlta.setCenter(posAlta);
         sDireccionAlta = cogerDireccion(posAlta, true);
         $('#labelDireccion').text(sDireccionAlta);
-        $('#divMapaAlta').gmap('refresh');
+        try{
+            $('#divMapaAlta').gmap('refresh');
+        }
+        catch(ex) {}
 
     }
     catch(ex){
