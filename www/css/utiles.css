@@ -146,3 +146,6 @@
     text-transform: none;
 }
 
+#divTipoInci a div {
+    line-height: 20px;
+}
