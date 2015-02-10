@@ -134,12 +134,13 @@
     width: 100%;
     text-align: center;
     align-content: center;
+    display: inline-table;
 }
 
 #divTipoInci a{
     width: 110px;
     height: 80px;
-    display: inline-block;
+    display: inherit;
     margin: 5px;
     text-align: center;
     white-space: normal;
