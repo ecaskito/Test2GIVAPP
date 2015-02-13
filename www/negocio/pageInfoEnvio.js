@@ -111,10 +111,10 @@ function CrearComunicadoWS_OK(datos){
 
             var v_nIdCom = guardaIncidencia(v_sReferen, v_sEstado,v_sFecha);
 
-            if(!v_bEnvioCorrecto)
-            {
+            //if(!v_bEnvioCorrecto)
+            //{
                 guardaFotoEnLocal(v_nIdCom, sFoto);
-            }
+            //}
 
             //eliminarFoto();
 
