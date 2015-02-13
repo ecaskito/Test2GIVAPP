@@ -211,6 +211,7 @@ function borrarHistoricoComunicados(respuesta){
 function enviamentDePendents() {
     try {
 
+        var v_bError=false;
         var sIdsActualizar = "";
         var nIndexAct = 0;
 
@@ -250,33 +251,35 @@ function enviamentDePendents() {
                 };
                 var v_sRet = enviarComunicatPendienteWS(sParams);
                 if (v_sRet[2] == 2) {
-                    mensaje(v_sRet[3],"error");
-                    break;
+                    //mensaje(v_sRet[3],"error");
+                    //break;
+                    v_bError=true;
                 }
+                else {
+                    //si ha retornado un codigo ...
+                    objComunicat = new comunicat();
+                    objComunicat.ID = aComs[x].ID;
+                    objComunicat.REFERENCIA = v_sRet[0];
+                    objComunicat.ESTAT = 'NOTIFICAT';
+                    objComunicat.DATA = v_sRet[1];
+                    objComunicat.CODCARRER = aComs[x].CODCARRER;
+                    objComunicat.CARRER = aComs[x].CARRER;
+                    objComunicat.NUM = aComs[x].NUM;
+                    objComunicat.COORD_X = aComs[x].COORD_X;
+                    objComunicat.COORD_Y = aComs[x].COORD_Y;
+                    objComunicat.COMENTARI = aComs[x].COMENTARI;
+                    objComunicat.ITE_ID = aComs[x].ITE_ID;
+                    objComunicat.ITE_DESC = aComs[x].ITE_DESC;
+                    objComunicat.ID_MSG_MOV = v_sRet[1];
+                    //Actualizo con nuevo estado
 
-                //si ha retornado un codigo ...
-                objComunicat = new comunicat();
-                objComunicat.ID = aComs[x].ID;
-                objComunicat.REFERENCIA = v_sRet[0];
-                objComunicat.ESTAT = 'NOTIFICAT';
-                objComunicat.DATA = v_sRet[1];
-                objComunicat.CODCARRER = aComs[x].CODCARRER;
-                objComunicat.CARRER = aComs[x].CARRER;
-                objComunicat.NUM = aComs[x].NUM;
-                objComunicat.COORD_X = aComs[x].COORD_X;
-                objComunicat.COORD_Y = aComs[x].COORD_Y;
-                objComunicat.COMENTARI = aComs[x].COMENTARI;
-                objComunicat.ITE_ID = aComs[x].ITE_ID;
-                objComunicat.ITE_DESC = aComs[x].ITE_DESC;
-                objComunicat.ID_MSG_MOV = v_sRet[1];
-                //Actualizo con nuevo estado
+                    bBorrado = borraObjetoLocal('COMUNICAT_' + aComs[x].ID);
 
-                bBorrado = borraObjetoLocal('COMUNICAT_' + aComs[x].ID);
+                    guardaObjetoLocal('COMUNICAT_' + aComs[x].ID, objComunicat);
 
-                guardaObjetoLocal('COMUNICAT_' + aComs[x].ID, objComunicat);
-
-                //Elimino la foto que había guardado
-                bBorrado = borraObjetoLocal('FOTO_' + aComs[x].ID);
+                    //Elimino la foto que había guardado
+                    //bBorrado = borraObjetoLocal('FOTO_' + aComs[x].ID);
+                }
 
             }
             else //Actualizar el estado del comunicado (de las que están en cualquier estado excepto TANCADES)
@@ -294,6 +297,10 @@ function enviamentDePendents() {
         }
         //y recargo la lista
         inicioPaginaConsultaIncidencias();
+        if(v_bError)
+        {
+            mensaje("Actualització feta amb errors","avis");
+        }
     }
     catch (ex) {
         alert(ex.message);
