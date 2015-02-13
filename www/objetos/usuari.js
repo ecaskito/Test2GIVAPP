@@ -1,6 +1,7 @@
 var objUsuari = new Object();
 
 objUsuari.ID = 0;
+objUsuari.TIPUS = '';
 objUsuari.NOM = '';
 objUsuari.COGNOM1 = '';
 objUsuari.COGNOM2 = '';
@@ -19,6 +20,7 @@ function usuari(aDatos) {
 
     try {
         this.ID = aDatos['id'];
+        this.TIPUS = aDatos['tipus'] + '';
         this.NOM = aDatos['nom'] + '';
         this.COGNOM1 = aDatos['cognom1'] + '';
         this.COGNOM2 = aDatos['cognom2'] + '';

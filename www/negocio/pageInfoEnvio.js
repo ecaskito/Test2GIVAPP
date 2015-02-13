@@ -8,157 +8,173 @@ function inicioPaginaInfoEnvio() {
 
         var objUsu = getDatosUsuario();
 
-        var  sParams = {sId:TipoInciSel+'',sDescItem:sDescItem+'' ,sNom:objUsu.NOM + '',sCognom1:objUsu.COGNOM1 + '',sCognom2:objUsu.COGNOM2 + '',sDni:objUsu.DNI + '',sEmail:objUsu.EMAIL + '',sTelefon:objUsu.TELEFON + '',sObs:sComentario + '',sCoord:sCoords + '',sCodCarrer:$('#selectCARRER').val() + '',sCarrer:$('#selectCARRER').find(':selected').text() + '',sNumPortal:$('#inputNUM').val() + '',sFoto: sFoto};
+        var v_sCodCarrer='';
+        var v_sNumPortal='';
+        if(!GPSActivado){
+            v_sCodCarrer=$('#selectCARRER').val();
+            v_sNumPortal=$('#inputNUM').val();
+        }
+        var  sParams = {p_sIdTipoInci:TipoInciSel.toString().trim()+'',
+            p_sNom: objUsu.NOM.toString().trim() + '',
+            p_sCognom1:objUsu.COGNOM1.toString().trim() + '',
+            p_sCognom2:objUsu.COGNOM2.toString().trim() + '',
+            p_sDni:objUsu.DNI.toString().trim() +'',
+            p_sEmail:objUsu.EMAIL.toString().trim() + '',
+            p_sTelefon:objUsu.TELEFON.toString().trim() + '',
+            p_sObs:sComentario.toString().trim() +'',
+            p_sCoord:sCoords.toString().trim() + '',
+            p_sCodCarrer:v_sCodCarrer.toString().trim()+'',
+            p_sNumPortal:v_sNumPortal.toString().trim()+'',
+            p_sFoto:sFoto + '',
+            p_sVoz:  ''
+        };
 
-        //Enviar
-        var ref = enviarComunicat_WS(sParams, true);
 
+        CrearComunicadoWS(sParams);
     }
     catch (ex){
-        alert(ex.message);
+        mensaje(ex.message,"error");
     }
     $('#divInfoEspera').hide();
     $('#divInfoResultado').show();
-
 }
 
-function enviarComunicat_WS(sParams,bNuevoComunicat){
-    //dmz
-    var llamaWS = "http://80.39.72.44:8000/wsAPPGIV/wsIncidentNotifierGIV.asmx/IncidenciaTipus";
-    //vila
-    //var llamaWS = "http://www.vilafranca.cat/wsAPPGIV/wsIncidentNotifierGIV.asmx/IncidenciaTipus";
-
-    //alert ('sParams en enviarcomunicat ' + sParams.sId + ','+ sParams.sDescItem +','+sParams.sCoord + ',' + sParams.sObs);
-    //alert('llamaWS ' + llamaWS + 'bNuevoComunicat ' + bNuevoComunicat);
-    //alert('sParams en enviarcomunicat ' + sParams.sId );
-    try
-    {
-        var bEnvioCorrecto = true;
-        var sEstado = "";
-        var sMensaje ="";
-        var sTitulo = "";
-        var sReferen = "";
-
-        $.post(llamaWS, sParams).done(function(datos) {
-            try
-            {
-                if(datos == null)  //==> ha habido error
-                {
-                    mensaje("No hi ha confirmació de l'enviament de la comunicació " ,'error');
-                    sReferen = "-";
-                    sMensaje = "Comunicació guardada en el dispositiu";
-                    sTitulo = "error enviant";
-                    bEnvioCorrecto = false;
-                }
-                else  //==> el WS ha devuelto algo
-                {
-                    sReferen = $(datos).find('resultado').text().trim();
-                    if(sReferen.indexOf('|') > 0)
-                    {
-                        sMensaje = 'La seva comunicació ha estat rebuda però amb problemes : \n ' + sReferen.substr(sReferen.indexOf('|') + 1);
-                        sTitulo = "atenció";
-                        sReferen = sReferen.substr(0,sReferen.indexOf('|'));
-                    }
-                    else
-                    {
-                        if(sReferen.indexOf('|') == 0)
-                        {
-                            sMensaje = "La seva comunicació no s'ha processat correctament. [" + sReferen.substr(1) + "]\n";
-                            sTitulo = "error";
-                            sReferen = "ERROR";
-                            bEnvioCorrecto = false;
-                        }
-                        else
-                        {
-                            sMensaje = 'Comunicació notificada [' + sReferen + ']\n' + 'Gràcies per la seva col·laboració';
-                            sTitulo = "info";
-                        }
-                    }
-                }
-
-                if(bNuevoComunicat){
-
-                    if(bEnvioCorrecto)
-                        sEstado = "NOTIFICAT";
-                    else
-                        sEstado = "PENDENT_ENVIAMENT";
-
-                    var nIdCom = guardaIncidencia(sReferen, sEstado);
-
-                    if(!bEnvioCorrecto)
-                    {
-                        guardaFotoEnLocal(nIdCom, sFoto);
-                    }
-
-                    eliminarFoto();
-                    limpiaVariables('pageNuevaIncidencia');
-                    $('#lblInfoEnvioText').text(sMensaje);
-                    //mensaje(sMensaje, sTitulo);
-                    //abrirPagina('pageInfoEnvio', false);
-                }
-                else
-                {
-                    if(!bEnvioCorrecto)
-                    {
-                        $('#lblInfoEnvioText').text(sMensaje);
-                        //mensaje(sMensaje, sTitulo);
-                    }
-                }
-            }
-            catch(ex){
-                $('#lblInfoEnvioText').text('ERROR (exception) en resultadoEnvio : \n' + ex.code + '\n' + ex.message , 'error');
-                //mensaje('ERROR (exception) en resultadoEnvio : \n' + ex.code + '\n' + ex.message , 'error');
-                return null;
-            }
-        }).fail(function() {
-            if (bNuevoComunicat){
-                var nIdCom = guardaIncidencia("-","PENDENT_ENVIAMENT");
-                //hgs afegit aquest if
-                if (sFoto != null) {guardaFotoEnLocal(nIdCom, sFoto);}
-                limpiaVariables('pageNuevaIncidencia');
-            }
-            sMensaje = "La seva comunicació no s'ha pogut enviar \n ";
-            if(sReferen.trim().length > 0 ) sMensaje += sReferen.substr(1) + '\n';
-            sMensaje += "Quan tingui connexió pot enviar-la des de 'Els meus comunicats'" ;
-            sTitulo = "atenció";
-            sReferen = "ERROR";
-            $('#lblInfoEnvioText').text(sMensaje);
-            //mensaje(sMensaje, sTitulo);
-            //abrirPagina('pageInfoEnvio', false);
+function CrearComunicadoWS(sParams){
+    try {
+        $.ajax({
+            type: 'POST',
+            url: 'http://80.39.72.44:8000/wsAPPGIV/wsIncidentNotifierGIV.asmx/IncidenciaTipus_v1',
+            data: sParams,
+            success: CrearComunicadoWS_OK,
+            error: CrearComunicadoWS_ERROR,
+            async:false
         });
     }
-    catch(e)
-    {
-        $('#lblInfoEnvioText').text('ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message);
-        //mensaje('ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message);
+    catch (ex){
+        mensaje(ex.message,"error");
     }
+
 }
 
-function guardaIncidencia(sReferen, sEstado){
-    try
-    {
-        var nId = leeObjetoLocal('COMUNICATS_NEXTVAL' , -1) + 1;
+function CrearComunicadoWS_OK(datos){
+    var v_bEnvioCorrecto = true;
+    var v_sEstado = "";
+    var v_sMensaje ="";
+    var v_sReferen = "";
+    var v_sFecha = "";
+    var v_codError="";
+    var v_desError="";
+    try {
+
+        if (datos == null)  //==> ha habido error
+        {
+            v_sMensaje="No hi ha confirmació de l'enviament de la comunicació";
+            v_sReferen = "-";
+            v_sFecha="";
+            v_bEnvioCorrecto = false;
+        }
+        else{ //==> el WS ha devuelto algo
+
+            $(datos).find("resultado").each(function () {
+                $(this).children().each(function () {
+                    if(this.tagName=="id"){
+                        v_sReferen=$(this).text();
+                    }
+                    else if(this.tagName=="fecha"){
+                        v_sFecha=$(this).text();
+                    }
+                    else if(this.tagName=="codError"){
+                        v_codError=$(this).text();
+                    }
+                    else if(this.tagName=="desError"){
+                        v_desError=$(this).text();
+                    }
+                });
+            });
+
+            if(v_codError=="0"){
+                v_sMensaje = 'Comunicació notificada [' + v_sReferen + ']\n' + 'Gràcies per la seva col·laboració';
+                v_sEstado = "NOTIFICAT";
+
+            }
+            else if(v_codError=="1"){
+                v_sMensaje = "Comunicació notificada  però amb problemes. [" +v_sReferen + "]\n"+v_desError;
+                v_sEstado = "NOTIFICAT";
+            }
+            else{
+                v_sMensaje = 'Comunicació NO notificada : \n ' + v_desError;
+                v_sReferen = "ERROR";
+                v_sFecha="";
+                v_bEnvioCorrecto=false;
+                v_sEstado = "PENDENT_ENVIAMENT";
+            }
+
+            var v_nIdCom = guardaIncidencia(v_sReferen, v_sEstado,v_sFecha);
+
+            if(!v_bEnvioCorrecto)
+            {
+                guardaFotoEnLocal(v_nIdCom, sFoto);
+            }
+
+            //eliminarFoto();
+
+            //limpiaVariables('pageNuevaIncidencia');
+        }
+    }
+    catch (ex){
+        v_sMensaje='ERROR (exception) en enviarComunicat_WS : \n' + e.code + '\n' + e.message;
+    }
+    //Mostrar el resultado de la comunicación en pantalla
+    $('#lblInfoEnvioText').text(v_sMensaje);
+}
+function CrearComunicadoWS_ERROR(error){
+    var v_nIdCom = guardaIncidencia("-","PENDENT_ENVIAMENT","");
+    if (sFoto != null) {guardaFotoEnLocal(v_nIdCom, sFoto);}
+
+    $('#lblInfoEnvioText').text('Error en enviar el comunicat: \n '+error.responseText);
+}
+
+function guardaIncidencia(sReferen, sEstado,p_sFecha){
+    try {
+        var nId = leeObjetoLocal('COMUNICATS_NEXTVAL', -1) + 1;
         var fecha = FechaHoy() + ' ' + HoraAhora();
-        var carrer = sDireccionAlta.split(",")[0];
-        var num = sDireccionAlta.split(",")[1];
+        var v_sCodCarrer='';
+        var v_sCarrer='';
+        var v_sNumPortal='';
+        if(GPSActivado){
+            v_sCodCarrer="";
+            v_sCarrer=sDireccionAlta.split(",")[0];
+            v_sNumPortal=sDireccionAlta.split(",")[1];
+        }
+        else
+        {
+            v_sCodCarrer=$('#selectCARRER').val();
+            v_sCarrer=$('#selectCARRER').find(':selected').text();
+            v_sNumPortal=$('#inputNUM').val();
+        }
 
-        //INSERT INTO COMUNICATS (ID, REFERENCIA, ESTAT, DATA, CARRER, NUM, COORD_X, COORD_Y, COMENTARI) VALUES (?,?,?,?,?,?,?,?,?);
-        //var fila = [nId, sReferen, 'PENDENT', fecha,carrer , num, sCoord_X, sCoord_Y, sComentario, null, null, null];
 
+        if (p_sFecha == "") {
+            fecha = FechaHoy() + ' ' + HoraAhora();
+        }
+        else {
+            fecha = p_sFecha;
+        }
         var objComunicat = new comunicat();
         objComunicat.ID = nId;
         objComunicat.REFERENCIA = sReferen.trim();
         objComunicat.ESTAT = sEstado;
         objComunicat.DATA = fecha;
-        objComunicat.CARRER = carrer;
-        objComunicat.NUM = num;
+        objComunicat.CODCARRER = v_sCodCarrer;
+        objComunicat.CARRER = v_sCarrer;
+        objComunicat.NUM = v_sNumPortal;
         objComunicat.COORD_X = sCoord_X + '';
         objComunicat.COORD_Y = sCoord_Y + '';
         objComunicat.COMENTARI = sComentario;
         objComunicat.ITE_ID = sId;
         objComunicat.ITE_DESC = sDescItem;
         objComunicat.ID_MSG_MOV = sReferen.trim();
-        guardaObjetoLocal('COMUNICAT_' + nId.toString().trim() , objComunicat);
+        guardaObjetoLocal('COMUNICAT_' + nId.toString().trim(), objComunicat);
 
         guardaObjetoLocal('COMUNICATS_NEXTVAL', nId);
 

@@ -1,7 +1,6 @@
 var mapConsulta = null;
 var posConsulta = '';
 var sDireccionConsulta = '';
-var aMarcadoresSobrePlano = new Array();
 var aComs=null;
 
 function inicioPaginaConsultaIncidencias(){
@@ -12,10 +11,20 @@ function inicioPaginaConsultaIncidencias(){
 function cargaListaComunicats(){
     $('#listviewLista').children().remove('li');
 
-    if(aComs == null || aComs.length < 1) {
-        $('#listviewLista').listview('refresh');
+    if(aComs == null || aComs.length == 0) {
+        try{
+            $('#listviewLista').listview('refresh');
+        }
+        catch (ex){}
+        document.getElementById("buttonMostrarEnPlano").style.visibility="hidden";
+        document.getElementById("buttonBorrarHistoricoComunicados").style.visibility="hidden";
+        document.getElementById("buttonEnviamentDePendents").style.visibility="hidden";
         return ;
     }
+
+    document.getElementById("buttonMostrarEnPlano").style.visibility="visible";
+    document.getElementById("buttonBorrarHistoricoComunicados").style.visibility="visible";
+    document.getElementById("buttonEnviamentDePendents").style.visibility="visible";
 
     var sFila = "";
     var sDatos = "";
@@ -64,275 +73,95 @@ function cargaListaComunicats(){
                 'html': sFila
         })));
     }
-    $('#listviewLista').listview('refresh');
+    try{
+        $('#listviewLista').listview('refresh');
+    }
+    catch (ex){}
 }
 
-function verDatosComunicat(x, separador){
-    $('#labelCOMUNICAT_TIPUS').text('');
-    $('#labelCOMUNICAT_CARRER').text('');
-    $('#labelCOMUNICAT_ID').text('');
-    $('#labelCOMUNICAT_REFERENCIA').text('');
-    //$('#labelCOMUNICAT_NUM').text('');
-    $('#labelCOMUNICAT_COMENTARI').text('');
-    $('#labelCOMUNICAT_DATA').text('');
-    $('#labelCOMUNICAT_ESTAT').text('');
+function verDatosComunicat(x){
+    try {
 
-    var sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
-    var imagen = document.getElementById('imgCOMUNICAT_FOTO');
-    if(sFotoInci==''){
-        imagen.src = sFotoInci="images/sinFoto.png";
-    }
-    else{
-        imagen.src = "data:image/jpeg;base64," + sFotoInci;
-    }
+        $('#labelCOMUNICAT_TIPUS').text('');
+        $('#labelCOMUNICAT_CARRER').text('');
+        $('#labelCOMUNICAT_ID').text('');
+        $('#labelCOMUNICAT_REFERENCIA').text('');
+        //$('#labelCOMUNICAT_NUM').text('');
+        $('#labelCOMUNICAT_COMENTARI').text('');
+        $('#labelCOMUNICAT_DATA').text('');
+        $('#labelCOMUNICAT_ESTAT').text('');
 
-    abrirPagina("pageConsultaIncidenciasFicha",false);
-    //var aDatos = new Array();
-    try
-    {
-        //aDatos = sDatos.split(separador);
-        $('#labelCOMUNICAT_ID').text(aComs[x].ID);// aDatos[0]);
-        $('#labelCOMUNICAT_REFERENCIA').text(aComs[x].REFERENCIA);// aDatos[1]);
-        $('#labelCOMUNICAT_ESTAT').text(aComs[x].ESTAT);// aDatos[2]);
-        $('#labelCOMUNICAT_DATA').text(aComs[x].DATA);// aDatos[3]);
-        //var sTipoVia = "";
-        //var sCalle = "";
-        //var calle = aDatos[4];
-        //try{
-        //    if(calle.length > 3)
-        //    {
-        //        sTipoVia = calle.split("(")[1].substr(0, (calle.split("(")[1].length -1));
-        //        sCalle = calle.split("(")[0];
-        //    }
-        //    $('#labelCOMUNICAT_CARRER').text(sTipoVia + ' ' + sCalle);
-        //}
-        //catch(e){
-        //    $('#labelCOMUNICAT_CARRER').text(calle);
-        //}
-        $('#labelCOMUNICAT_CARRER').text(aComs[x].CARRER+" "+aComs[x].NUM);
-        //$('#labelCOMUNICAT_NUM').text(aDatos[5]);
+        var sFotoInci = leeObjetoLocal('FOTO_' + aComs[x].ID, '');
+        var imagen = document.getElementById('imgCOMUNICAT_FOTO');
+        if (sFotoInci == '') {
+            imagen.src = sFotoInci = "images/sinFoto.png";
+        }
+        else {
+            imagen.src = "data:image/jpeg;base64," + sFotoInci;
+        }
+
+        abrirPagina("pageConsultaIncidenciasFicha", false);
+
+        $('#labelCOMUNICAT_ID').text(aComs[x].ID);
+        $('#labelCOMUNICAT_REFERENCIA').text(aComs[x].REFERENCIA);
+        $('#labelCOMUNICAT_ESTAT').text(aComs[x].ESTAT);
+        $('#labelCOMUNICAT_DATA').text(aComs[x].DATA);
+        $('#labelCOMUNICAT_CARRER').text(aComs[x].CARRER + " " + aComs[x].NUM);
         $('#labelCOMUNICAT_COMENTARI').text(aComs[x].COMENTARI);
         $('#labelCOMUNICAT_COORDENADES').text(aComs[x].COORD_X + " , " + aComs[x].COORD_Y);
-        $('#labelCOMUNICAT_TIPUS').text(aComs[x].ITE_DESC); //hgs descripcio
+        $('#labelCOMUNICAT_TIPUS').text(aComs[x].ITE_DESC);
     }
-    catch(e) {
+    catch (ex){
         mensaje('exception en verDatosComunicat : ' + e.message , 'error');
     }
-    //$.mobile.silentScroll(0);
-    //$("#panelDadesComunicat").panel("open");
-}
 
-function estadoDelPlano(){
-    //if($('#buttonMostrarEnPlano').text().trim().substr(0,7) == "ocultar")
-    //{
-    //    $("#buttonMostrarEnPlano").changeButtonText("mostrar plànol");
-    //    $("#divMapaConsulta").hide();
-    //    $("#divSobreMapaConsulta").hide();
-    //    $.mobile.silentScroll(0);
-    //}
-    //else
-    //{
-        $("#divSobreMapaConsulta").show();
-        $('#divMapaConsulta').show();
-        //$("#buttonMostrarEnPlano").changeButtonText("ocultar plànol");
-        mostrarEnPlano();
-        //$.mobile.silentScroll(1200);
-    //}
-
-    //$("#buttonMostrarEnPlano").button("refresh");
-}
-
-function mostrarEnPlanoOriginal() {
-// Descapar para pruebas en PC :
-//    var llamaWS = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/ConsultarIncidenciasZona";
-//    var sParam  = "sLat=41.3965&sLon=2.1521";
-    var aComs = new Array();
-    aComs = getComunicats();
-
-    if(aComs == null || aComs.length < 1) {
-        return false;
-    }
-
-    aMarcadoresSobrePlano = new Array();
-    var mapOptions = {
-        zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        //enabledHighAccuracy:true,
-        panControl: false,
-        rotateControl: false,
-        scaleControl: false,
-        scrollwheel: false,
-        zoomControl: false,
-        streetViewControl: false
-    };
-
-
-    mapConsulta = new google.maps.Map(document.getElementById('divMapaConsulta'), mapOptions);
-
-
-    // Try HTML5 geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var paramPosInicial = new google.maps.LatLng(position.coords.latitude, position.coords.longitude );
-
-            /* //Prueba llamada al WS ...
-             var llamaWS = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/ConsultarIncidenciasZona";
-             var sParam  = "sLat=" + position.coords.latitude;
-             sParam += "&sLon=" +  position.coords.longitude;
-             try
-             { //(sTipoLlamada,sUrl,   sParametros,sContentType,                       bCrossDom, sDataType, bProcData, bCache, nTimeOut, funcion,                          pasaParam,      asincro, bProcesar,tag)
-             var datos = LlamaWebService('GET',       llamaWS,sParam,     'application/x-www-form-urlencoded',true,      'xml',     false,     false,  10000,    resultadoConsultarIncidenciasZona,paramPosInicial,false,   true,     'pos');
-             }
-             catch (e)
-             {   mensaje('ERROR (exception) en iniciaMapaConsulta : \n' + e.code + '\n' + e.message); }
-             */
-
-            var pos = null;
-            var dir = '';
-            var sTipoVia = '';
-            var sCalle = '';
-            var sDatos = '';
-            var separador = '#';
-            for (var x = 0; x < aComs.length; x++) {
-                try
-                {
-                    pos = new google.maps.LatLng(aComs[x].COORD_X, aComs[x].COORD_Y);
-
-                    //centrar el mapa en el comunicado más reciente.
-                    if(x==0) paramPosInicial = pos;
-
-                    try
-                    { dir = aComs[x].CARRER + ', ' + aComs[x].NUM;  }
-                    catch(e) { dir = aComs[x].COORD_X + ' , ' +  aComs[x].COORD_Y; }
-
-                    sDatos = getCadenaComunicat(aComs[x] , separador);
-
-                    /*                  var sTxt =  '<div><table>';
-                     sTxt += '<tr><td style="font-size:xx-small;"><b>comunicat </b>' + aComs[x].REFERENCIA + '</td></tr>';
-                     sTxt += '<tr><td style="font-size:xx-small;"><b>reportat el </b>' + aComs[x].DATA +'</td></tr>';
-                     sTxt += '<tr><td style="font-size:xx-small;"><b>en </b>' + dir + '</td></tr>';
-                     sTxt += '<tr><td style="font-size:xx-small;"><a href="" onclick="verDatosComunicat(\'' + sDatos + '\',\'' + separador + '\');">+info</a></td></tr></table></div>'; */
-                    //sDatos = sDatos.replace("'","''","g");
-
-                    sDatos = sDatos.replace(/'/g, "´");
-
-                    //HGS 05/12/13 COMENTO ORIGINAL I MODIFICO PER QUE VOLEM QUE MOSTRI LA INFO DIRECTAMENT, NO EN EL BOCADILLO
-                    /*var sTxt =  '<div><table>';
-                     sTxt += '<tr><td style="font-size:xx-small;"><a href="" onclick="verDatosComunicat(\'' + sDatos + '\',\'' + separador + '\');">info</a></td></tr></table></div>';*/
-
-                    var sTxt =  sDatos;
-                    //alert('pageConsultaIncidencies');
-                    nuevoMarcadorSobrePlanoClickInfoWindow('CONSULTA', mapConsulta, pos, sTxt, aComs[x].ID, 300, false, false,'',false);
-                    aMarcadoresSobrePlano[x] = globalMarcadorMapa;
-
-                } catch(ex){}
-            }
-            mapConsulta.setCenter(paramPosInicial);
-            $('#divMapaConsulta').gmap('refresh');
-
-        } , function () { getCurrentPositionError(true); },{enabledHighAccuracy:true});
-    }
-    else
-    {
-        // Browser no soporta Geolocation
-        getCurrentPositionError(false);
-    }
-    return true;
 }
 
 function mostrarEnPlano() {
-// Descapar para pruebas en PC :
-//    var llamaWS = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/ConsultarIncidenciasZona";
-//    var sParam  = "sLat=41.3965&sLon=2.1521";
+    try {
+        if (aComs == null || aComs.length == 0) {
+            return false;
+        }
 
-    //var aComs = new Array();
-    //aComs = getComunicats();
+        var paramPosInicial = new google.maps.LatLng(posicionGPS.coords.latitude, posicionGPS.coords.longitude);
 
-    if(aComs == null || aComs.length < 1) {
-        return false;
-    }
-    aMarcadoresSobrePlano = new Array();
-
-    // Try HTML5 geolocation
-    if (navigator.geolocation) {
-
-        var locOptions = {
-            maximumAge : 0,
-            timeout : 10000,
-            enableHighAccuracy : true
+        var mapOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            enabledHighAccuracy: true,
+            panControl: false,
+            rotateControl: false,
+            scaleControl: false,
+            zoomControl: false,
+            streetViewControl: false,
+            center: paramPosInicial
         };
+        mapConsulta = new google.maps.Map(document.getElementById('divMapaConsulta'), mapOptions);
 
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var paramPosInicial = new google.maps.LatLng(position.coords.latitude, position.coords.longitude );
+        var pos = null;
+        for (var x = 0; x < aComs.length; x++) {
+            try {
+                pos = new google.maps.LatLng(aComs[x].COORD_X, aComs[x].COORD_Y);
 
-            //hgs afegit el enabledhighaccuracy i el center
-            var mapOptions = {
-                zoom: 13,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                enabledHighAccuracy:true,
-                panControl: false,
-                rotateControl: false,
-                scaleControl: false,
-                zoomControl: false,
-                streetViewControl: false,
-                center:paramPosInicial
-            };
-            mapConsulta = new google.maps.Map(document.getElementById('divMapaConsulta'), mapOptions);
-
-            /* //Prueba llamada al WS ...
-                var llamaWS = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/ConsultarIncidenciasZona";
-                var sParam  = "sLat=" + position.coords.latitude;
-                sParam += "&sLon=" +  position.coords.longitude;
-                try
-                { //(sTipoLlamada,sUrl,   sParametros,sContentType,                       bCrossDom, sDataType, bProcData, bCache, nTimeOut, funcion,                          pasaParam,      asincro, bProcesar,tag)
-                    var datos = LlamaWebService('GET',       llamaWS,sParam,     'application/x-www-form-urlencoded',true,      'xml',     false,     false,  10000,    resultadoConsultarIncidenciasZona,paramPosInicial,false,   true,     'pos');
-                }
-                catch (e)
-                {   mensaje('ERROR (exception) en iniciaMapaConsulta : \n' + e.code + '\n' + e.message); }
-            */
-
-            var pos = null;
-            var dir = '';
-            var sTipoVia = '';
-            var sCalle = '';
-            var sDatos = '';
-            var separador = '#';
-            for (var x = 0; x < aComs.length; x++) {
-                try
-                {
-                    pos = new google.maps.LatLng(aComs[x].COORD_X, aComs[x].COORD_Y);
-
-                    //centrar el mapa en el comunicado más reciente.
-                    if(x==0) paramPosInicial = pos;
-
-                    try
-                    { dir = aComs[x].CARRER + ', ' + aComs[x].NUM;  }
-                    catch(e) { dir = aComs[x].COORD_X + ' , ' +  aComs[x].COORD_Y; }
-
-                    sDatos = getCadenaComunicat(aComs[x] , separador);
+                //centrar el mapa en el comunicado más reciente.
+                if (x == 0) paramPosInicial = pos;
 
 
-                    sDatos = sDatos.replace(/'/g, "´");
+                var sTxt = x;
+                nuevoMarcadorSobrePlanoClickInfoWindow('CONSULTA', mapConsulta, pos, sTxt, aComs[x].ID,'');
 
-
-                    var sTxt =  x; //sDatos;
-                    //alert('pageConsultaIncidencies');
-                    nuevoMarcadorSobrePlanoClickInfoWindow('CONSULTA', mapConsulta, pos, sTxt, aComs[x].ID, 300, false, false,'',false);
-                    aMarcadoresSobrePlano[x] = globalMarcadorMapa;
-
-                } catch(ex){}
+            } catch (ex) {alert(ex.message);
             }
-            mapConsulta.setCenter(paramPosInicial);
+        }
+        mapConsulta.setCenter(paramPosInicial);
+        try {
             $('#divMapaConsulta').gmap('refresh');
-
-        } , function () { getCurrentPositionError(true); },locOptions);
+        } catch (ex) {
+        }
     }
-    else
-    {
-        // Browser no soporta Geolocation
-        getCurrentPositionError(false);
+    catch (ex) {
+        mensaje(ex.message, "error");
     }
-    return true;
 }
 
 function borrarHistoricoComunicadosConfirm() {
@@ -371,115 +200,154 @@ function borrarHistoricoComunicados(respuesta){
             //Actualizar la 'sequence'
             guardaObjetoLocal('COMUNICATS_NEXTVAL', -1);
 
-            //limpiar el mapa :
-            if (aMarcadoresSobrePlano.length > 0) {
-                for (var x = 0; x < aMarcadoresSobrePlano.length; x++) {
-                    globalMarcadorMapa = aMarcadoresSobrePlano[x];
-                    eliminarMarcadorMapa();
-                }
-            }
-
             //limpiar/actualizar la lista
             inicioPaginaConsultaIncidencias();
-
-            //$('#divMapaConsulta').hide();
-            //$('#divSobreMapaConsulta').hide();
-            //$('#buttonMostrarEnPlano').changeButtonText("mostrar plànol");
-
-            //hgs nou. Una vegada netejada la llista, no mostro btn planols ni btn esborra llista
-            $('#buttonMostrarEnPlano').attr({"style": "display:none", "src": ""});
-            $('#buttonBorrarHistoricoComunicados').attr({"style": "display:none", "src": ""});
-            $('#buttonEnviamentDePendents').attr({"style": "display:none", "src": ""});
-            //fi nou
 
 
         }
     }
 }
 
-function enviamentDePendents(){
+function enviamentDePendents() {
+    try {
 
-    var sIdsActualizar = "";
-    var nIndexAct = 0;
+        var sIdsActualizar = "";
+        var nIndexAct = 0;
 
-    var aComs = new Array();
-    aComs = getComunicats();
+        var aComs = new Array();
+        aComs = getComunicats();
 
-    var pNom = "";
-    var pCognom1 = "";
-    var pCognom2 = "";
-    var pDni = "";
-    var pEmail = "";
-    var pTelefon = "";
-    var objUsu = getDatosUsuario();
+        var objUsu = getDatosUsuario();
 
-    if(objUsu != null)
-    {
-        pNom = objUsu.NOM + '';
-        pCognom1= objUsu.COGNOM1 + '';
-        pCognom2= objUsu.COGNOM2 + '';
-        pDni= objUsu.DNI + '';
-        pEmail= objUsu.EMAIL + '';
-        pTelefon= objUsu.TELEFON + '';
-    }
-
-    var objComunicat = null;
-    var bBorrado = false;
-    var sParams = {};
+        var objComunicat = null;
+        var bBorrado = false;
+        var sParams = {};
 
 
-    for(var x=0 ; x< aComs.length; x++){
-        if(aComs[x].ESTAT == 'PENDENT_ENVIAMENT' || aComs[x].ESTAT == 'ERROR_ENVIAMENT'){
-            sSuFoto = leeObjetoLocal('FOTO_' + aComs[x].ID , '');
+        for (var x = 0; x < aComs.length; x++) {
+            if (aComs[x].ESTAT == 'PENDENT_ENVIAMENT' || aComs[x].ESTAT == 'ERROR_ENVIAMENT') {
 
-            //sParams = {sNom:pNom, sCognom1:pCognom1, sCognom2:pCognom2, sDni:pDni, sEmail:pEmail, sTelefon:pTelefon, sObs:aComs[x].COMENTARI + '', sCoord:aComs[x].COORD_X + ',' + aComs[x].COORD_Y + '', sCodCarrer:'', sCarrer:aComs[x].CARRER + '', sNumPortal:aComs[x].NUM + '', sFoto: sSuFoto};
-            //alert ('anem a enviar pendents item i desc son ' + aComs[x].ITE_ID + ' i '+ aComs[x].ITE_DESC);
+                sSuFoto = leeObjetoLocal('FOTO_' + aComs[x].ID, '');
 
-            sParams = {sId:aComs[x].ITE_ID, sDescItem:aComs[x].ITE_DESC, sNom:pNom, sCognom1:pCognom1, sCognom2:pCognom2, sDni:pDni, sEmail:pEmail, sTelefon:pTelefon, sObs:aComs[x].COMENTARI + '', sCoord:aComs[x].COORD_X + ',' + aComs[x].COORD_Y + '', sCodCarrer:'', sCarrer:aComs[x].CARRER + '', sNumPortal:aComs[x].NUM + '', sFoto: sSuFoto};
-            var sRet = enviarComunicatPendiente_WS(sParams, false);
-            if(sRet.length == 5)
-                if(sRet == "ERROR")
+                var v_sObs=aComs[x].COMENTARI+ '';
+                var v_sCoord=aComs[x].COORD_X+ ',' + aComs[x].COORD_Y+ '';
+                var v_sCodCarrer=aComs[x].CODCARRER+ '';
+                var v_sNumPortal=aComs[x].NUM+ '';
+                sParams = {
+                    p_sIdTipoInci: aComs[x].ITE_ID,
+                    p_sNom: objUsu.NOM.toString().trim() + '',
+                    p_sCognom1: objUsu.COGNOM1.toString().trim() + '',
+                    p_sCognom2: objUsu.COGNOM2.toString().trim() + '',
+                    p_sDni: objUsu.DNI.toString().trim() + '',
+                    p_sEmail: objUsu.EMAIL.toString().trim() + '',
+                    p_sTelefon: objUsu.TELEFON.toString().trim() + '',
+                    p_sObs: v_sObs.toString().trim() + '',
+                    p_sCoord:v_sCoord.toString().trim()+ '',
+                    p_sCodCarrer: v_sCodCarrer.toString().trim()+ '',
+                    p_sNumPortal: v_sNumPortal.toString().trim() + '',
+                    p_sFoto: sSuFoto + '',
+                    p_sVoz: ''
+                };
+                var v_sRet = enviarComunicatPendienteWS(sParams);
+                if (v_sRet[2] == 2) {
+                    mensaje(v_sRet[3],"error");
                     break;
+                }
 
-            //si ha retornado un codigo ...
-            objComunicat = new comunicat();
-            objComunicat.ID = aComs[x].ID;
-            objComunicat.REFERENCIA = sRet;
-            objComunicat.ESTAT = 'NOTIFICAT';
-            objComunicat.DATA = aComs[x].DATA;
-            objComunicat.CARRER = aComs[x].CARRER;
-            objComunicat.NUM = aComs[x].NUM;
-            objComunicat.COORD_X = aComs[x].COORD_X;
-            objComunicat.COORD_Y = aComs[x].COORD_Y;
-            objComunicat.COMENTARI = aComs[x].COMENTARI;
-            objComunicat.ITE_ID = aComs[x].ITE_ID; //hgs afegit
-            objComunicat.ITE_DESC = aComs[x].ITE_DESC;   // hgs afegit
-            objComunicat.ID_MSG_MOV = sRet;
-            //Actualizo con nuevo estado
+                //si ha retornado un codigo ...
+                objComunicat = new comunicat();
+                objComunicat.ID = aComs[x].ID;
+                objComunicat.REFERENCIA = v_sRet[0];
+                objComunicat.ESTAT = 'NOTIFICAT';
+                objComunicat.DATA = v_sRet[1];
+                objComunicat.CODCARRER = aComs[x].CODCARRER;
+                objComunicat.CARRER = aComs[x].CARRER;
+                objComunicat.NUM = aComs[x].NUM;
+                objComunicat.COORD_X = aComs[x].COORD_X;
+                objComunicat.COORD_Y = aComs[x].COORD_Y;
+                objComunicat.COMENTARI = aComs[x].COMENTARI;
+                objComunicat.ITE_ID = aComs[x].ITE_ID;
+                objComunicat.ITE_DESC = aComs[x].ITE_DESC;
+                objComunicat.ID_MSG_MOV = v_sRet[1];
+                //Actualizo con nuevo estado
 
-            bBorrado = borraObjetoLocal('COMUNICAT_' + aComs[x].ID);
+                bBorrado = borraObjetoLocal('COMUNICAT_' + aComs[x].ID);
 
-            guardaObjetoLocal('COMUNICAT_' + aComs[x].ID, objComunicat);
+                guardaObjetoLocal('COMUNICAT_' + aComs[x].ID, objComunicat);
 
-            //Elimino la foto que había guardado
-            bBorrado = borraObjetoLocal('FOTO_' + aComs[x].ID);
+                //Elimino la foto que había guardado
+                bBorrado = borraObjetoLocal('FOTO_' + aComs[x].ID);
 
-        }
-        else //Actualizar el estado del comunicado (de las que están en cualquier estado excepto TANCADES)
-        {
-            if(aComs[x].ESTAT != 'TANCAT')
+            }
+            else //Actualizar el estado del comunicado (de las que están en cualquier estado excepto TANCADES)
             {
-                sIdsActualizar += aComs[x].ID_MSG_MOV + "|" + aComs[x].ID + ",";
+                if (aComs[x].ESTAT != 'TANCAT') {
+                    sIdsActualizar += aComs[x].ID_MSG_MOV + "|" + aComs[x].ID + ",";
+                }
             }
         }
+
+        //Si hay posibles actualizaciones de comunicats
+        if (sIdsActualizar.length > 0) {
+            sIdsActualizar = sIdsActualizar.substr(0, sIdsActualizar.length - 1);
+            ActualitzaComunicats(sIdsActualizar);
+        }
+        //y recargo la lista
+        inicioPaginaConsultaIncidencias();
+    }
+    catch (ex) {
+        alert(ex.message);
     }
 
-    //Si hay posibles actualizaciones de comunicats
-    if(sIdsActualizar.length > 0)
-    {
-        sIdsActualizar = sIdsActualizar.substr(0,sIdsActualizar.length - 1);
-        ActualitzaComunicats(sIdsActualizar);
+}
+
+function enviarComunicatPendienteWS(sParams) {
+    var v_Campo = new Array(4);
+    try {
+
+        $.ajax({
+            type: 'POST',
+            url: _wsURLCrearIncidencia,
+            data: sParams,
+            success: function (datos) {
+                if (datos == null)  //==> ha habido error
+                {
+                    v_Campo[2] = "2";
+                    v_Campo[3] = "No hi ha confirmació de l'enviament de la comunicació";
+                }
+                else { //==> el WS ha devuelto algo
+
+                    $(datos).find("resultado").each(function () {
+                        $(this).children().each(function () {
+                            if (this.tagName == "id") {
+                                v_Campo[0] = $(this).text();
+                            }
+                            else if (this.tagName == "fecha") {
+                                v_Campo[1] = $(this).text();
+                            }
+                            else if (this.tagName == "codError") {
+                                v_Campo[2] = $(this).text();
+                            }
+                            else if (this.tagName == "desError") {
+                                v_Campo[3] = $(this).text();
+                            }
+                        });
+                    });
+                }
+            },
+            error: function (error) {
+                v_Campo[2] = "2";
+                v_Campo[3] = 'ERROR en enviarComunicatPendienteWS : \n' + error.responseText;
+            },
+            async: false
+        });
     }
+    catch (ex) {
+        v_Campo[2] = "2";
+        v_Campo[3] = 'ERROR (exception) en enviarComunicatPendienteWS : \n' + ex.message;
+    }
+
+    return v_Campo;
 }
 
 function ActualitzaComunicats(sParams){
@@ -488,68 +356,63 @@ function ActualitzaComunicats(sParams){
     if(sParams.indexOf(',') == sParams.length-1) sParams = sParams.substr(0, sParms.length - 1);
 
     var aParams = {sIds:sParams};
-    //dmz
-    var llamaWS = "http://80.39.72.44:8000/wsAPPGIV/wsIncidentNotifierGIV.asmx/ConsultaComunicatsTipus";
-    //vila hauria
-    //var llamaWS = "http://www.vilafranca.cat/wsAPPGIV/wsIncidentNotifierGIV.asmx/ConsultaComunicatsTipus";
-
-//    alert('enviem les pendents');
-    $.post(llamaWS, aParams).done(function(datos) {
-        try
-        {
-            if(datos == null)  //==> ha habido error
+    $.ajax({
+        type: 'POST',
+        url: _wsURLConsultaIncidencia,
+        data: aParams,
+        success:function(datos) {
+            try
             {
-                mensaje("L'actualització no ha estat posible\n" ,"pot ser no hi ha connexió");
-                return;
-            }
-            else     //==> el WS ha devuelto algo
-            {
-                var aResultados = new Array();
-                var r = 0;
-                var c = 0;
+                if(datos == null)  //==> ha habido error
+                {
+                    mensaje("L'actualització no ha estat posible\n" ,"pot ser no hi ha connexió");
+                    return;
+                }
+                else     //==> el WS ha devuelto algo
+                {
+                    var aResultados = new Array();
+                    var r = 0;
+                    var c = 0;
 
-                //el XML que devuelve tiene uno o varios :
-                //<resultado>
-                //  <id></id>
-                //  <estado></estado>
-                //  <refUlls></refUlls>
-                //  <idLocal></idLocal>
-                //</resultado>
+                    //el XML que devuelve tiene uno o varios :
+                    //<resultado>
+                    //  <id></id>
+                    //  <estado></estado>
+                    //  <refUlls></refUlls>
+                    //  <idLocal></idLocal>
+                    //  <fecha></fecha>
+                    //</resultado>
 
-                $(datos).find("resultado").each(function () {
-//alert('resultado encontrado');
-                    c = 0;
-                    aRegistro = new Array();
-                    $(this).children().each(function () {
-//alert('children');
-                        var aCampo = new Array(2);
-                        aCampo[0] = this.tagName;
-                        aCampo[1] = $(this).text();
-//alert('en ProcesaResultado(). extrayendo del xml recibido : ' + this.tagName + ' : ' +  $(this).text() );
-                        aRegistro[c++] = aCampo;
+                    $(datos).find("resultado").each(function () {
+                        c = 0;
+                        aRegistro = new Array();
+                        $(this).children().each(function () {
+                            var aCampo = new Array(2);
+                            aCampo[0] = this.tagName;
+                            aCampo[1] = $(this).text();
+                            aRegistro[c++] = aCampo;
 
+                        });
+                        aResultados[r++] = aRegistro;
                     });
-//alert(aRegistro[0][0] + ' = ' + aRegistro[0][1] + '\n' + aRegistro[1][0] + ' = ' + aRegistro[1][1] + '\n' +aRegistro[2][0] + ' = ' + aRegistro[2][1] + '\n' + aRegistro[3][0] + ' = ' + aRegistro[3][1]);
-                    aResultados[r++] = aRegistro;
-//alert('en ProcesaResultado(). aResultados[' + (r-1).toString() + '] = ' + aResultados[r-1]);
-                });
+                }
+                if(aResultados.length > 0)
+                {
+                    //actualizo en BD local
+                    GuardaActualizacionComunicats(aResultados);
+                }
             }
-            if(aResultados.length > 0)
+            catch(e)
             {
-                //actualizo en BD local
-                GuardaActualizacionComunicats(aResultados);
-
-                //y recargo la lista
-                inicioPaginaConsultaIncidencias();
+                mensaje("ERROR (exception) en 'actualitzaComunicats' : \n" + e.code + "\n" + e.message);
             }
-        }
-        catch(e)
-        {
-            mensaje("ERROR (exception) en 'actualitzaComunicats' : \n" + e.code + "\n" + e.message);
-        }
-    }).fail(function() {
-            mensaje("ERROR actualitzant en 'actualitzaComunicats'");
+        },
+        error: function (error) {
+            mensaje("ERROR (exception) en 'actualitzaComunicats' : \n" + error.code + "\n" + error.message);
+        },
+        async: false
     });
+
 }
 
 function GuardaActualizacionComunicats(aResultados){
@@ -562,10 +425,12 @@ function GuardaActualizacionComunicats(aResultados){
         //  <estado></estado>
         //  <refUlls></refUlls>
         //  <idLocal></idLocal>
+        //  <fecha></fecha>
         var nPosId = 0;
         var nPosEstado = 1;
         var nPosRefUlls = 2;
         var nPosIdLocal = 3;
+        var nPosFecha = 4;
 
         for(x=0; x<aResultados.length; x++)
         {
@@ -579,20 +444,25 @@ function GuardaActualizacionComunicats(aResultados){
 
             aDatos['id'] = aRegistro[nPosIdLocal][1].toString().trim();
             aDatos['referencia'] = aRegistro[nPosRefUlls][1] + '';
-            aDatos['estat'] = aRegistro[nPosEstado][1] + '';
-            aDatos['data'] + objComunicatEXISTENTE.DATA + '';
+            if(aRegistro[nPosEstado][1]=="T"){
+                aDatos['estat'] = 'TANCAT';
+                aDatos['data'] = aRegistro[nPosFecha][1] + '';
+            }
+            else{
+                aDatos['estat'] = 'NOTIFICAT';
+                aDatos['data'] = objComunicatEXISTENTE.DATA + '';
+            }
+            aDatos['codcarrer'] = objComunicatEXISTENTE.CODCARRER + '';
             aDatos['carrer'] = objComunicatEXISTENTE.CARRER + '';
             aDatos['num'] = objComunicatEXISTENTE.NUM + '';
             aDatos['coord_x'] = objComunicatEXISTENTE.COORD_X + '';
             aDatos['coord_y'] = objComunicatEXISTENTE.COORD_Y + '';
             aDatos['comentari'] = objComunicatEXISTENTE.COMENTARI + '';
-            aDatos['itemId'] = objComunicatEXISTENTE.ITE_ID + ''; //hgs descripcio
-            aDatos['tipus'] = objComunicatEXISTENTE.ITE_DESC + ''; //hgs descripcio
+            aDatos['ite_id'] = objComunicatEXISTENTE.ITE_ID + '';
+            aDatos['ite_desc'] = objComunicatEXISTENTE.ITE_DESC + '';
             aDatos['id_msg_mov'] = aRegistro[nPosId][1] + '';
 
             var objComunicatACTUALIZADO = new comunicat(aDatos);
-
- //alert('guardo COMUNICAT_' + aRegistro[nPosIdLocal][1].toString().trim() + '  con  ' + objComunicatACTUALIZADO.REFERENCIA +  '  (para el id_msg_mov = ' + objComunicatACTUALIZADO.ID_MSG_MOV + ')');
 
             //y actualizo (machaco) con la nueva info
             guardaObjetoLocal('COMUNICAT_' + aRegistro[nPosIdLocal][1].toString().trim() , objComunicatACTUALIZADO);

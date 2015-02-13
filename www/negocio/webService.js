@@ -3,20 +3,6 @@
 var global_AjaxERROR = '';
 var global_AjaxRESULTADO = null;
 
-function envioWSpost(sUrl,sParams){
-    var sDev = '.';
-//    var imagen = imagenDePrueba();
-    //var url = "http://213.27.242.251:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/NuevaIncidencia";
-    //var url = "http://172.26.0.2:8000/wsIncidentNotifier/wsIncidentNotifier.asmx/NuevaIncidencia";
-
-    $.post(sUrl, sParams).done(function(data) {
-        global_AjaxRESULTADO = data;
-        global_AjaxERROR = '';
-    }).fail(function() {
-                global_AjaxERROR = 'Error en post'; global_AjaxRESULTADO = null
-    });
-}
-
 function LlamaWebService(sTipoLlamada,sUrl, sParametros,sContentType, bCrossDom, sDataType, bProcData, bCache, nTimeOut, funcion, pasaParam, asincro, bProcesar, tag) {
     global_AjaxRESULTADO = null;
     global_AjaxERROR = '';

@@ -46,6 +46,7 @@
         <script src="js/jstorage.js" type="text/javascript"></script>
 
         <!-- Negocio  -->
+        <script src="negocio/variables.js" type="text/javascript"></script>
         <script src="negocio/utilitats.js" type="text/javascript"></script>
         <script src="negocio/negoci.js" type="text/javascript"></script>
         <script src="negocio/baseDades.js" type="text/javascript"></script>
@@ -228,22 +229,22 @@
                 <div data-role="fieldcontain">
                     <!-- <label for="inputNOM">nom</label> -->
                     <input type="text" name="inputNOM" id="inputNOM" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="el meu nom ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="el meu nom ..." data-clear-btn="false" />
                     <!-- <label for="inputCOGNOM1">primer cognom</label> -->
                     <input type="text" name="inputCOGNOM1" id="inputCOGNOM1" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="el meu primer cognom ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="el meu primer cognom ..." data-clear-btn="false" />
                     <!-- <label for="inputCOGNOM2">segon cognom</label> -->
                     <input type="text" name="inputCOGNOM2" id="inputCOGNOM2" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="el meu segon cognom ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="el meu segon cognom ..." data-clear-btn="false" />
                     <!-- <label for="inputDNI">dni</label> -->
                     <input type="text" name="inputDNI" id="inputDNI" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="el meu dni ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="el meu dni ..." data-clear-btn="false" />
                     <!-- <label for="inputEMAIL">email</label> -->
                     <input type="text" name="inputEMAIL" id="inputEMAIL" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="la meva adreça electrónica ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="la meva adreça electrónica ..." data-clear-btn="false" />
                     <!-- <label for="inputTEL">telèfon</label> -->
                     <input type="text" name="inputTELEFON" id="inputTELEFON" data-inline="true" data-mini="false"
-                           data-theme="d" placeholder="el meu telèfon mòbil ..." data-clear-btn="true" />
+                           data-theme="c" placeholder="el meu telèfon mòbil ..." data-clear-btn="false" />
                 </div>
             </div>
             <div><table style="width:100%"><tr><td><a href="#" id="buttonIdentLimpiar" onclick="LimpiarDatosCiudadano()"
@@ -293,7 +294,7 @@
                     </div></td>
                 <td align="rigth">
             <div class="mi-util" >
-            <a  href="" onclick="abrirPagina('pageConsultaIncidenciasMapa', false)"><img alt="" src="css/themes/Rojos/images/icons-png/location-white.png" width="20" /></a>
+            <a id="buttonMostrarEnPlano" href="" onclick="abrirPagina('pageConsultaIncidenciasMapa', false)"><img alt="" src="css/themes/Rojos/images/icons-png/location-white.png" width="20" /></a>
                 </div></td></tr></table>
         </div>
         <div data-role="content" data-theme="c" style="padding: 0em">

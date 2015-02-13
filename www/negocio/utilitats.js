@@ -70,54 +70,40 @@ function eliminarMarcadorMapa(){
     }
 }
 
-function nuevoMarcadorSobrePlanoClickInfoWindow(sMODO, mapa, pos,htmlText, nIcono, nMaxAncho, bMostrarBocataDeInicio, bSoloUnMarcadorSobreMapa, labelMostrarDir, resposta){
+function nuevoMarcadorSobrePlanoClickInfoWindow(sMODO, mapa, pos,htmlText, nIcono, labelMostrarDir) {
+    try {
 
-    //alert('pos ' +pos);
-    //alert('Resposta = ' + resposta);
+        //if(bSoloUnMarcadorSobreMapa) {
+        //    eliminarMarcadorMapa();
+        //}
 
-    if(resposta==false || resposta == true)
-    {
-            if(bSoloUnMarcadorSobreMapa) {
-                eliminarMarcadorMapa();
-            }
 
-            if(sMODO == 'ALTA')
-                posAlta = pos; //por si es una alta, que envie al WS las coordenadas correctas
+        var sIcono = '';
+        if (nIcono != null) sIcono = "images/iconosMapa/number_" + nIcono.toString().trim() + ".png";
 
-            var sIcono = '';
-            if(nIcono != null) sIcono = "images/iconosMapa/number_" + nIcono.toString().trim() + ".png";
+        var marcador = new google.maps.Marker({
+            position: pos,
+            icon: sIcono,
+            map: mapa
+        });
+        globalMarcadorMapa = marcador;
 
-            var marcador = new google.maps.Marker({
-                position: pos,
-                icon: sIcono,
-                map: mapa
-            });
-            globalMarcadorMapa = marcador;
-
-            if(indefinidoOnullToVacio(htmlText) != '' && indefinidoOnullToVacio(nMaxAncho) != '')
-            {
-                //var bocata = new google.maps.InfoWindow({ content: htmlText, maxWidth: nMaxAncho});
-                google.maps.event.addListener(marcador, 'click', function() {
-                   // bocata.open(mapa,marcador);
-                    verDatosComunicat(htmlText,'#');
+        if (sMODO == 'ALTA') {
+            if (indefinidoOnullToVacio(labelMostrarDir) != '') $('#' + labelMostrarDir).text(sDireccionAlta);
+            mapa.setCenter(pos);
+        }
+        else {
+            if (htmlText != null && htmlText.toString().trim() != '') {
+                google.maps.event.addListener(marcador, 'click', function () {
+                    verDatosComunicat(htmlText);
                 });
-                //if(bMostrarBocataDeInicio)bocata.open(mapa,marcador);
             }
+        }
+    }
+    catch (ex) {
+        alert(ex.message);
+    }
 
-            if(sMODO == 'ALTA')
-            {
-                //alert('sDireccion en nuevoMarcadorSobrePlanoClickInfoWindow es ' +  sDireccionAlta);
-                if(indefinidoOnullToVacio(labelMostrarDir) != '') $('#' + labelMostrarDir).text(sDireccionAlta);
-                mapa.setCenter(posAlta);
-                //alert('comprobar que se actualiza ok');
-                ///**/actualizarComboCalle();
-            }
-    }
-    else
-    {
-        //undefined
-        iniciaMapaAlta(true);
-    }
 }
 
 function crearMarcadorEventoClick(sMODO, map, bSoloUnMarcadorSobreMapa , labelMostrarDir, bActualizarControlesManualesCalleNum){
@@ -488,8 +474,10 @@ function ParseEstado(sEstat){
 }
 
 function esEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    if(indefinidoOnullToVacio(email) != '') {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
 }
 
 function esTelefono(telefono){

@@ -147,8 +147,7 @@ function abrirPagina(sPag, bComprueba) {
             case 'pageConsultaIncidenciasFicha':
                 break;
             case 'pageConsultaIncidenciasMapa':
-                mostrarEnPlano();
-                $.doTimeout(1000, estadoDelPlano());
+                $.doTimeout(1000, mostrarEnPlano());
                 break;
             case 'pageZoomFoto' :
                 var imagen = document.getElementById('imgZoomFoto');
@@ -274,7 +273,7 @@ function getLocation() {
     try {
 
         var locOptions = {
-            maximumAge: 100,
+            maximumAge: 0,
             timeout: 1000,
             enableHighAccuracy: true
         };

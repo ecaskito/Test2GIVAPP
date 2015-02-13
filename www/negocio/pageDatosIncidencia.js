@@ -19,8 +19,8 @@ function inicioPaginaDatosIncidencia() {
         //cargarPaginaDatosIncidencia();
     }
     catch (ex){
-        //alert(ex.message);
-
+        alert(ex.message);
+        cargarPaginaDatosIncidencia();
     }
 }
 
@@ -226,13 +226,13 @@ function direccionObtenida(datos, param) {
 
     //alert('direccionObtenida. bPrimera: ' + bPrimera);
     if (bPrimera == true)
-        nuevoMarcadorSobrePlanoClickInfoWindow('ALTA', mapAlta, posAlta, sTxt, null, 300, true, true, 'labelDireccion', false);
+        nuevoMarcadorSobrePlanoClickInfoWindow('ALTA', mapAlta, posAlta, null, null,'labelDireccion');
     else {
         if (bPrimera == false)
         { }
         else
         {
-            nuevoMarcadorSobrePlanoClickInfoWindow('ALTA', mapAlta, posAlta, sTxt, null, 300, true, true, 'labelDireccion', true);
+            nuevoMarcadorSobrePlanoClickInfoWindow('ALTA', mapAlta, posAlta, null, null,'labelDireccion');
             bPrimera = true;
         }
     }

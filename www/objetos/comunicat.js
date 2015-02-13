@@ -4,6 +4,7 @@ objComunicat.ID = 0;
 objComunicat.REFERENCIA = '';
 objComunicat.ESTAT = '';
 objComunicat.DATA = '';
+objComunicat.CODCARRER = '';
 objComunicat.CARRER = '';
 objComunicat.NUM = '';
 objComunicat.COORD_X = '';
@@ -28,6 +29,7 @@ function comunicat(aDatos) {
         this.REFERENCIA = aDatos['referencia'] + '';
         this.ESTAT = aDatos['estat'] + '';
         this.DATA = aDatos['data'] + '';
+        this.CODCARRER = aDatos['codcarrer'] + '';
         this.CARRER = aDatos['carrer'] + '';
         this.NUM = aDatos['num'] + '';
         this.COORD_X = aDatos['coord_x'] + '';
