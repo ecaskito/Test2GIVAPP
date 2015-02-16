@@ -47,6 +47,7 @@
 
         <!-- Negocio  -->
         <script src="negocio/variables.js" type="text/javascript"></script>
+        <script src="negocio/audio.js" type="text/javascript"></script>
         <script src="negocio/utilitats.js" type="text/javascript"></script>
         <script src="negocio/negoci.js" type="text/javascript"></script>
         <script src="negocio/baseDades.js" type="text/javascript"></script>
@@ -164,7 +165,7 @@
                             <input type="text" name="textareaComentari" id="textareaComentari" placeholder="la incidència, el suggeriment, la queixa, ..."
                                    data-clear-btn="true" />
                         </td>
-                        <td style="width:30px"><img id="imgFoto" src="images/micro.png" style="width:30px;float:right" /></td>
+                        <td style="width:30px"><a href="" onclick="AudioGrabacionConfirma();"><img id="imgAudio" src="images/micro.png" style="width:30px;float:right" /></a></td>
                     </tr>
                 </table>
             </div>
@@ -359,7 +360,7 @@
                 </h3></td></tr></table>
         </div>
 
-        <div data-role="content" data-theme="a" style="padding: 0em">
+        <div data-role="content" data-theme="c" style="padding: 0em">
             <div  style="width:100%;height:200px;background-color: #efefef;border: 1px solid #efefef;margin: 0px;line-height: 200px;text-align: center">
                 <img id="imgCOMUNICAT_FOTO" src="images/SinFoto.png" style="max-width:100%;max-height:200px;display: inline-block;vertical-align:middle" />
             </div>
@@ -395,21 +396,24 @@
                     <tr><td ><label id="labelCOMUNICAT_COMENTARI"></label></td></tr>
                 </table>
             </div>
+            <a href="" onclick="AudioGrabacionConfirma();"><img id="imgAudioReproducir" src="images/micro.png" style="width:30px;float:right" />
             </div>
         </div>
     </div>
 
     <div data-role="popup" id="pageZoomFoto" data-theme="c" style="max-width: 95%;" class="ui-corner-all" class="ui-btn-right">
         <div data-role="header" data-theme="c">
-            <h3>
-            </h3>
+            <table cellspacing="0" cellpadding="0" border="0"><tr><td align="left">
+                <div class="mi-util">
+                    <a href="" onclick="handleBackButton()"><img alt="" src="css/themes/Rojos/images/icons-png/carat-l-white.png" width="20" /></a>
+                </div></td><td style="padding-left: 2px" >
+                <h3 style="margin: 0em">
+                </h3></td></tr></table>
         </div>
-        <div data-role="content" data-theme="b">
-            <p>
+        <div data-role="content" data-theme="c" class="fit-content">
+            <div>
                 <img id="imgZoomFoto" src="" border='1' width="100%" />
-            </p>
-            <a href="#pageDatosIncidencia" data-role="button" data-mini="false" data-inline="true"
-               data-theme="c">Tancar</a>
+            </div>
         </div>
     </div>
 

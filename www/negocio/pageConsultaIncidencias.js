@@ -195,6 +195,8 @@ function borrarHistoricoComunicados(respuesta){
             var bBorrado = false;
             for (var x = 0; x < nComunicats; x++) {
                 bBorrado = borraObjetoLocal('COMUNICAT_' + x.toString().trim());
+                borraObjetoLocal('FOTO_' + x.toString().trim());
+                borraObjetoLocal('AUDIO_' + x.toString().trim());
                 if (!bBorrado) mensaje('El comunicat ' + x.toString().trim() + " no s'ha pogut esborrar", "info");
             }
             //Actualizar la 'sequence'
