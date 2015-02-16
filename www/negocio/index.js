@@ -296,13 +296,8 @@ function onLocationSuccess(loc) {
 }
 
 function onLocationError(e) {
-    alert(e.message);
-    //GPSErrorNum=GPSErrorNum+1;
-    //if(GPSErrorNum>3)
-    //{
-    //    GPSActivado=false;
-    //    alert("GPS Desactivat");
-    //}
+    GPSActivado=false;
+    posicionGPS=loc;
 }
 
 
