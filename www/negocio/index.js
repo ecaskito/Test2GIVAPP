@@ -220,23 +220,14 @@ function leeXMLIconos() {
     });
 }
 
-// 'Activa' una imagen y desactiva todas las demas y actualiza el divImagenes con las que toque (según sea inicio, derecha o izquierda)
 function mostrarImagenes() {
     var sTagImg = "";
     var nInd = 0;
     var nIndVis = 0;
     for (sImagen in dicImagenes) {
-        //sTagImg += "<img src='" + dicImagenes[sImagen] + "' id='" + sImagen + "' class='img-swap' alt='" + dicImagenes[sImagen] + "' width='54' height='70' /> "
-
-
         sTagImg += "<a href='' onclick='" + "selectTipo(" + sImagen + ")' data-mini='false' data-inline='false' data-role='button' data-theme='c' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' class='ui-btn ui-shadow ui-btn-corner-all ui-fullsize ui-btn-block ui-first-child ui-btn-up-c'>"
-        //sTagImg += "<span class='ui-btn-inner'>"
-        //sTagImg += "<span class='ui-btn-text'>"
-        //sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='float:left;width:35px' />"
-        //sTagImg += "<div style='padding-top:10px;padding-left:40px'>" + dicAyuda[sImagen] + "</div>"
         sTagImg += "<img alt='' src='" + dicImagenes[sImagen] + "' style='width:45px' />"
         sTagImg += "<div>" + dicAyuda[sImagen] + "</div>"
-        //sTagImg += "</span></span></a>"
         sTagImg += "</a>"
     }
     $('#divTipoInci').html(sTagImg);
@@ -254,20 +245,6 @@ function selectTipo(p_tipo) {
     }
 }
 
-//function hacerfotoOK(imageData) {
-//    try{
-//        posAlta = new google.maps.LatLng(posicionGPS.coords.latitude, posicionGPS.coords.longitude);
-//    }
-//    catch(ex) {}
-//    sFoto = imageData;
-//    abrirPagina('pageDatosIncidencia', false);
-//}
-//function hacerFotoERROR(mensaje) {
-//    sFoto = '';
-//    posAlta='';
-//}
-
-
 
 function getLocation() {
     try {
@@ -281,23 +258,18 @@ function getLocation() {
         wathID = navigator.geolocation.watchPosition(onLocationSuccess, onLocationError, locOptions);
     }
     catch (ex){
-        alert(ex.message);
+        mensaje(ex.message,"error");
     }
 }
 
 function onLocationSuccess(loc) {
-    try{
-        GPSActivado=true;
-        posicionGPS=loc;
-    }
-    catch(ex){
-        alert(ex.message);
-    }
+    GPSActivado = true;
+    posicionGPS = loc;
 }
 
 function onLocationError(e) {
     GPSActivado=false;
-    posicionGPS=loc;
+    posicionGPS='';
 }
 
 

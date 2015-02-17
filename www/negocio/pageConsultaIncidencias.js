@@ -52,7 +52,7 @@ function cargaListaComunicats(){
         sFila +=" <tr><td style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap' >"+aComs[x].CARRER+" "+aComs[x].NUM+"</td></tr>";
         //sFila +=" <tr><td><div style='width:40%;float: left'><b>id:</b> "+aComs[x].ID+"</div><div style='width: 60%;float: right' ><b>ref:</b> "+aComs[x].REFERENCIA+"</div></td></tr>";
         sFila +=" <tr><td><b style='font-size: 0.85em' >id:</b> "+aComs[x].ID+"</td></tr>";
-        sFila +=" <tr><td><b style='font-size: 0.85em'>ref:</b> "+aComs[x].REFERENCIA+"</td></tr>";
+        sFila +=" <tr><td><b style='font-size: 0.85em'>inc:</b> "+aComs[x].REFERENCIA+"</td></tr>";
         sFila +=" <tr><td style='text-align: right;color:#DB0D36'>"+ParseEstado(aComs[x].ESTAT)+"</td></tr>";
         //sFila +=" <tr><td style='text-align: right;font-size: 0.75em'>"+aComs[x].DATA+"</td></tr>";
         sFila +=" </table></div>";
